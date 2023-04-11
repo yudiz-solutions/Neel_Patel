@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colouring Squares</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .div7 {
+        height: 600px;
+        width: 600px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      .div6 {
+        height: 550px;
+        width: 550px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      .div5 {
+        height: 500px;
+        width: 500px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      .div4 {
+        height: 450px;
+        width: 450px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      .div3 {
+        height: 400px;
+        width: 400px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      .div2 {
+        height: 350px;
+        width: 350px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      .div1 {
+        height: 300px;
+        width: 300px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {
+        //     $(div).click(function(){
+
+        //     });
+        //   )
+        $("div").on({
+          click: function () {
+            // alert("ID:" + $(".div7").attr("id"));
+
+            $(".div7").css("background-color", "green");
+            $(".div6").css("background-color", "orange");
+            $(".div1").css("background-color", "blue");
+          },
+        });
+      });
+    </script>
+    <div class="main">
+      <div class="div7" id="7">
+        <div class="div6" id="6">
+          <div class="div5" id="5">
+            <div class="div4" id="4">
+              <div class="div3" id="3">
+                <div class="div2" id="2">
+                  <div class="div1" id="1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
