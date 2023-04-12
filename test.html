@@ -57,30 +57,30 @@
   <body>
     <script>
       $(document).ready(function () {
-        $(document).ready(function () {
-          $("div.box").css("background-color", "grey");
+        $("div").css("background-color", "lightgrey");
 
-          $("div.box").on("click", function (event) {
-            var clickedBox = $(this);
-            var innerBoxes = clickedBox.children();
-            var outerBoxes = clickedBox.parents();
-
-            event.stopPropagation();
-            clickedBox.css("background-color", "red");
-            innerBoxes.css("background-color", "blue");
-            outerBoxes.css("background-color", "yellow");
-          });
+        $("div").on("click", function (event) {
+          var clickedBox = $(this);
+          //   console.log(clickedBox);
+          var outerBoxes = clickedBox.parents("div");
+          var innerBoxes = clickedBox.children();
+          //   console.log(innerBoxes);
+          //   console.log(outerBoxes);
+          clickedBox.css("background-color", "red");
+          clickedBox.children().css("background-color", "blue");
+          outerBoxes.css("background-color", "yellow");
+          event.stopPropagation();
         });
       });
     </script>
 
-    <div class="box" id="box7">
-      <div class="box" id="box6">
-        <div class="box" id="box5">
-          <div class="box" id="box4">
-            <div class="box" id="box3">
-              <div class="box" id="box2">
-                <div class="box" id="box1"></div>
+    <div id="box7">
+      <div id="box6">
+        <div id="box5">
+          <div id="box4">
+            <div id="box3">
+              <div id="box2">
+                <div id="box1"></div>
               </div>
             </div>
           </div>
