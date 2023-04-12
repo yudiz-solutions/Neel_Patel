@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEST</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form" method="post">
+      Title: <input type="text" id="title" /> Body:<input
+        type="text"
+        id="body"
+      />
+      <input type="submit" value="Add Data" />
+      <br /><br />
+    </form>
+    <table id="display">
+      <tr>
+        <th>UserId</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Body</th>
+      </tr>
+    </table>
+    <script>
+      $.ajax({
+        url: "https://jsonplaceholder.typicode.com/posts",
+        dataType: "json",
+        success: function (data) {
+          for (let i = 0; i < data.length; i++) {
+            let row = $(
+              "<tr><td>" +
+                data[i].userId +
+                "</td><td>" +
+                data[i].id +
+                "</td><td>" +
+                data[i].title +
+                "</td><td>" +
+                data[i].body +
+                "</td><tr>"
+            );
+            $("#display").append(row);
+          }
+        },
+        error: function (textStatus, errorThrown) {
+          alert("Error:" + textStatus + "-" + errorThrown);
+        },
+      });
+
+      $("#form").submit(function (event) {
+        event.preventDefault();
+
+        let formData = {
+          userId: 1,
+          title: $("#title").val(),
+          body: $("#body").val(),
+        };
+
+        $.ajax({
+          type: "POST",
+          url: "https://jsonplaceholder.typicode.com/posts",
+          data: formData,
+          dataType: "json",
+          success: function (data) {
+            let row = $(
+              "<tr><td>" +
+                data.userId +
+                "</td><td>" +
+                data.id +
+                "</td><td>" +
+                data.title +
+                "</td><td>" +
+                data.body +
+                "</td><tr>"
+            );
+
+            $("#display").append(row);
+            $("#title").val("");
+            $("#body").val("");
+          },
+          error: function (textStatus, errorThrown) {
+            alert("Error:" + textStatus + "-" + errorThrown);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
