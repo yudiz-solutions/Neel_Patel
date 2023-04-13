@@ -68,7 +68,7 @@
           //   console.log(outerBoxes);
           clickedBox.css("background-color", "red");
           clickedBox.children().css("background-color", "blue");
-          outerBoxes.css("background-color", "yellow");
+          outerBoxes.parents().css("background-color", "yellow");
           event.stopPropagation();
         });
       });
