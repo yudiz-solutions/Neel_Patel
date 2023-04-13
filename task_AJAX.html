@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
-  <title>AJAX_TASK</title>
+  <title>TEST</title>
   <style>
     table,
     th,
@@ -30,19 +30,27 @@
       <th>ID</th>
       <th>Title</th>
       <th>Body</th>
+      <th>Action</th>
     </tr>
   </table>
+
   <script>
+    // $(document).ready(function () {
+    function dltrow(id) {
+      $(`#${id}`).remove();
+    };
+
     $.ajax({
       url: "https://jsonplaceholder.typicode.com/posts",
       dataType: "json",
       success: function (data) {
+
         var row = "";
 
         $.each(data, function (i, post) {
 
           row +=
-            "<tr><td>" +
+            `<tr id="${post.id}"><td>` +
             post.userId +
             "</td><td>" +
             post.id +
@@ -50,9 +58,12 @@
             post.title +
             "</td><td>" +
             post.body +
-            "</td><tr>";
-        });
+            "</td><td>" + `<input type="submit" value="Delete" onclick='dltrow(${post.id})'/> <input type="submit" id="edit"  value="Edit" />` + "</td></tr>";
 
+        },
+
+
+        );
         $("#display").append(row);
       },
       error: function (textStatus, errorThrown) {
@@ -64,7 +75,7 @@
       event.preventDefault();
 
       let formData = $("#form").serialize();
-      // console.log(formData);
+      console.log(formData);
       $.ajax({
         type: "POST",
         url: "https://jsonplaceholder.typicode.com/posts",
@@ -80,17 +91,22 @@
             data.title +
             "</td><td>" +
             data.body +
-            "</td><tr>";
+            "</td><td>" + `<input type="submit" value="Delete" onclick='dltrow(${data.id})'/> <input type="submit" id="edit"  value="Edit" />` + "</td></tr>";
 
           $("#display").append(row);
 
           $("#form")[0].reset();
         },
         error: function (textStatus, errorThrown) {
-          alert("Error:" + textStatus + "- " + errorThrown);
+          alert("Error:" + textStatus + "-" + errorThrown);
         },
       });
     });
+    // });
+  </script>
+  <script>
+
+
   </script>
 </body>
 
