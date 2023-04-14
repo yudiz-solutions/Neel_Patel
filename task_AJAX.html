@@ -20,17 +20,17 @@
 <body>
   <form id="addForm" method="post">
     <input type="hidden" id="userId" name="userId" value="1" />
-    Title: <input type="text" id="title" name="title" /><br>
-    Body:<input type="text" id="body" name="body" /><br><br>
+    Title: <input type="text" id="title" name="title" required /><br>
+    Body:<input type="text" id="body" name="body" required /><br><br>
     <input type="submit" value="Add Data" />
     <br /><br />
   </form>
   <br>
   <form id="updtForm" method="post">
-    UserId:<input type="text" id="updt_uID" name="updt_uID" /><br>
+    UserId:<input type="text" id="updt_uID" name="updt_uID" required /><br>
     <input type="hidden" id="updt_id" name="updt_id" value="1" />
-    New Title: <input type="text" id="updt_title" name="updt_title" /><br>
-    New Body:<input type="text" id="updt_body" name="updt_body" /><br><br>
+    New Title: <input type="text" id="updt_title" name="updt_title" required /><br>
+    New Body:<input type="text" id="updt_body" name="updt_body" required /><br><br>
     <br>
     <input type="submit" value="Update Data" />
     <br /><br />
@@ -63,6 +63,7 @@
 
           $("#updtForm").submit(function (event) {
             event.preventDefault();
+            console.log("NEEL");
             var updtFormData = $("#updtForm").serialize();
             // console.log(updtFormData);
             var postId = data.id;
@@ -145,6 +146,10 @@
         },
       });
     });
+  </script>
+  <script>
+
+
   </script>
 </body>
 
