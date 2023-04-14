@@ -2,11 +2,12 @@
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
-  <title>AJAX_TASK</title>
+  <title>TEST</title>
   <style>
     table,
     th,
@@ -19,9 +20,19 @@
 <body>
   <form id="addForm" method="post">
     <input type="hidden" id="userId" name="userId" value="1" />
-    Title: <input type="text" id="title" name="title" />
-    Body:<input type="text" id="body" name="body" />
+    Title: <input type="text" id="title" name="title" /><br>
+    Body:<input type="text" id="body" name="body" /><br><br>
     <input type="submit" value="Add Data" />
+    <br /><br />
+  </form>
+  <br>
+  <form id="updtForm" method="post">
+    UserId:<input type="text" id="updt_uID" name="updt_uID" /><br>
+    <input type="hidden" id="updt_id" name="updt_id" value="1" />
+    New Title: <input type="text" id="updt_title" name="updt_title" /><br>
+    New Body:<input type="text" id="updt_body" name="updt_body" /><br><br>
+    <br>
+    <input type="submit" value="Update Data" />
     <br /><br />
   </form>
   <table id="display">
@@ -39,15 +50,50 @@
       $(`#${id}`).remove();
     };
 
+    function editRow(id) {
+      $.ajax({
+        type: "GET",
+        url: `https://jsonplaceholder.typicode.com/posts/${id}`,
+        dataType: "json",
+        success: function (data) {
+          $("#updt_uID").val(data.userId);
+          $("#updt_id").val(data.id);
+          $("#updt_title").val(data.title);
+          $("#updt_body").val(data.body);
+
+          $("#updtForm").submit(function (event) {
+            event.preventDefault();
+            var updtFormData = $("#updtForm").serialize();
+            // console.log(updtFormData);
+            var postId = data.id;
+            $.ajax({
+              type: "PUT",
+              url: `https://jsonplaceholder.typicode.com/posts/${postId}`,
+              data: updtFormData,
+              dataType: "json",
+              success: function (updatedRow) {
+                console.log(updtFormData);
+                $(`#${postId}`).html(`<td>${updatedRow.updt_uID}</td><td>${updatedRow.updt_id}</td><td>${updatedRow.updt_title}</td><td>${updatedRow.updt_body}</td><td><input type="submit" value="Delete" onclick='dltrow(${updatedRow.id})'/> <input type="submit" id="edit" value="Edit" onclick='editRow(${updatedRow.id})'/></td>`);
+                $("#updtForm")[0].reset();
+              },
+              error: function (textStatus, errorThrown) {
+                alert("Error:" + textStatus + "-" + errorThrown);
+              },
+            });
+          });
+        },
+        error: function (textStatus, errorThrown) {
+          alert("EditRow Error:" + textStatus + "-" + errorThrown);
+        },
+      });
+    }
+
     $.ajax({
       url: "https://jsonplaceholder.typicode.com/posts",
       dataType: "json",
       success: function (data) {
-
         var row = "";
-
         $.each(data, function (i, post) {
-
           row +=
             `<tr id="${post.id}"><td>` +
             post.userId +
@@ -57,7 +103,7 @@
             post.title +
             "</td><td>" +
             post.body +
-            "</td><td>" + `<input type="submit" value="Delete" onclick='dltrow(${post.id})'/> <input type="submit" id="edit"  value="Edit" />` + "</td></tr>";
+            "</td><td>" + `<input type="submit" value="Delete" onclick='dltRow(${post.id})'/> <input type="submit" id="updtForm" onclick='editRow(${post.id})' value="Edit" />` + "</td></tr>";
         },
 
         );
@@ -70,7 +116,6 @@
 
     $("#addForm").submit(function (event) {
       event.preventDefault();
-
       let formData = $("#addForm").serialize();
       console.log(formData);
       $.ajax({
@@ -89,7 +134,7 @@
             "</td><td>" +
             formRow.body +
             "</td><td>" +
-            `<input type="submit" value="Delete" onclick='dltrow(${formRow.id})'/> <input type="submit" id="edit"  value="Edit" />` +
+            `<input type="submit" value="Delete" onclick='dltRow(${formRow.id})'/> <input type="submit" id="edit" onclick='editRow(${formRow.id})' value="Edit" />` +
             "</td></tr>";
           $("#display").append(newRow);
           $("#addForm")[0].reset();
@@ -100,7 +145,6 @@
         },
       });
     });
-
   </script>
   <script>
 
