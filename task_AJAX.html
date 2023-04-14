@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <form id="form" method="post">
+  <form id="addForm" method="post">
     <input type="hidden" id="userId" name="userId" value="1" />
     Title: <input type="text" id="title" name="title" />
     Body:<input type="text" id="body" name="body" />
@@ -35,7 +35,6 @@
   </table>
 
   <script>
-    // $(document).ready(function () {
     function dltrow(id) {
       $(`#${id}`).remove();
     };
@@ -59,9 +58,7 @@
             "</td><td>" +
             post.body +
             "</td><td>" + `<input type="submit" value="Delete" onclick='dltrow(${post.id})'/> <input type="submit" id="edit"  value="Edit" />` + "</td></tr>";
-
         },
-
 
         );
         $("#display").append(row);
@@ -71,38 +68,39 @@
       },
     });
 
-    $("#form").submit(function (event) {
+    $("#addForm").submit(function (event) {
       event.preventDefault();
 
-      let formData = $("#form").serialize();
+      let formData = $("#addForm").serialize();
       console.log(formData);
       $.ajax({
         type: "POST",
         url: "https://jsonplaceholder.typicode.com/posts",
         data: formData,
         dataType: "json",
-        success: function (data) {
-          let row =
-            "<tr><td>" +
-            data.userId +
+        success: function (formRow) {
+          var newRow =
+            `<tr id="${formRow.id}"><td>` +
+            formRow.userId +
             "</td><td>" +
-            data.id +
+            formRow.id +
             "</td><td>" +
-            data.title +
+            formRow.title +
             "</td><td>" +
-            data.body +
-            "</td><td>" + `<input type="submit" value="Delete" onclick='dltrow(${data.id})'/> <input type="submit" id="edit"  value="Edit" />` + "</td></tr>";
-
-          $("#display").append(row);
-
-          $("#form")[0].reset();
+            formRow.body +
+            "</td><td>" +
+            `<input type="submit" value="Delete" onclick='dltrow(${formRow.id})'/> <input type="submit" id="edit"  value="Edit" />` +
+            "</td></tr>";
+          $("#display").append(newRow);
+          $("#addForm")[0].reset();
         },
+
         error: function (textStatus, errorThrown) {
           alert("Error:" + textStatus + "-" + errorThrown);
         },
       });
     });
-    // });
+
   </script>
   <script>
 
