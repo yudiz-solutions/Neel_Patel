@@ -9,12 +9,12 @@
 </head>
 <body>
 
-    
-    <?php
+<?php
 
 $name = $dept = "";
 $nameErr = $deptErr = "";
 
+// if (isset($_POST["submit"])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $nameErr = "Enter the name !!";
@@ -34,7 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+// }
 
+// To validate user inputs
 function inputValidation($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -58,7 +60,7 @@ Department:
 <input type = "submit" name = "submitBtn" value = "SUBMIT" >
 </form>
 
-Showing 
+<!-- Printing output -->
 <?php
         echo "<br>" . $_POST["name"] . "<br>" . $_POST["dept"];
 ?>

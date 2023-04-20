@@ -11,9 +11,9 @@
 <body>
     <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST">
         Enter your Effective hours:
-        <input type=" number" name="hrs"><br><br>
+        <input type=" number" name="hrs" required><br><br>
         Enter your Effective minutes:
-        <input type=" number" name="min"><br><br>
+        <input type=" number" name="min" required><br><br>
         <input type="submit" name = "submit" value="Calculate">
 </body>
 
@@ -30,6 +30,7 @@ if (isset($_POST["submit"])) {
     echo "<br><br><b> You can go after: </b><br>";
     echo "<b>" . $remainHrs ." </b> Hrs. ";
     echo "<b>" . $remainMin . " </b> Min.";
+    
     }
 }
 
