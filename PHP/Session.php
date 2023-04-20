@@ -11,9 +11,10 @@ session_start();
 </head>
 <body>
 <?php
+
 $_SESSION["name"] = "Neel";
 echo "My name is " . $_SESSION["name"] ."<br>";
-//  session_unset();
+// session_unset();
 session_destroy();
 
 echo "<br>After unsetting session" . $_SESSION["name"];
