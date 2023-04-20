@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colouring Squares</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      #box7 {
+        height: 600px;
+        width: 600px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      #box6 {
+        height: 550px;
+        width: 550px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      #box5 {
+        height: 500px;
+        width: 500px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      #box4 {
+        height: 450px;
+        width: 450px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      #box3 {
+        height: 400px;
+        width: 400px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      #box2 {
+        height: 350px;
+        width: 350px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+      #box1 {
+        height: 300px;
+        width: 300px;
+        border: 1px solid black;
+        padding: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {
+        $("div").css("background-color ", "grey");
+        $("div").on("click", function (event) {
+          $("div").removeClass("targetDiv");
+          $(this).addClass("targetDiv");
+          $(".targetDiv").css("background-color", "red");
+          $(".targetDiv div").css("background-color", "blue");
+          $(".targetDiv").parents("div").css("background-color", "yellow");
+          event.stopPropagation();
+        });
+      });
+    </script>
+
+    <div id="box7">
+      <div id="box6">
+        <div id="box5">
+          <div id="box4">
+            <div id="box3">
+              <div id="box2">
+                <div id="box1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+Done
