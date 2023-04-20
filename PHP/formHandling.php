@@ -14,12 +14,12 @@
 $name = $dept = "";
 $nameErr = $deptErr = "";
 
-// if (isset($_POST["submit"])) {
+if (isset($_POST["submitBtn"])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $nameErr = "Enter the name !!";
     } else {
-        $name = inputValidation($_POST[$data]);
+        $name = inputValidation($_POST["name"]);
         if (!preg_match("/^[a-zA-Z-']*$/", $name)) {
             $nameErr = "Invalid format";
         }
@@ -28,13 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["dept"])) {
         $deptErr = "Enter your department !!";
     } else {
-        $dept = inputValidation($_POST[$data]);
+        $dept = inputValidation($_POST["dept"]);
         if (!preg_match("/^[a-zA-Z-']*$/", $dept)) {
             $deptErr = "Invalid format";
         }
     }
 }
-// }
+}
 
 // To validate user inputs
 function inputValidation($data) {
@@ -62,7 +62,7 @@ Department:
 
 <!-- Printing output -->
 <?php
-        echo "<br>" . $_POST["name"] . "<br>" . $_POST["dept"];
+    echo "<br>" . $name . "<br>" . $dept;
 ?>
 
 </body>
