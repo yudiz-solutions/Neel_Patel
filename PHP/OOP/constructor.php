@@ -6,7 +6,7 @@
 ?><?php
 class Departments
 {
-    //Properties
+    //PROPERTIES
     //Public property can be accessed everywhere
     public $webdevelopment;
 
@@ -17,8 +17,7 @@ class Departments
     protected $blockchain;
 
 
-    //Methods
-    
+    //METHODS
     //__construct() automatically called when we create an object
     function __construct($webdevelopment, $webdesign, $blockchain){
         $this -> webdevelopment = $webdevelopment;
@@ -42,7 +41,7 @@ class Departments
 
 }
 
-//Objects
+//OBJECTS
 $tech = new Departments("Laravel", "HTML-CSS", "Python");
 
 //Let's print them

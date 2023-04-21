@@ -1,7 +1,7 @@
 <?php
 class Departments
 {
-    //Properties
+    //PROPERTIES
     //Public property can be accessed everywhere
     public $webdevelopment;
 
@@ -12,7 +12,7 @@ class Departments
     protected $blockchain;
 
 
-    //Methods
+    //METHODS
     //$this refers to the current object and only available inside method
     function set_webdevelopment($webdevelopment) {
         $this -> webdevelopment = $webdevelopment;
@@ -40,7 +40,7 @@ class Departments
 
 }
 
-//Objects
+//OBJECTS
 $tech = new Departments();
 
 //To check if an object belongs to a specific class

@@ -1,9 +1,9 @@
 <?php
 
 //Parent class
-class TechDepartments {
+class AllDepartments {
     
-    //Properties
+    //PROPERTIES
     public $webdevelopment;
     public $webdesign;
 
@@ -14,20 +14,32 @@ class TechDepartments {
 
     public function techFun() {
         echo "Web-development is having " . $this -> webdevelopment .
-        "<br> Web-design is having " . $this -> webdesign ;
+        "<br> Web-design is having " . $this -> webdesign . "<br>" ;
     }
 }
+
+//Note: We can use final keyword with parent class to prevent inheritance
 
 //Child class
-class BusinessDept extends TechDepartments {
-    public function businessFun() {
-        echo "Business department is also as much important as Tech department <br>";
+class OtherDept extends AllDepartments {
+    public $blockchain;
+
+    public function __construct($webdevelopment, $webdesign, $blockchain) {
+        $this -> webdevelopment = $webdevelopment;
+        $this -> webdesign = $webdesign;
+        $this -> blockchain = $blockchain;
+    }
+
+    public function otherFun() {
+        echo "<b> Our departments are: </b>" . $this -> webdevelopment . "<br>"
+        . $this -> webdesign . "<br>"
+        . $this -> blockchain . "<br>" ;
     }
 }
 
-//Objects
-$yudiz = new BusinessDept("Node-JS", "HTML-CSS");
-$yudiz -> businessFun();
+//OBJECTS
+$yudiz = new OtherDept("Node-JS", "HTML-CSS", "Python" );
 $yudiz -> techFun();
+$yudiz -> otherFun();
 
 ?>
