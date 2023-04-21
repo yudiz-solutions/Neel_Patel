@@ -1,9 +1,4 @@
 <?php
-
-
-
-
-?><?php
 class Departments
 {
     //PROPERTIES
