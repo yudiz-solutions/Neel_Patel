@@ -2,11 +2,9 @@
 
 $servername = "localhost";
 $username = "n";
-$password = "";
+$pass = "";
 
-$conn = mysqli_connect($servername, $username, $password);
-
-mysqli_close($conn);
+$conn = mysqli_connect($servername, $username, $pass);
 
 if (!$conn) {
     die("Connection failed");
