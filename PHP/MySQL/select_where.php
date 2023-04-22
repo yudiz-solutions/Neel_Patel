@@ -3,9 +3,12 @@
 include "connDB.php";
 
 //SELECT QUERY
-$sql = "SELECT id, EmployeeID, fullName, Designation FROM trainees";
+// $sql = "SELECT id, EmployeeID, fullName, Designation FROM trainees";
 //OR
 // $sql = "SELECT * FROM trainees";
+
+//USING WHERE TO FILTER DATA
+$sql = "SELECT id, EmployeeID, fullName, Designation FROM trainees WHERE Designation = 'HRE'";
 
 $result = $conn -> query($sql);
 
@@ -18,5 +21,4 @@ while ($row = $result -> fetch_assoc()) {
 }
 
 $conn -> close();
-
 ?>
