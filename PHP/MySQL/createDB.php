@@ -1,16 +1,6 @@
 <?php
-
-$servername = "localhost";
-$username = "n";
-$password = "";
-
-$conn = new mysqli($servername, $username, $password);
-
-//If error !!
-if (! $conn) {
-    die ("Connection failed:" . $conn -> connect_error);
-}
-echo "Connected !!";
+//DB CONNECTION
+include "connDB.php";
 
 //After successfull connection
 
@@ -22,9 +12,6 @@ echo "Connected !!";
 // } else {
 //     echo "ERROR !!" . $conn -> error;
 // }
-
-// SELECT DB THEN CREATE TABLE
-$conn->select_db("yudiz");
 
 // CREATING TABLE NAMED AS 'TRAINEES'
 // $sql = "CREATE TABLE `trainees` (
