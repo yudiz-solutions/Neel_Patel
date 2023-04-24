@@ -52,11 +52,11 @@ if ($result = $conn->query($vsql)) {
             <!-- <a href = "delete.php"> DELETE </a> -->
             <form action = "delete.php" method = "post">
                 <input type = "hidden" value = "<?=$row['id']?>" name = "dID" />
-                <input type="submit" value="DELETE" name = "dltbtn" />
+                <input type = "submit" value = "DELETE" name = "dltbtn" />
             </form>
         </td>
         <td>
-            <input type="button" value="EDIT" name = "edtbtn" onClick="document.location.href='edit.php'" />
+            <input type = "button" value = "EDIT" name = "edtbtn" onClick = "document.location.href='edit.php'" />
         </td>
     </tr>
     <?php
