@@ -16,7 +16,7 @@ if (isset($_POST['dltbtn'])) {
     $dsql = "DELETE FROM crud WHERE id = $dID";
     
     if ($conn -> query($dsql) == true) {
-        echo "DELETED SUCCESSFULLY";
+        echo "<script> alert ('DELETED SUCCESSFULLY')</script>";
     } else {
         echo "ERROR !!" .$conn -> error;
     }

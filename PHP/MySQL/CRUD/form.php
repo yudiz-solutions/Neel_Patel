@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
     $isql = "INSERT INTO crud (empid, fname, lname, designation) VALUES ('$empid', '$fname', '$lname', '$designation')";
 
     if ($conn -> query($isql) == true) {
-        echo "Values added successfully";
+        echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
     }
 }
 
