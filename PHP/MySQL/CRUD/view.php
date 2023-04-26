@@ -1,3 +1,8 @@
+<?php
+//DB Connection
+include "dbConn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,67 +14,67 @@
 </head>
 
 <body>
-    <?php
-include "dbConn.php";
+<?php
 // echo "hey";
 
+//VIEW QUERY
 $vsql = "SELECT * FROM crud";
 // $result = $conn -> query($vquery);
 
 if ($result = $conn->query($vsql)) {
     ?>
-<table>
-    <thead>
-        <tr>
-            <th> ID </th>
-            <th> EmployeeID </th>
-            <th> Firstname </th>
-            <th> Lastname </th>
-            <th> Designation </th>
-            <th> Action </th>
-        </tr>
-    </thead>
+    <table>
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> EmployeeID </th>
+                <th> Firstname </th>
+                <th> Lastname </th>
+                <th> Designation </th>
+                <th> Action </th>
+            </tr>
+        </thead>
+        
     <?php
+    //Displaying result in the form of table
     while ($row = $result->fetch_assoc()) {
         ?>
-    <tr>
-        <td>
-            <?=$row["id"] ?>
-        </td>
-        <td>
-            <?=$row["empid"] ?>
-        </td>
-        <td>
-            <?=$row["fname"] ?>
-        </td>
-        <td>
-            <?=$row["lname"] ?>
-        </td>
-        <td>
-            <?=$row["designation"] ?>
-        </td>
-        <td>
-            <!-- <a href = "delete.php"> DELETE </a> -->
-            <form action = "delete.php" method = "post">
-                <input type = "hidden" value = "<?=$row['id']?>" name = "dID" />
-                <input type = "submit" value = "DELETE" name = "dltbtn" />
-            </form>
-        </td>
-        <td>
-            <input type = "button" value = "EDIT" name = "edtbtn" onClick = "document.location.href='edit.php'" />
-        </td>
-    </tr>
+        <tr>
+            <td>
+                <?=$row["id"] ?>
+            </td>
+            <td>
+                <?=$row["empid"] ?>
+            </td>
+            <td>
+                <?=$row["fname"] ?>
+            </td>
+            <td>
+                <?=$row["lname"] ?>
+            </td>
+            <td>
+                <?=$row["designation"] ?>
+            </td>
+            <td>
+                <!-- DELETE Button -->
+                <form action="delete.php" method="post">
+                    <input type="hidden" value="<?=$row['id']?>" name="dID" />
+                    <input type="submit" value="DELETE" name="dltbtn" />
+                </form>
+            </td>
+            <td>
+                <!-- EDIT Button -->
+                <button name = "edtbtn"><a href="edit.php?id=<?=$row['id']?>"> Edit </a></button>
+            </td>
+        </tr>
     <?php
     }
     ?>
-</table>
-<?php
-} else {
-    echo "Error!";
-}
+    </table>
+    <?php
+    } else {
+        echo "Error!";
+    }
 ?>
-
 </body>
-
 </html>
-

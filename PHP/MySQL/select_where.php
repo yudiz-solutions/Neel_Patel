@@ -11,7 +11,7 @@ include "connDB.php";
 $sql = "SELECT id, EmployeeID, fullName, Designation FROM trainees WHERE Designation = 'HRE'";
 
 $result = $conn -> query($sql);
-
+echo $result -> fetch_assoc("id");
 //OUTPUT
 while ($row = $result -> fetch_assoc()) {
     echo "<br>ID:" . $row["id"] .

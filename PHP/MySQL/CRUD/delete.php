@@ -1,3 +1,8 @@
+<?php
+//DB Connection
+include "dbConn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +13,13 @@
 </head>
 <body>
 <?php
-include "dbConn.php";
 
+//When DLT button is pressed
 if (isset($_POST['dltbtn'])) {
     $dID = $_POST['dID'];
     // echo $dID;
+    
+    //DLT QUERY
     $dsql = "DELETE FROM crud WHERE id = $dID";
     
     if ($conn -> query($dsql) == true) {
