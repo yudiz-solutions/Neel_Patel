@@ -72,9 +72,9 @@ include "dbConn.php";
     Designation
     <input type = 'text' name = 'designation' value = '<?=$e_designation?>' ><br><br>
         
-        <input type = 'submit' name = 'e_submit' value = 'EDIT'>
+    <input type = 'submit' name = 'e_submit' value = 'EDIT'>
 </form>
-
+<br><br>
 <?php
     include "view.php";
 ?>

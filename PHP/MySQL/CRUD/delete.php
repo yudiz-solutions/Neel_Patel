@@ -30,6 +30,7 @@ if (isset($_POST['dltbtn'])) {
 }
 
 include "view.php";
+header("Location: view.php");
 ?>  
 </body>
 </html>
