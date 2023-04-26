@@ -7,7 +7,7 @@
     <title>EDIT</title>
 </head>
 <body>
-    THis is edit page
+    redirected to the edit page
     
     
 </body>
