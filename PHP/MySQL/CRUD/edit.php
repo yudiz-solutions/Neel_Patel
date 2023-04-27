@@ -56,24 +56,35 @@ include "dbConn.php";
 ?>
 
 <!-- UPDATE form -->
-<form action = 'edit.php' method = 'POST'>
+<div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+            <form action = 'edit.php' method = 'POST'>
     
-    <input type="hidden" value="<?=$e_id?>" name="id" />
-    
-    EmployeeID:
-    <input type = 'text' name = 'empid' value = '<?=$e_empid ?>' ><br><br>
-    
-    First name:
-    <input type = 'text' name = 'fname' value = '<?=$e_fname?>' ><br><br>
-    
-    Last name:
-    <input type = 'text' name = 'lname' value = '<?=$e_lname?>' ><br><br>
-        
-    Designation
-    <input type = 'text' name = 'designation' value = '<?=$e_designation?>' ><br><br>
-        
-    <input type = 'submit' name = 'e_submit' value = 'EDIT'>
-</form>
+            <input type="hidden" value="<?=$e_id?>" name="id" />
+
+            <div class = "mb-3">
+            EmployeeID:
+            <input type = 'text' name = 'empid' value = '<?=$e_empid ?>' ><br><br>
+            </div>
+
+            <div class = "mb-3">
+            First name:
+            <input type = 'text' name = 'fname' value = '<?=$e_fname?>' ><br><br>
+            </div>
+
+            <div class = "mb-3">
+            Last name:
+            <input type = 'text' name = 'lname' value = '<?=$e_lname?>' ><br><br>
+            </div>
+
+            <div class = "mb-3">
+            Designation
+            <input type = 'text' name = 'designation' value = '<?=$e_designation?>' ><br><br>
+            </div>
+            
+            <input type = 'submit' name = 'e_submit' value = 'EDIT'>
+        </form>
 <br><br>
 <?php
     include "view.php";

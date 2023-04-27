@@ -10,6 +10,7 @@ include "dbConn.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>VIEW</title>
 </head>
 
@@ -23,15 +24,15 @@ $vsql = "SELECT * FROM crud";
 
 if ($result = $conn->query($vsql)) {
     ?>
-    <table>
-        <thead>
+    <table class = "table">
+        <thead class = "table-dark">
             <tr>
                 <th> ID </th>
-                <th> EmployeeID </th>
-                <th> Firstname </th>
-                <th> Lastname </th>
-                <th> Designation </th>
-                <th> Action </th>
+                <th> EMPLOYEE-ID </th>
+                <th> FIRSTNAME </th>
+                <th> LASTNAME </th>
+                <th> DESIGNATION </th>
+                <th> ACTION </th>
             </tr>
         </thead>
         
@@ -59,14 +60,12 @@ if ($result = $conn->query($vsql)) {
                 <!-- DELETE Button -->
                 <form action="delete.php" method="post">
                     <input type="hidden" value="<?=$row['id']?>" name="dID" />
-                    <input type="submit" value="DELETE" name="dltbtn" />
+                    <input type="submit" class="btn btn-danger" value="DELETE" name="dltbtn" />
+                    <!-- EDIT Button -->
+                    <button name = "edtbtn" class="btn btn-info" > <a href="edit.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>
+                </td>
                 </form>
-            </td>
-            <td>
-                <!-- EDIT Button -->
-                <button name = "edtbtn"><a href="edit.php?id=<?=$row['id']?>"> Edit </a></button>
-            </td>
-        </tr>
+            </tr>
     <?php
     }
     ?>
