@@ -16,7 +16,6 @@ include "dbConn.php";
 
 <body>
 <?php
-// echo "hey";
 
 //VIEW QUERY
 $vsql = "SELECT * FROM crud";
