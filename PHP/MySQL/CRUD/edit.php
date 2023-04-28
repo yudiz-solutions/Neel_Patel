@@ -11,32 +11,63 @@ include "dbConn.php";
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EDIT</title>
+        <style>.error {color: red;}</style>
     </head>
     
     <body>
-    
     <?php
+    $empid = $designation = $fname = $lname = "";
+    $empIdErr = $designationErr = $fNameErr = $lNameErr = "";
+
+
+    function ipValidation($formData) {
+        $formData = trim($formData);
+        $formData = stripslashes($formData);
+        $formData = htmlspecialchars($formData);
+        return $formData;
+    }   
+
     //When EDIT button is pressed
     if (isset($_POST['e_submit'])) {
         $id = $_POST['id'];
-        // echo $id;
-        $empid = $_POST['empid'];
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
+        
+        $empid = ipValidation($_POST['empid']);
+        if (!preg_match("/^[0-9]*$/", $empid)) {
+            $empIdErr = "Invalid EmployeeID !";
+        }
+    
         $designation = $_POST['designation'];
+        $designation = ipValidation($_POST['designation']);
+        if (!preg_match("/^[a-z,A-Z]*$/", $designation)) {
+            $designationErr = "Invalid Designation !";
+        }
 
+        $fname = $_POST['fname'];
+        $fname = ipValidation($_POST['fname']);
+        if (!preg_match("/^[a-z,A-Z]*$/", $fname)) {
+            $fNameErr = "Invalid First Name !";
+        }
+
+        $lname = $_POST['lname'];
+        $lname = ipValidation($_POST['lname']);
+        if (!preg_match("/^[a-z,A-Z]*$/", $lname)) {
+            $lNameErr = "Invalid Last Name !";
+        }
+        
         //UPDATE QUERY
-        $esql = "UPDATE crud SET empid = '$empid',fname = '$fname',lname = '$lname',designation = '$designation' WHERE id = '$id'";
+        if ($empIdErr == "" && $designationErr == "" && $fNameErr == "" && $lNameErr == "") {
+            $esql = "UPDATE crud SET empid = '$empid',fname = '$fname',lname = '$lname',designation = '$designation' WHERE id = '$id'";
   
-        $result = $conn -> query($esql);
+            $result = $conn -> query($esql);
 
-        if ($result == true) {
-            echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
-        } else {
-            echo "Error in updating!!";
+            if ($result == true) {
+                echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
+            } else {
+                echo "Error in updating!!";
+            }
         }
     }
-
+        
     //GETTING ID FROM URL
     if (isset($_GET['id'])) {
         $id = $_GET["id"];
@@ -57,7 +88,7 @@ include "dbConn.php";
 ?>
 
 <!-- UPDATE form -->
-        <form action = 'edit.php' method = 'post'>
+        <form action = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' method = 'post'>
             
             <div class="row mb-4">
             <!-- ID Hidden Value -->
@@ -67,6 +98,7 @@ include "dbConn.php";
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label">EmployeeID</label>
+                        <span class = "error">* <?=$empIdErr;?></span>
                         <input type="text" class="form-control" name = 'empid' value = '<?=$e_empid ?>' />
                     </div>
                 </div>
@@ -75,6 +107,7 @@ include "dbConn.php";
                 <div class="col">
                     <div class="form-outline mb-4">
                         <label class="form-label">Designation</label>
+                        <span class = "error">* <?=$designationErr;?></span>
                         <input type="text" class="form-control" name = 'designation' value = '<?=$e_designation?>' />
                     </div>
                 </div>
@@ -86,6 +119,7 @@ include "dbConn.php";
             <div class="col">
                     <div class="form-outline">
                         <label class="form-label">First name</label>
+                        <span class = "error">* <?=$fNameErr;?></span>
                         <input type="text" class="form-control" name = 'fname' value = '<?=$e_fname?>' />
                     </div>
                 </div>
@@ -94,6 +128,7 @@ include "dbConn.php";
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label">Last name</label>
+                        <span class = "error">* <?=$lNameErr;?></span>
                         <input type="text" class="form-control" name = 'lname' value = '<?=$e_lname?>' />
                     </div>
                 </div>
@@ -107,6 +142,9 @@ include "dbConn.php";
 <br><br>
 <?php
     include "view.php";
+//     if($conn -> query($ssql) == TRUE){
+//     header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/CRUD/view.php");
+// }
 ?>
 
 </body>

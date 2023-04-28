@@ -61,7 +61,7 @@ if ($result = $conn->query($vsql)) {
                     <input type="hidden" value="<?=$row['id']?>" name="dID" />
                     <input type="submit" class="btn btn-danger" value="DELETE" name="dltbtn" />
                     <!-- EDIT Button -->
-                    <button name = "edtbtn" class="btn btn-info" > <a href="edit.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>
+                    <button name = "edtbtn" class="btn btn-info" > <a href="edit.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>           
                 </td>
                 </form>
             </tr>
