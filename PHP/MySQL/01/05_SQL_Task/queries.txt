@@ -1,0 +1,41 @@
+1.  SELECT `customer_id`,`first_name`,`last_name` FROM `customers`
+2.  SELECT `product_id`,`name` FROM `products`
+3.  SELECT `order_id`,`order_date`,`total` FROM `orders` WHERE 1
+4.  SELECT `order_id`,`product_id`,`quantity` FROM `order_items` WHERE 1
+5.  SELECT * FROM `customers` WHERE `customer_id`=1
+6.  SELECT `name`, `description`, `price` FROM `products` WHERE `product_id`=1
+7.  SELECT * FROM `orders` WHERE `order_id`=1
+8.  SELECT * FROM `order_items` WHERE `order_id` = 1 & `product_id` = 1;
+9.  SELECT COUNT(`customer_id`) FROM `customers`
+10. SELECT COUNT(`product_id`) FROM `products`
+11. SELECT COUNT(`order_id`) FROM `orders` WHERE 1;
+12. SELECT COUNT(`order_id`) FROM `order_items` 
+13. SELECT AVG(`price`) FROM `products` WHERE 1;
+14. SELECT MAX(`price`) FROM `products` WHERE 1;
+15. SELECT MIN(`price`) FROM `products` WHERE 1
+16. SELECT SUM(`inventory`) FROM `products` WHERE 1
+17. SELECT * FROM `orders` WHERE `customer_id`=2
+18. SELECT * FROM `order_items` WHERE `order_id` = 4
+19. SELECT SUM(`total`) FROM `orders` WHERE `customer_id` = 1
+20. SELECT SUM(`quantity`) FROM `order_items` WHERE `order_id` = 2
+21. SELECT MAX(`price`), `name` FROM `products` 
+22. SELECT
+    SUM(`total`) AS total,
+    `customer_id`
+FROM
+    `orders`
+GROUP BY
+    `customer_id`
+ORDER BY
+    total
+DESC
+LIMIT 1
+    
+23. SELECT customer_id,first_name,last_name ,MAX(quantity) FROM order_items,customers;
+24. SELECT `product_id`,`name`,MAX(`inventory`) FROM `products`;
+25. SELECT MAX(`total`), `customer_id` FROM `orders`
+26. SELECT SUM(`total`), `order_date` FROM `orders` WHERE 1
+27.
+28.
+29.
+30.
