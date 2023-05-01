@@ -1,50 +1,33 @@
 <?php
-//DB Connection
 include "dbConn.php";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>VIEW</title>
+    <title>Search</title>
 </head>
-<style>
-    
-    h2 {
-        display: inline-block;
-    }
-
-    #AddEmpBtn {
-        float: left;
-        /* margin-right: 260px;
-        margin-top: 4px; */
-    }
-
-</style>
 <body>
-<?php
+    <?php
+    $empid = $_POST['searchBar'];
 
-if (isset($_POST['searchBtn'])) {
-    //SEARCH QUERY
+    //VIEW QUERY
     $vsql = "SELECT id, empid, fname, lname, designation FROM crud WHERE empid LIKE '% ".$empid." %'";
-} else {
-//VIEW QUERY
-$vsql = "SELECT * FROM crud";
-}
 
-if ($result = $conn->query($vsql)) {
+
+
+
+if ($result = $conn->query($vsql) > 0) {
     ?>
     <h2>EMPLOYEE DETAILS</h2>
     <table id = "searchTbl" class = "table">
         <thead class = "table-dark">
             <th> <button id = "AddEmpBtn" class="btn btn-info" a href = "form.php"> Add Employee </a></button> </th>
             <th>
-                <form action = "search.php" method = "POST">
+                <form action = "view.php" method = "">
                     <input type = "text" name = "searchBar" placeholder = "Search">
                     <input type = "submit" name = "searchBtn" value = "SEARCH">
                 </form>
@@ -66,6 +49,11 @@ if ($result = $conn->query($vsql)) {
     <?php
     //Displaying result in the form of table
     while ($row = $result->fetch_assoc()) {
+        $id = $row["id"];
+        $empid = $row["empid"];
+        $fname = $row["fname"];
+        $lname = $row["lname"];
+        $designation = $row["designation"];
         ?>
         <tr>
             <td>
@@ -102,5 +90,7 @@ if ($result = $conn->query($vsql)) {
         echo "Error!";
     }
 ?>
+
+    
 </body>
 </html>

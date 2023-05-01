@@ -25,7 +25,7 @@ include "dbConn.php";
         $formData = stripslashes($formData);
         $formData = htmlspecialchars($formData);
         return $formData;
-    }   
+    }
 
     //When EDIT button is pressed
     if (isset($_POST['e_submit'])) {
@@ -133,8 +133,7 @@ include "dbConn.php";
                     </div>
                 </div>
             </div>
-
-
+            
             <!-- Edit button -->
                 <input type = "submit" class = "btn btn-primary btn-block mb-4" name = 'e_submit' value = 'EDIT'>
             
