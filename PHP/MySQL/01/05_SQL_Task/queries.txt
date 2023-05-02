@@ -27,24 +27,24 @@
 27. SELECT order_id, customer_id, order_date, SUM(total) AS total_sum FROM orders where extract(YEAR FROM order_date) = '2022' GROUP BY customer_id;
 28. SELECT order_id , product_id , SUM(quantity) , AVG(price) FROM order_items GROUP BY order_id
 29. SELECT product_id , name , description , AVG(price), inventory FROM products WHERE inventory > 50
-30. 
-31.
-32.
+30. SELECT order_date, COUNT(quantity) FROM order_items, orders GROUP BY order_date
+31. SELECT HOUR(order_date), COUNT(quantity) FROM order_items, orders GROUP BY order_date
+32. SELECT DAY(order_date), COUNT(quantity) FROM order_items, orders GROUP BY order_date
 33. SELECT customers.customer_id , customers.first_name , customers.last_name , orders.total FROM customers JOIN orders ON customers.customer_id = orders.customer_id ORDER BY  orders.total DESC LIMIT 5
 34. SELECT order_id , product_id , quantity , price FROM order_items ORDER BY price DESC LIMIT 5
-35.
-36.
+35. SELECT * FROM customers, order_items WHERE ISNULL(quantity);
+36. SELECT * FROM products, order_items WHERE ISNULL(name);
 37. ERR // SELECT customers.customer_id , customers.first_name , customers.last_name , orders.customer_id FROM customers JOIN orders on customers.customer_id = orders.customer_id WHERE COUNT(orders.customer_id) >= 2
 38. SELECT * FROM products WHERE price >= 10 AND price <= 20
-39.
-40.
-41.
+39. SELECT order_id, order_date FROM `orders` WHERE MONTH(order_date) = 1 ORDER BY order_id ASC
+40. SELECT order_id, order_date FROM orders WHERE DATE(order_date) = "2022-01-02"
+41. SELECT customer_id, order_id, order_date FROM `orders` WHERE customer_id = 1 
 42.
 43.
 44. SELECT * FROM `customers` WHERE state = 'CA' OR state = 'TX'
 45.
 46. SELECT * FROM products WHERE inventory < 10
-47.
-48.
+47. SELECT customers.customer_id, customers.first_name, customers.last_name, SUM(orders.total) AS TOTAL_SPENT FROM customers JOIN orders ON  customers.customer_id = orders.customer_id GROUP BY customer_id ORDER BY TOTAL_SPENT DESC
+48. SELECT * FROM customers WHERE email LIKE '%example.com'
 49. SELECT * FROM customers WHERE state = 'NY';
-50.
+50. SELECT order_items.order_id, order_items.product_id, products.name , SUM(order_items.price) AS Revenue FROM order_items JOIN products ON order_items.product_id = products.product_id ORDER BY Revenue DESC;
