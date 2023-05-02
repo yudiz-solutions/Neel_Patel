@@ -34,15 +34,15 @@
 34. SELECT order_id , product_id , quantity , price FROM order_items ORDER BY price DESC LIMIT 5
 35. SELECT * FROM customers, order_items WHERE ISNULL(quantity);
 36. SELECT * FROM products, order_items WHERE ISNULL(name);
-37. ERR // SELECT customers.customer_id , customers.first_name , customers.last_name , orders.customer_id FROM customers JOIN orders on customers.customer_id = orders.customer_id WHERE COUNT(orders.customer_id) >= 2
+37. SELECT customers.customer_id , customers.first_name , customers.last_name , orders.customer_id FROM customers JOIN orders on customers.customer_id = orders.customer_id HAVING COUNT(orders.customer_id) >= 2;
 38. SELECT * FROM products WHERE price >= 10 AND price <= 20
 39. SELECT order_id, order_date FROM `orders` WHERE MONTH(order_date) = 1 ORDER BY order_id ASC
 40. SELECT order_id, order_date FROM orders WHERE DATE(order_date) = "2022-01-02"
 41. SELECT customer_id, order_id, order_date FROM `orders` WHERE customer_id = 1 
-42.
-43.
+42. SELECT customers.customer_id, customers.first_name, customers.last_name, orders.order_date, SUM(order_items.quantity) AS TOTAL_ORDER FROM customers JOIN orders ON customers.customer_id = orders.customer_id JOIN order_items ON order_items.order_id = orders.order_id HAVING MONTH(orders.order_date) = 1 AND MAX(TOTAL_ORDER) 
+43. SELECT product_id, name, description FROM products WHERE product_id IN ( SELECT product_id FROM order_items ) ORDER BY name;
 44. SELECT * FROM `customers` WHERE state = 'CA' OR state = 'TX'
-45.
+45. SELECT * FROM orders WHERE DATE(order_date = '2022-01-01') AND total > 20;
 46. SELECT * FROM products WHERE inventory < 10
 47. SELECT customers.customer_id, customers.first_name, customers.last_name, SUM(orders.total) AS TOTAL_SPENT FROM customers JOIN orders ON  customers.customer_id = orders.customer_id GROUP BY customer_id ORDER BY TOTAL_SPENT DESC
 48. SELECT * FROM customers WHERE email LIKE '%example.com'
