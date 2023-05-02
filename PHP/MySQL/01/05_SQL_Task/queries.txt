@@ -19,6 +19,7 @@
 19. SELECT SUM(`total`) FROM `orders` WHERE `customer_id` = 1
 20. SELECT SUM(`quantity`) FROM `order_items` WHERE `order_id` = 2
 21. SELECT MAX(`price`), `name` FROM `products` 
+<<<<<<< HEAD
 22. SELECT
     SUM(`total`) AS total,
     `customer_id`
@@ -39,3 +40,34 @@ LIMIT 1
 28.
 29.
 30.
+=======
+22. SELECT customers.customer_id, customers.first_name, customers.last_name, SUM(orders.total) AS total_sum FROM customers JOIN orders ON customers.customer_id = orders.customer_id GROUP BY orders.customer_id;  
+23. SELECT customers.customer_id, customers.first_name, customers.last_name, orders.order_id, SUM(order_items.quantity) AS Total_quantity FROM customers JOIN orders ON customers.customer_id = orders.customer_id JOIN order_items ON order_items.order_id = orders.order_id GROUP BY order_id;
+24. SELECT `product_id`,`name`,MAX(`inventory`) FROM `products`;
+25. SELECT MAX(`total`), `customer_id` FROM `orders`
+26. SELECT SUM(`total`), `order_date` FROM `orders` WHERE 1
+27. SELECT order_id, customer_id, order_date, SUM(total) AS total_sum FROM orders where extract(YEAR FROM order_date) = '2022' GROUP BY customer_id;
+28. SELECT order_id , product_id , SUM(quantity) , AVG(price) FROM order_items GROUP BY order_id
+29. SELECT product_id , name , description , AVG(price), inventory FROM products WHERE inventory > 50
+30. 
+31.
+32.
+33. SELECT customers.customer_id , customers.first_name , customers.last_name , orders.total FROM customers JOIN orders ON customers.customer_id = orders.customer_id ORDER BY  orders.total DESC LIMIT 5
+34. SELECT order_id , product_id , quantity , price FROM order_items ORDER BY price DESC LIMIT 5
+35.
+36.
+37. ERR // SELECT customers.customer_id , customers.first_name , customers.last_name , orders.customer_id FROM customers JOIN orders on customers.customer_id = orders.customer_id WHERE COUNT(orders.customer_id) >= 2
+38. SELECT * FROM products WHERE price >= 10 AND price <= 20
+39.
+40.
+41.
+42.
+43.
+44. SELECT * FROM `customers` WHERE state = 'CA' OR state = 'TX'
+45.
+46. SELECT * FROM products WHERE inventory < 10
+47.
+48.
+49. SELECT * FROM customers WHERE state = 'NY';
+50.
+>>>>>>> parent of 9b68425 (Merge pull request #1 from yudiz-solutions/php)
