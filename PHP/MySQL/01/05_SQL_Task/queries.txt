@@ -19,28 +19,6 @@
 19. SELECT SUM(`total`) FROM `orders` WHERE `customer_id` = 1
 20. SELECT SUM(`quantity`) FROM `order_items` WHERE `order_id` = 2
 21. SELECT MAX(`price`), `name` FROM `products` 
-<<<<<<< HEAD
-22. SELECT
-    SUM(`total`) AS total,
-    `customer_id`
-FROM
-    `orders`
-GROUP BY
-    `customer_id`
-ORDER BY
-    total
-DESC
-LIMIT 1
-    
-23. SELECT customer_id,first_name,last_name ,MAX(quantity) FROM order_items,customers;
-24. SELECT `product_id`,`name`,MAX(`inventory`) FROM `products`;
-25. SELECT MAX(`total`), `customer_id` FROM `orders`
-26. SELECT SUM(`total`), `order_date` FROM `orders` WHERE 1
-27.
-28.
-29.
-30.
-=======
 22. SELECT customers.customer_id, customers.first_name, customers.last_name, SUM(orders.total) AS total_sum FROM customers JOIN orders ON customers.customer_id = orders.customer_id GROUP BY orders.customer_id;  
 23. SELECT customers.customer_id, customers.first_name, customers.last_name, orders.order_id, SUM(order_items.quantity) AS Total_quantity FROM customers JOIN orders ON customers.customer_id = orders.customer_id JOIN order_items ON order_items.order_id = orders.order_id GROUP BY order_id;
 24. SELECT `product_id`,`name`,MAX(`inventory`) FROM `products`;
@@ -70,4 +48,3 @@ LIMIT 1
 48.
 49. SELECT * FROM customers WHERE state = 'NY';
 50.
->>>>>>> parent of 9b68425 (Merge pull request #1 from yudiz-solutions/php)
