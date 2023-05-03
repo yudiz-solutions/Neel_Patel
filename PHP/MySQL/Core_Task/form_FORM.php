@@ -10,7 +10,7 @@ include "dbConn.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>CORE_FORM</title>
+    <title>form_FORM</title>
     <style>
     .error {
         color: red;
@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     $profile = $_POST['profile'];
     $social = $_POST['social'];
     
-    
+
     //INSERTION QUERY
     
         $isql = "INSERT INTO core_form (fname, lname, uname, email, password, gender, country, state, city, bio, profile, social_media) VALUES ('$fname', '$lname', '$uname', '$email', '$password', '$gender', '$country', '$state', '$city', '$bio', '$profile', '$social')";
@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
             
             <!-- First name input -->
             <div>
-                    <div class="form-outline row" >
+                    <div class="form-outline row mb-3" >
                         <label class="form-label col-5">First name</label>
                         <input type="text" class="form-control col-6" name = "fname" />
                     </div>
@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
 
             <!-- Last name input -->
                 <div>
-                    <div class="form-outline row" >
+                    <div class="form-outline row mb-3" >
                         <label class="form-label col-5">Last name</label>
                         <input type="text" class="form-control col-6" name = "lname" />
                     </div>
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
 
             <!-- Username input -->
                 <div>
-                    <div class="form-outline row" >
+                    <div class="form-outline row mb-3" >
                         <label class="form-label col-5">User</label>
                         <input type="text" class="form-control col-6" name = "uname" />
                     </div>
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
 
                 <!-- Email input -->
                 <div>
-                    <div class="form-outline row ">
+                    <div class="form-outline row mb-3 ">
                         <label class="form-label col-5">Email</label>
                         <input type="text" class="form-control col-6" name = "email" />
                     </div>
@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
 
                 <!-- Password input -->
                 <div>
-                    <div class="form-outline row">
+                    <div class="form-outline row mb-3">
                         <label class="form-label col-5">Password</label>
                         <input type="password" class="form-control col-6" name = "password" />
                     </div>
@@ -101,22 +101,29 @@ if (isset($_POST['submit'])) {
 
                 <!-- Gender input -->
                 <div>
-                    <div class="form-outline row">
+                    <div class="form-outline row mb-3">
                         <label class="form-label col-5">Gender</label><br>
-                        
-                        <input type="radio" class="form-control col-6" id="m" name="gender" value="Male">
-                        <label for="html" class="form-label col-5">Male</label><br>
-                        
-                        <input type="radio" class="form-control col-6" id="f" name="gender" value="Female">
-                        <label for="css" class="form-label col-5">Female</label><br>
-                        
-                        <input type="radio" class="form-control col-6" id="o" name="gender" value="Other">
-                        <label for="javascript" class="form-label col-5">Other</label>
+                        <div class="col-7">
+                            <div >
+                                <input type="radio" id="m" name="gender" value="Male">
+                                <label for="Male"> Male </label>
+                            </div>
+                            
+                            <div >
+                                <input type="radio"  id="f" name="gender" value="Female">
+                                <label for="Female"> Female </label>
+                            </div>
+                                
+                            <div >
+                                <input type="radio" id="o" name="gender" value="Other">
+                                <label for="Other"> Other </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Country input -->
-                <div>
+                <div class = "row mb-3">
                     <div class="form-outline ">
                         <label class="form-label col-5">Country</label>
                         <select name="country" id="#">
@@ -129,7 +136,7 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <!-- State input -->
-                <div>
+                <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">State</label>
                         <select name="state" id="#">
@@ -142,7 +149,7 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <!-- City input -->
-                <div>
+                <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">City</label>
                         <select name="city" id="#">
@@ -155,7 +162,7 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <!-- Bio input -->
-                <div>
+                <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">Bio</label>
                         <textarea id="bio" name="bio" rows="4" cols="50"></textarea>
@@ -163,41 +170,56 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <!-- Profile input -->
-                <div>
-                    <div class="form-outline">
+                <div class = "row mb-3">
+                    <div class="form-outline ">
                         <label class="form-label col-5">Profile</label>
                         <input type="file" id="profile" name="profile">
                     </div>
                 </div>
 
                 <!-- Active social media input -->
-                <div>
-                    <div class="form-outline row">
-                        <label class="form-label col-5">Active social media</label>
-                        <input class="form-control col-6" type="checkbox" id="ig" name="social" value="Instagram">
-                        <label for="ig" class="form-label col-5"> Instagram </label><br>
-                        <input class="form-control col-6" type="checkbox" id="twtr" name="social" value="Twitter">
-                        <label for="twtr" class="form-label col-5"> Twitter </label><br>
-                        <input class="form-control col-6" type="checkbox" id="lkdin" name="social" value="LinkedIn">
-                        <label for="lkdin" class="form-label col-5"> LinkedIn </label><br>
-                        <input class="form-control col-6" type="checkbox" id="fb" name="social" value="Facebook">
-                        <label for="fb" class="form-label col-5"> Facebook</label><br>
-                        <input class="form-control col-6" type="checkbox" id="wp" name="social" value="WhatsApp">
-                        <label for="wp" class="form-label col-5"> WhatsApp</label><br>
-                    </div>
-                <!-- </div> -->
+                <div class = "row mb-3">
+                    <div class="form-outline row mb-3">
+                        <label class="form-label col-5">Active social media</label><br>
+                        <div class="col-7">
+                            <div >
+                                <input type="checkbox" id="ig" name="social" value="instagram">
+                                <label for="ig"> Instagram </label><br>
+                            </div>
+                            
+                            <div >
+                                <input type="checkbox" id="twt" name="social" value="twitter">
+                                <label for="ig"> Twitter </label><br>
+                            </div>
+                                
+                            <div >
+                                <input type="checkbox" id="lin" name="social" value="linkedin">
+                                <label for="ig"> LinkedIn </label><br>
+                            </div>
 
-            <br>
+                            <div >
+                                <input type="checkbox" id="fb" name="social" value="facebook">
+                                <label for="ig"> Facebook </label><br>
+                            </div>
+
+                            <div >
+                                <input type="checkbox" id="wp" name="social" value="whatsapp">
+                                <label for="ig"> WhatsApp </label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             <!-- Submit button -->
+            <div class = "row mb-3">
                 <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "submit" value = "ADD">
+            </div>
             
-                <br>
-
                 <!-- View button -->
+            <div class = "row mb-3">
                 <input type="button" class = "btn btn-primary btn-block mb-4" value="View" onClick="document.location.href='form_VIEW.php'"/>
-                <div>
+            <div>
         </form>
-          <div>
+        <div>
 </body>
 </html>
