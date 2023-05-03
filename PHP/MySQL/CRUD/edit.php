@@ -19,7 +19,6 @@ include "dbConn.php";
     $empid = $designation = $fname = $lname = "";
     $empIdErr = $designationErr = $fNameErr = $lNameErr = "";
 
-
     function ipValidation($formData) {
         $formData = trim($formData);
         $formData = stripslashes($formData);
@@ -32,23 +31,23 @@ include "dbConn.php";
         $id = $_POST['id'];
         
         $empid = ipValidation($_POST['empid']);
-        if (!preg_match("/^[0-9]*$/", $empid)) {
+        if (!preg_match("/\D*$/", $empid)) {        //[^0-9] => "/\D/"
             $empIdErr = "Invalid EmployeeID !";
         }
     
-        $designation = $_POST['designation'];
+        // $designation = $_POST['designation'];
         $designation = ipValidation($_POST['designation']);
         if (!preg_match("/^[a-z,A-Z]*$/", $designation)) {
             $designationErr = "Invalid Designation !";
         }
 
-        $fname = $_POST['fname'];
+        // $fname = $_POST['fname'];
         $fname = ipValidation($_POST['fname']);
         if (!preg_match("/^[a-z,A-Z]*$/", $fname)) {
             $fNameErr = "Invalid First Name !";
         }
 
-        $lname = $_POST['lname'];
+        // $lname = $_POST['lname'];
         $lname = ipValidation($_POST['lname']);
         if (!preg_match("/^[a-z,A-Z]*$/", $lname)) {
             $lNameErr = "Invalid Last Name !";
@@ -56,9 +55,9 @@ include "dbConn.php";
         
         //UPDATE QUERY
         if ($empIdErr == "" && $designationErr == "" && $fNameErr == "" && $lNameErr == "") {
-            $esql = "UPDATE crud SET empid = '$empid',fname = '$fname',lname = '$lname',designation = '$designation' WHERE id = '$id'";
+            $edit_sql = "UPDATE crud SET empid = '$empid', fname = '$fname', lname = '$lname', designation = '$designation' WHERE id = '$id'";
   
-            $result = $conn -> query($esql);
+            $result = $conn -> query($edit_sql);
 
             if ($result == true) {
                 echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
@@ -72,8 +71,8 @@ include "dbConn.php";
     if (isset($_GET['id'])) {
         $id = $_GET["id"];
    
-        $ssql = "SELECT * FROM crud WHERE id = '$id'";
-        $result = $conn -> query($ssql);
+        $select_sql = "SELECT * FROM crud WHERE id = '$id'";
+        $result = $conn -> query($select_sql);
    
     if ($result -> num_rows > 0) {
         while ($row = $result -> fetch_assoc()) {
@@ -91,6 +90,7 @@ include "dbConn.php";
         <form action = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' method = 'post'>
             
             <div class="row mb-4">
+
             <!-- ID Hidden Value -->
             <input type="hidden" value="<?=$e_id?>" name="id" />
             
@@ -108,7 +108,7 @@ include "dbConn.php";
                     <div class="form-outline mb-4">
                         <label class="form-label">Designation</label>
                         <span class = "error">* <?=$designationErr;?></span>
-                        <input type="text" class="form-control" name = 'designation' value = '<?=$e_designation?>' />
+                        <input type="text" class="form-control" name = 'designation' value = '<?=$e_designation ?>' />
                     </div>
                 </div>
             </div>

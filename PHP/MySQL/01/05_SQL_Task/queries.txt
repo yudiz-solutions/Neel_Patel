@@ -77,7 +77,7 @@ SELECT MAX(`total`), `customer_id` FROM `orders`
 SELECT SUM(`total`), `order_date` FROM `orders` WHERE 1
 
 27. Show the total revenue for each month in 2022.
-SELECT order_id, customer_id, order_date, SUM(total) AS total_sum FROM orders where extract(YEAR FROM order_date) = '2022' GROUP BY customer_id;
+//WRONG SELECT order_id, customer_id, order_date, SUM(total) AS total_sum FROM orders where extract(YEAR FROM order_date) = '2022' GROUP BY customer_id;
 
 28. Show the average total spent per order.
 SELECT order_id , product_id , SUM(quantity) , AVG(price) FROM order_items GROUP BY order_id
@@ -88,6 +88,11 @@ SELECT product_id , name , description , AVG(price), inventory FROM products WHE
 30. Show the number of orders placed each day in January 2022.
 SELECT order_date, COUNT(quantity) FROM order_items, orders GROUP BY order_date
 
+SELECT DATE(order_date) AS date, COUNT(*) AS order_count
+FROM Orders
+WHERE MONTH(order_date) = 1 AND YEAR(order_date) = 2022
+GROUP BY DATE(order_date);
+
 31. Show the number of orders placed each hour of the day.
 SELECT HOUR(order_date), COUNT(quantity) FROM order_items, orders GROUP BY order_date
 
@@ -95,10 +100,10 @@ SELECT HOUR(order_date), COUNT(quantity) FROM order_items, orders GROUP BY order
 SELECT DAY(order_date), COUNT(quantity) FROM order_items, orders GROUP BY order_date
 
 33. Show the top 5 customers by total amount spent.
-SELECT customers.customer_id , customers.first_name , customers.last_name , orders.total FROM customers JOIN orders ON customers.customer_id = orders.customer_id ORDER BY  orders.total DESC LIMIT 5
+//SUM baki SELECT customers.customer_id , customers.first_name , customers.last_name , orders.total FROM customers JOIN orders ON customers.customer_id = orders.customer_id ORDER BY  orders.total DESC LIMIT 5
 
 34. Show the top 5 products by total revenue.
-SELECT order_id , product_id , quantity , price FROM order_items ORDER BY price DESC LIMIT 5
+//Revenue - quantity SELECT order_id , product_id , quantity , price FROM order_items ORDER BY price DESC LIMIT 5
 
 35. Show the customers who have never placed an order.
 SELECT * FROM customers, order_items WHERE ISNULL(quantity);
