@@ -32,7 +32,6 @@ if (isset($_POST['post_submit'])) {
     $p_caption = $_POST['p_caption'];
     $p_hashtag = $_POST['p_hashtag'];
     
-
     //INSERTION QUERY
     
         $isql = "INSERT INTO core_post (p_img, p_caption, p_hashtag) VALUES ('$p_img', '$p_caption', '$p_hashtag')";
@@ -45,7 +44,8 @@ if (isset($_POST['post_submit'])) {
 
 ?>
     <!-- ADD FORM -->
-    <div class= "container">
+    <div class = "container" style = "background-color: aliceblue">
+        <h1 class="form-outline mb-4" style = "background-color: khaki">CREATE POST</h1>
         <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post">
             
             <!-- Post Image input -->
@@ -79,7 +79,7 @@ if (isset($_POST['post_submit'])) {
             
                 <!-- View button -->
             <div class = "row mb-3">
-                <input type="button" class = "btn btn-primary btn-block mb-4" value="View" onClick="document.location.href='post_VIEW.php'"/>
+                <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php'"/>
             <div>
         </form>
         <div>

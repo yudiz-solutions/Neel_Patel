@@ -1,77 +1,93 @@
 <?php
 //DB Connection
-include "dbConn.php";
+include "DBconn.php";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>form_FORM</title>
-    <style>
-    .error {
-        color: red;
-    }
-
-    .form-control {
-        width: unset;
-    }
-
-    h1 {
-        : center;
-    }
-
-    </style>
-</head>
-<body>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>form_EDIT</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <style>.error {color: red;}</style>
+    </head>
+    
+    <body>
     <?php
 
-//When Submit button is pressed
-if (isset($_POST['submit'])) {
-    
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $uname = $_POST['uname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $gender = $_POST['gender'];
-    $country = $_POST['country'];
-    $state = $_POST['state'];
-    $city = $_POST['city'];
-    $bio = $_POST['bio'];
-    $profile = $_POST['profile'];
-    $social = $_POST['social'];
-    $chk_social = "";
+    //When EDIT button is pressed
+    if (isset($_POST['e_user'])) {
+        $id = $_POST['id'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $uname = $_POST['uname'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $gender = $_POST['gender'];
+        $country = $_POST['country'];
+        $state = $_POST['state'];
+        $city = $_POST['city'];
+        $bio = $_POST['bio'];
+        $profile = $_POST['profile'];
+        $social = $_POST['social'];
+        $chk_social = "";
 
-    foreach ($_POST['social'] as $checked) {
-        $chk_social .= $checked . ",";
+        foreach ($_POST['social'] as $checked) {
+            $chk_social .= $checked . ",";
+        }
+        
+        //UPDATE QUERY
+            $edit_sql = "UPDATE core_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password' gender = '$gender', country = '$country', state = '$state', city = '$city', bio = '$bio' WHERE id = '$id'";
+  
+            $result = $conn -> query($edit_sql);
+
+            if ($result == true) {
+                echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
+            } else {
+                echo "Error in updating!!";
+            }
     }
-    
-
-    //INSERTION QUERY
-    
-        $isql = "INSERT INTO core_form (fname, lname, uname, email, password, gender, country, state, city, bio, profile, social_media) VALUES ('$fname', '$lname', '$uname', '$email', '$password', '$gender', '$country', '$state', '$city', '$bio', '$profile', '$chk_social')";
-        if ($conn -> query($isql) == true) {
-            echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
-        } else {
-            echo $conn->error;
+       
+    //GETTING ID FROM URL
+    if (isset($_GET['id'])) {
+        $id = $_GET["id"];
+   
+        $select_sql = "SELECT * FROM core_form WHERE id = '$id'";
+        $result = $conn -> query($select_sql);
+   
+    if ($result -> num_rows > 0) {
+        while ($row = $result -> fetch_assoc()) {
+            $e_id = $row['id'];
+            $e_fname = $row['fname'];
+            $e_lname = $row['lname'];
+            $e_uname = $row['uname'];
+            $e_email = $row['email'];
+            $e_password = $row['password'];
+            $e_gender = $row['gender'];
+            $e_country = $row['country'];
+            $e_state = $row['state'];
+            $e_city = $row['city'];
+            $e_bio = $row['bio'];
+            $e_profile = $row['profile'];
+            $e_social_media = $row['social_media'];
         }
     }
-
+}
 ?>
-    <!-- ADD FORM -->
-    <div class = "container" style = "background-color: aliceblue">
-        <h1 class="form-outline mb-4" style = "background-color: khaki">INSERT USER DATA</h1>
+
+<!-- UPDATE form -->
+        <div class = "container" style = "background-color: aliceblue">
+        <h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE USER DATA</h1>
         <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post">
             
             <!-- First name input -->
             <div>
                     <div class="form-outline row mb-3" >
                         <label class="form-label col-5">First name</label>
-                        <input type="text" class="form-control col-6" name = "fname" />
+                        <input type="text" class="form-control col-6" name = "fname" value = "<?=$e_fname?>" />
                     </div>
                 </div>
 
@@ -79,7 +95,7 @@ if (isset($_POST['submit'])) {
                 <div>
                     <div class="form-outline row mb-3" >
                         <label class="form-label col-5">Last name</label>
-                        <input type="text" class="form-control col-6" name = "lname" />
+                        <input type="text" class="form-control col-6" name = "lname" value = "<?=$e_lname?>"/>
                     </div>
                 </div>
 
@@ -87,7 +103,7 @@ if (isset($_POST['submit'])) {
                 <div>
                     <div class="form-outline row mb-3" >
                         <label class="form-label col-5">User</label>
-                        <input type="text" class="form-control col-6" name = "uname" />
+                        <input type="text" class="form-control col-6" name = "uname" value = "<?=$e_uname?>"/>
                     </div>
                 </div>
 
@@ -95,7 +111,7 @@ if (isset($_POST['submit'])) {
                 <div>
                     <div class="form-outline row mb-3 ">
                         <label class="form-label col-5">Email</label>
-                        <input type="text" class="form-control col-6" name = "email" />
+                        <input type="text" class="form-control col-6" name = "email" value = "<?=$e_email?>" />
                     </div>
                 </div>
 
@@ -103,7 +119,7 @@ if (isset($_POST['submit'])) {
                 <div>
                     <div class="form-outline row mb-3">
                         <label class="form-label col-5">Password</label>
-                        <input type="password" class="form-control col-6" name = "password" />
+                        <input type="text" class="form-control col-6" name = "password" value = "<?=$e_password?>" />
                     </div>
                 </div>
 
@@ -113,17 +129,17 @@ if (isset($_POST['submit'])) {
                         <label class="form-label col-5">Gender</label><br>
                         <div class="col-7">
                             <div >
-                                <input type="radio" id="m" name="gender" value="Male">
+                                <input type="radio" id="m" name="gender" value="Male" <?php if ($e_gender == "Male") echo 'checked="checked"'; ?>>
                                 <label for="Male"> Male </label>
                             </div>
                             
                             <div >
-                                <input type="radio"  id="f" name="gender" value="Female">
+                                <input type="radio"  id="f" name="gender" value="Female" <?php if ($e_gender == "Female") echo 'checked="checked"'; ?>>
                                 <label for="Female"> Female </label>
                             </div>
                                 
                             <div >
-                                <input type="radio" id="o" name="gender" value="Other">
+                                <input type="radio" id="o" name="gender" value="Other" <?php if ($e_gender == "Other") echo 'checked="checked"'; ?>>
                                 <label for="Other"> Other </label>
                             </div>
                         </div>
@@ -134,7 +150,7 @@ if (isset($_POST['submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline ">
                         <label class="form-label col-5">Country</label>
-                        <select name="country" id="#">
+                        <select name="country">
                             <option value="India">India</option>
                             <option value="Australia">Australia</option>
                             <option value="Canada">Canada</option>
@@ -147,7 +163,7 @@ if (isset($_POST['submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">State</label>
-                        <select name="state" id="#">
+                        <select name="state">
                             <option value="Gujrat">Gujrat</option>
                             <option value="Rajsthan">Rajsthan</option>
                             <option value="Maharashtra"> Maharashtra</option>
@@ -160,7 +176,7 @@ if (isset($_POST['submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">City</label>
-                        <select name="city" id="#">
+                        <select name="city">
                             <option value="Ahmedabad">Ahmedabad</option>
                             <option value="Vadodara">Vadodara</option>
                             <option value="Surat"> Surat</option>
@@ -173,7 +189,7 @@ if (isset($_POST['submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">Bio</label>
-                        <textarea id="bio" name="bio" rows="4" cols="50"></textarea>
+                        <textarea id="bio" name="bio" rows="4" cols="50"><?= $e_bio ?></textarea>
                     </div>
                 </div>
 
@@ -181,7 +197,7 @@ if (isset($_POST['submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline ">
                         <label class="form-label col-5">Profile</label>
-                        <input type="file" id="profile" name="profile">
+                        <input type="file" name="profile">
                     </div>
                 </div>
 
@@ -190,28 +206,32 @@ if (isset($_POST['submit'])) {
                     <div class="form-outline row mb-3">
                         <label class="form-label col-5">Active social media</label><br>
                         <div class="col-7">
+                            <?php 
+                            // var_dump($e_social_media);
+                            $inarr = in_array('instagram', 'twitter', 'linkedin', 'facebook', 'whatsapp')
+                            ?>
                             <div >
-                                <input type="checkbox" id="ig" name="social[]" value="instagram">
+                                <input type="checkbox" id="ig" name="social[]" value="instagram" <?php if ($e_social_media == "instagram") echo 'checked="checked"'; ?>>
                                 <label for="ig"> Instagram </label><br>
                             </div>
                             
                             <div >
-                                <input type="checkbox" id="twt" name="social[]" value="twitter">
+                                <input type="checkbox" id="twt" name="social[]" value="twitter" <?php if ($e_social_media == "twitter") echo 'checked="checked"'; ?>>
                                 <label for="ig"> Twitter </label><br>
                             </div>
                                 
                             <div >
-                                <input type="checkbox" id="lin" name="social[]" value="linkedin">
+                                <input type="checkbox" id="lin" name="social[]" value="linkedin" <?php if ($e_social_media == "linkedin") echo 'checked="checked"'; ?>>
                                 <label for="ig"> LinkedIn </label><br>
                             </div>
 
                             <div >
-                                <input type="checkbox" id="fb" name="social[]" value="facebook">
+                                <input type="checkbox" id="fb" name="social[]" value="facebook" <?php if ($e_social_media == "facebook") echo 'checked="checked"'; ?>>
                                 <label for="ig"> Facebook </label><br>
                             </div>
 
                             <div >
-                                <input type="checkbox" id="wp" name="social[]" value="whatsapp">
+                                <input type="checkbox" id="wp" name="social[]" value="whatsapp" <?php if ($e_social_media == "whatsapp") echo 'checked="checked"'; ?>>
                                 <label for="ig"> WhatsApp </label><br>
                             </div>
                         </div>
@@ -220,7 +240,7 @@ if (isset($_POST['submit'])) {
 
             <!-- Submit button -->
                 <div class = "row mb-3">
-                    <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "submit" value = "ADD">
+                    <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "submit" value = "UPDATE">
                 </div>
             
             <!-- View button -->
@@ -229,5 +249,13 @@ if (isset($_POST['submit'])) {
                 <div>
         </form>
     <div>
+<br><br>
+<?php
+    // include "form_VIEW.php";
+//     if($conn -> query($ssql) == TRUE){
+//     header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/CRUD/view.php");
+// }
+?>
+
 </body>
 </html>

@@ -42,7 +42,7 @@ if ($result = $conn->query($vsql)) {
     <center><h2>POST DETAILS</h2></center>
     <table id = "searchTbl" class = "table">
         <thead class = "table-dark">
-            <th> <button id = "AddEmpBtn" class="btn btn-info" onclick="window.location.href = 'post_FORM.php';"> Add Post </a></button> </th>
+            <th> <button class="btn btn-info" onclick="window.location.href = 'post_FORM.php';"> Add Post </a></button> </th>
             <th>
                 <!-- SEARCHBAR -->
                 <!-- <form action = "search.php" method = "POST">
@@ -82,9 +82,9 @@ if ($result = $conn->query($vsql)) {
             </td>
             <td>
                 <!-- DELETE Button -->
-                <form action="delete.php" method="post">
+                <form action="post_DELETE.php" method="post">
                     <input type="hidden" value="<?=$row['id']?>" name="dID" />
-                    <input type="submit" class="btn btn-danger" value="DELETE" name="dltbtn" />
+                    <input type="submit" class="btn btn-danger" value="DELETE" name="dlt_user_btn" />
                     
                     <!-- EDIT Button -->
                     <button name = "edtbtn" class="btn btn-info" > <a href="edit.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>

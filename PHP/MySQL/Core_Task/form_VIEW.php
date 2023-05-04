@@ -114,12 +114,12 @@ if ($result = $conn->query($vsql)) {
             </td>
             <td>
                 <!-- DELETE Button -->
-                <form action="delete.php" method="post">
-                    <input type="hidden" value="<?=$row['id']?>" name="dID" />
-                    <input type="submit" class="btn btn-danger" value="DELETE" name="dltbtn" />
+                <form action="form_DELETE.php" method="post">
+                    <input type="hidden" value="<?=$row["id"]?>" name="dID" />
+                    <input type="submit" class="btn btn-danger" value="DELETE" name="dlt_user_btn" />
                     
                     <!-- EDIT Button -->
-                    <button name = "edtbtn" class="btn btn-info" > <a href="edit.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>
+                    <button name = "e_user" class="btn btn-info" > <a href="form_EDIT.php?id=<?=$row['id']?>" style='text-decoration:none;'> EDIT USER </a></button>
 
                     <!-- VIEW POST Button -->
                     <button name = "vpostbtn" class="btn btn-info" > <a href="post_VIEW.php" style='text-decoration:none;'> VIEW POSTS </a></button>
