@@ -19,8 +19,8 @@ include "DBconn.php";
     <?php
 
     //When EDIT button is pressed
-    if (isset($_POST['e_user'])) {
-        $id = $_POST['id'];
+    if (isset($_POST['updt_user_btn'])) {
+        $updtid = $_POST['id'];
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $uname = $_POST['uname'];
@@ -32,24 +32,23 @@ include "DBconn.php";
         $city = $_POST['city'];
         $bio = $_POST['bio'];
         $profile = $_POST['profile'];
-        $social = $_POST['social'];
-        $chk_social = "";
-
-        foreach ($_POST['social'] as $checked) {
-            $chk_social .= $checked . ",";
-        }
+        $social_arr = $_POST['social'];
+        $social_str = implode(",", $social_arr);
+        
         
         //UPDATE QUERY
-            $edit_sql = "UPDATE core_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password' gender = '$gender', country = '$country', state = '$state', city = '$city', bio = '$bio' WHERE id = '$id'";
+            $edit_sql = "UPDATE core_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password', gender = '$gender', country = '$country', state = '$state', city = '$city', bio = '$bio', social_media = '$social_str' WHERE id = '$updtid'";
   
             $result = $conn -> query($edit_sql);
 
             if ($result == true) {
                 echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
+                
+                header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/form_VIEW.php");
             } else {
-                echo "Error in updating!!";
+                echo "Error in updating!!" . $conn->error;
             }
-    }
+        }
        
     //GETTING ID FROM URL
     if (isset($_GET['id'])) {
@@ -82,6 +81,9 @@ include "DBconn.php";
         <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE USER DATA</h1>
         <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post">
+            
+            <!-- ID Hidden Value -->
+            <input type = "hidden" value = "<?=$e_id?>" name = "id" />
             
             <!-- First name input -->
             <div>
@@ -151,10 +153,10 @@ include "DBconn.php";
                     <div class="form-outline ">
                         <label class="form-label col-5">Country</label>
                         <select name="country">
-                            <option value="India">India</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Canada">Canada</option>
-                            <option value="Japan">Japan</option>
+                            <option value="India" <?php if ($e_country == "India") echo 'selected'; ?>>India</option>
+                            <option value="Australia" <?php if ($e_country == "Australia") echo 'selected'; ?>>Australia</option>
+                            <option value="Canada" <?php if ($e_country == "Canada") echo 'selected'; ?>>Canada</option>
+                            <option value="Japan" <?php if ($e_country == "Japan") echo 'selected'; ?>>Japan</option>
                         </select>
                     </div>
                 </div>
@@ -164,10 +166,10 @@ include "DBconn.php";
                     <div class="form-outline">
                         <label class="form-label col-5">State</label>
                         <select name="state">
-                            <option value="Gujrat">Gujrat</option>
-                            <option value="Rajsthan">Rajsthan</option>
-                            <option value="Maharashtra"> Maharashtra</option>
-                            <option value="Kerla">Kerla</option>
+                            <option value="Gujrat" <?php if ($e_state == "Gujrat") echo 'selected'; ?>>Gujrat</option>
+                            <option value="Rajsthan" <?php if ($e_state == "Rajsthan") echo 'selected'; ?>>Rajsthan</option>
+                            <option value="Maharashtra" <?php if ($e_state == "Maharashtra") echo 'selected'; ?>> Maharashtra</option>
+                            <option value="Kerla" <?php if ($e_state == "Kerla") echo 'selected'; ?>>Kerla</option>
                         </select>
                     </div>
                 </div>
@@ -177,10 +179,10 @@ include "DBconn.php";
                     <div class="form-outline">
                         <label class="form-label col-5">City</label>
                         <select name="city">
-                            <option value="Ahmedabad">Ahmedabad</option>
-                            <option value="Vadodara">Vadodara</option>
-                            <option value="Surat"> Surat</option>
-                            <option value="Jamnagar">Jamnagar</option>
+                            <option value="Ahmedabad" <?php if ($e_city == "Ahmedabad") echo 'selected'; ?>>Ahmedabad</option>
+                            <option value="Vadodara" <?php if ($e_city == "Vadodara") echo 'selected'; ?>>Vadodara</option>
+                            <option value="Surat" <?php if ($e_city == "Surat") echo 'selected'; ?>> Surat</option>
+                            <option value="Jamnagar" <?php if ($e_city == "Jamnagar") echo 'selected'; ?>>Jamnagar</option>
                         </select>
                     </div>
                 </div>
@@ -206,32 +208,34 @@ include "DBconn.php";
                     <div class="form-outline row mb-3">
                         <label class="form-label col-5">Active social media</label><br>
                         <div class="col-7">
-                            <?php 
-                            // var_dump($e_social_media);
-                            $inarr = in_array('instagram', 'twitter', 'linkedin', 'facebook', 'whatsapp')
-                            ?>
+                        <?php
+
+                            //Str to Arr for social media checkbox
+                            $checked_val = explode(',', $e_social_media);
+                            // print_r($b);
+                        ?>
                             <div >
-                                <input type="checkbox" id="ig" name="social[]" value="instagram" <?php if ($e_social_media == "instagram") echo 'checked="checked"'; ?>>
+                                <input type="checkbox" id="ig" name="social[]" value="instagram" <?php if(in_array('instagram', $checked_val)) echo "Checked"; ?>>
                                 <label for="ig"> Instagram </label><br>
                             </div>
                             
                             <div >
-                                <input type="checkbox" id="twt" name="social[]" value="twitter" <?php if ($e_social_media == "twitter") echo 'checked="checked"'; ?>>
+                                <input type="checkbox" id="twt" name="social[]" value="twitter" <?php if(in_array('twitter', $checked_val)) echo "Checked"; ?>>
                                 <label for="ig"> Twitter </label><br>
                             </div>
                                 
                             <div >
-                                <input type="checkbox" id="lin" name="social[]" value="linkedin" <?php if ($e_social_media == "linkedin") echo 'checked="checked"'; ?>>
+                                <input type="checkbox" id="lin" name="social[]" value="linkedin" <?php if(in_array('linkedin', $checked_val)) echo "Checked"; ?>>
                                 <label for="ig"> LinkedIn </label><br>
                             </div>
 
                             <div >
-                                <input type="checkbox" id="fb" name="social[]" value="facebook" <?php if ($e_social_media == "facebook") echo 'checked="checked"'; ?>>
+                                <input type="checkbox" id="fb" name="social[]" value="facebook" <?php if(in_array('facebook', $checked_val)) echo "Checked"; ?>>
                                 <label for="ig"> Facebook </label><br>
                             </div>
 
                             <div >
-                                <input type="checkbox" id="wp" name="social[]" value="whatsapp" <?php if ($e_social_media == "whatsapp") echo 'checked="checked"'; ?>>
+                                <input type="checkbox" id="wp" name="social[]" value="whatsapp" <?php if(in_array('whatsapp', $checked_val)) echo "Checked"; ?>>
                                 <label for="ig"> WhatsApp </label><br>
                             </div>
                         </div>
@@ -240,7 +244,7 @@ include "DBconn.php";
 
             <!-- Submit button -->
                 <div class = "row mb-3">
-                    <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "submit" value = "UPDATE">
+                    <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "updt_user_btn" value = "UPDATE">
                 </div>
             
             <!-- View button -->
@@ -249,13 +253,6 @@ include "DBconn.php";
                 <div>
         </form>
     <div>
-<br><br>
-<?php
-    // include "form_VIEW.php";
-//     if($conn -> query($ssql) == TRUE){
-//     header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/CRUD/view.php");
-// }
-?>
 
 </body>
 </html>

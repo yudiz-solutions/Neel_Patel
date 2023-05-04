@@ -56,9 +56,9 @@ if ($result = $conn->query($vsql)) {
         <thead class = "table-dark">
             <tr>
                 <th> ID </th>
-                <th> FIRSTNAME </th>
-                <th> LASTNAME </th>
-                <th> USERNAME </th>
+                <th> IMAGE </th>
+                <th> CAPTION </th>
+                <th> HASHTAG </th>
                 <th> ACTION </th>
             </tr>
         </thead>
@@ -87,7 +87,7 @@ if ($result = $conn->query($vsql)) {
                     <input type="submit" class="btn btn-danger" value="DELETE" name="dlt_user_btn" />
                     
                     <!-- EDIT Button -->
-                    <button name = "edtbtn" class="btn btn-info" > <a href="edit.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>
+                    <button name = "edtbtn" class="btn btn-info" > <a href="post_EDIT.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>
 
                     <!-- VIEW POST Button -->
                     <button name = "vpostbtn" class="btn btn-info" > <a href="post_VIEW.php" style='text-decoration:none;'> VIEW POSTS </a></button>
