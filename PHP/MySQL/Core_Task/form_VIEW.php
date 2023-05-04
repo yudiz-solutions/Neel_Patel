@@ -107,7 +107,7 @@ if ($result = $conn->query($vsql)) {
                 <?=$row["bio"] ?>
             </td>
             <td>
-                <?=$row["profile"] ?>
+                <img src = "<?= 'Profilepics/'.$row['profile']?>" width = "100px"  alt = "profile_pic">
             </td>
             <td>
                 <?=$row["social_media"] ?>

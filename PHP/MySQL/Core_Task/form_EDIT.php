@@ -31,24 +31,38 @@ include "DBconn.php";
         $state = $_POST['state'];
         $city = $_POST['city'];
         $bio = $_POST['bio'];
-        $profile = $_POST['profile'];
         $social_arr = $_POST['social'];
         $social_str = implode(",", $social_arr);
         
+        $new_profile = $_FILES['profile']['name'];
+        $old_profile = $_POST['profile_old'];
         
-        //UPDATE QUERY
-            $edit_sql = "UPDATE core_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password', gender = '$gender', country = '$country', state = '$state', city = '$city', bio = '$bio', social_media = '$social_str' WHERE id = '$updtid'";
-  
-            $result = $conn -> query($edit_sql);
+        if ($new_profile != '') {
+            $update_filename = $_FILES['profile']['name'];
+        } else {
+            $update_filename = $old_profile;
+        }
 
-            if ($result == true) {
-                echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
-                
-                header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/form_VIEW.php");
-            } else {
-                echo "Error in updating!!" . $conn->error;
+        if (file_exists("Profilepics/".$_FILES['profile']['name'])) {
+            echo "File already exists";
+        } else {
+            //UPDATE QUERY
+                $edit_sql = "UPDATE core_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password', gender = '$gender', country = '$country', state = '$state', city = '$city', bio = '$bio', profile = '$update_filename', social_media = '$social_str' WHERE id = '$updtid'";
+      
+                $result = $conn -> query($edit_sql);
+    
+                if ($result == true) {
+                    echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
+                    
+                    header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/form_VIEW.php");
+                } else {
+                    echo "Error in updating!!" . $conn->error;
+                }
             }
         }
+
+        
+        
        
     //GETTING ID FROM URL
     if (isset($_GET['id'])) {
@@ -80,7 +94,7 @@ include "DBconn.php";
 <!-- UPDATE form -->
         <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE USER DATA</h1>
-        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post">
+        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype="multipart/form-data">
             
             <!-- ID Hidden Value -->
             <input type = "hidden" value = "<?=$e_id?>" name = "id" />
@@ -121,7 +135,7 @@ include "DBconn.php";
                 <div>
                     <div class="form-outline row mb-3">
                         <label class="form-label col-5">Password</label>
-                        <input type="text" class="form-control col-6" name = "password" value = "<?=$e_password?>" />
+                        <input type="password" class="form-control col-6" name = "password" value = "<?=$e_password?>" />
                     </div>
                 </div>
 
@@ -198,8 +212,9 @@ include "DBconn.php";
             <!-- Profile input -->
                 <div class = "row mb-3">
                     <div class="form-outline ">
-                        <label class="form-label col-5">Profile</label>
-                        <input type="file" name="profile">
+                        <label class = "form-label col-5">Profile</label>
+                        <input type = "file" name="profile">
+                        <input type = "hidden" name = "profile_old" value = "<?= $e_profile?>">
                     </div>
                 </div>
 

@@ -52,7 +52,7 @@ if (isset($_POST['post_submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline ">
                         <label class="form-label col-5">Post Image</label>
-                        <input type="file" id="postimg" name="p_img">
+                        <input type="file" name="p_img">
                     </div>
                 </div>
         
@@ -60,7 +60,7 @@ if (isset($_POST['post_submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">Caption</label>
-                        <textarea id="caption" name="p_caption" rows="4" cols="50"></textarea>
+                        <textarea name="p_caption" rows="4" cols="50"></textarea>
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@ if (isset($_POST['post_submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline">
                         <label class="form-label col-5">Hashtag</label>
-                        <textarea id="hashtag" name="p_hashtag" rows="4" cols="50"></textarea>
+                        <textarea name="p_hashtag" rows="4" cols="50"></textarea>
                     </div>
                 </div>
 

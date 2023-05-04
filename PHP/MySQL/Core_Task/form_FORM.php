@@ -31,7 +31,6 @@ include "dbConn.php";
 
 //When Submit button is pressed
 if (isset($_POST['submit'])) {
-    
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $uname = $_POST['uname'];
@@ -42,18 +41,60 @@ if (isset($_POST['submit'])) {
     $state = $_POST['state'];
     $city = $_POST['city'];
     $bio = $_POST['bio'];
-    $profile = $_POST['profile'];
-    $social = $_POST['social'];
-    $chk_social = "";
 
-    foreach ($_POST['social'] as $checked) {
-        $chk_social .= $checked . ",";
+    $img_to_be_uploaded = '';
+    if (!empty($_FILES['profile']['name'])) {
+        $target_dir = "Profilepics/";
+        $target_file = $target_dir . basename($_FILES["profile"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES["profile"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+
+        // Check file size
+        if ($_FILES["profile"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["profile"]["tmp_name"], $target_file)) {
+                echo "The file ". htmlspecialchars( basename( $_FILES["profile"]["name"])). " has been uploaded.";
+                $img_to_be_uploaded = basename( $_FILES["profile"]["name"]);
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
     }
     
 
     //INSERTION QUERY
-    
-        $isql = "INSERT INTO core_form (fname, lname, uname, email, password, gender, country, state, city, bio, profile, social_media) VALUES ('$fname', '$lname', '$uname', '$email', '$password', '$gender', '$country', '$state', '$city', '$bio', '$profile', '$chk_social')";
+        $isql = "INSERT INTO core_form (fname, lname, uname, email, password, gender, country, state, city, bio, profile, social_media) VALUES ('$fname', '$lname', '$uname', '$email', '$password', '$gender', '$country', '$state', '$city', '$bio', '$img_to_be_uploaded', '$chk_social')";
         if ($conn -> query($isql) == true) {
             echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
         } else {
@@ -65,7 +106,7 @@ if (isset($_POST['submit'])) {
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">INSERT USER DATA</h1>
-        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post">
+        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype="multipart/form-data">
             
             <!-- First name input -->
             <div>
@@ -113,17 +154,17 @@ if (isset($_POST['submit'])) {
                         <label class="form-label col-5">Gender</label><br>
                         <div class="col-7">
                             <div >
-                                <input type="radio" id="m" name="gender" value="Male">
+                                <input type="radio" name="gender" value="Male">
                                 <label for="Male"> Male </label>
                             </div>
                             
                             <div >
-                                <input type="radio"  id="f" name="gender" value="Female">
+                                <input type="radio" name="gender" value="Female">
                                 <label for="Female"> Female </label>
                             </div>
                                 
                             <div >
-                                <input type="radio" id="o" name="gender" value="Other">
+                                <input type="radio" name="gender" value="Other">
                                 <label for="Other"> Other </label>
                             </div>
                         </div>
@@ -134,7 +175,7 @@ if (isset($_POST['submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline ">
                         <label class="form-label col-5">Country</label>
-                        <select name="country" id="#">
+                        <select name="country">
                             <option value="India">India</option>
                             <option value="Australia">Australia</option>
                             <option value="Canada">Canada</option>
@@ -181,7 +222,7 @@ if (isset($_POST['submit'])) {
                 <div class = "row mb-3">
                     <div class="form-outline ">
                         <label class="form-label col-5">Profile</label>
-                        <input type="file" id="profile" name="profile">
+                        <input type="file" name="profile">
                     </div>
                 </div>
 
