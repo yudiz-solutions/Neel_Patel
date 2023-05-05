@@ -122,7 +122,7 @@ if ($result = $conn->query($vsql)) {
                     <button name = "e_user" class="btn btn-info" > <a href="form_EDIT.php?id=<?=$row['id']?>" style='text-decoration:none;'> EDIT USER </a></button>
 
                     <!-- VIEW POST Button -->
-                    <button name = "vpostbtn" class="btn btn-info" > <a href="post_VIEW.php" style='text-decoration:none;'> VIEW POSTS </a></button>
+                    <button name = "vpostbtn" class="btn btn-info" > <a href="post_VIEW.php?id=<?=$row['id']?>" style='text-decoration:none;'> VIEW POSTS </a></button>
                 </td>
                 </form>
             </tr>

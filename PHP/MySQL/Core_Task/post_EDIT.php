@@ -25,19 +25,27 @@ include "DBconn.php";
         $p_hashtag = $_POST['p_hashtag'];
         
         //IMG
-        // $p_img = $_POST['p_img'];
         $new_post = $_FILES['p_img']['name'];
         $old_post = $_POST['p_img_old'];
         
-        if ($new_post != '') {
+        if ($new_post != '')
+        {
             $update_filename = $_FILES['p_img']['name'];
-        } else {
+        }
+        
+        else
+        {
             $update_filename = $old_post;
         }
-        if (file_exists("Postpics/" . $_FILES['p_img']['name'])) {
+
+        if (file_exists("Postpics/" . $_FILES['p_img']['name']))
+        {
             $filename = $_FILES['p_img']['name'];
             echo "Image already exists !".$filename;
-        } else {
+        }
+        
+        else
+        {
             //UPDATE QUERY
                 $edit_sql = "UPDATE core_post SET p_img = '$update_filename', p_caption = '$p_caption', p_hashtag = '$p_hashtag' WHERE id = '$updtid'";
       
@@ -50,11 +58,14 @@ include "DBconn.php";
                     }
                     echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
                     header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/post_VIEW.php");
-                } else {
+                }
+                
+                else
+                {
                     echo "Error in updating!!" . $conn->error;
                 }
-            }
         }
+    }
        
     //GETTING ID FROM URL
     if (isset($_GET['id'])) {

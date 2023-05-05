@@ -24,9 +24,11 @@ include "dbConn.php";
     </head>
 <body>
     <?php
-
+// Getting user_id from URL
+$userID = $_GET['id'];
 //When Submit button is pressed
 if (isset($_POST['post_submit'])) {
+    
     
     $p_caption = $_POST['p_caption'];
     $p_hashtag = $_POST['p_hashtag'];
@@ -45,7 +47,8 @@ if (isset($_POST['post_submit'])) {
             echo "Image already exists !".$filename;
         } else {
     //INSERTION QUERY
-        $isql = "INSERT INTO core_post (p_img, p_caption, p_hashtag) VALUES ('$p_img_to_be_uploaded', '$p_caption', '$p_hashtag')";
+        $isql = "INSERT INTO core_post (user_id, p_img, p_caption, p_hashtag) VALUES ('$userID', '$p_img_to_be_uploaded', '$p_caption', '$p_hashtag')";
+        
         if ($conn -> query($isql) == true) {
             move_uploaded_file($_FILES['p_img']['tmp_name'], "Postpics/".$_FILES['p_img']['name']);
             echo "<script> alert ('POST ADDED SUCCESSFULLY')</script>";
@@ -60,7 +63,7 @@ if (isset($_POST['post_submit'])) {
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">CREATE POST</h1>
-        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype = "multipart/form-data">
+        <form action = "" method = "post" enctype = "multipart/form-data">
             
             <!-- Post Image input -->
                 <div class = "row mb-3">
@@ -93,7 +96,7 @@ if (isset($_POST['post_submit'])) {
             
                 <!-- View button -->
             <div class = "row mb-3">
-                <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php'"/>
+                <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php?id=<?= $userID ?>'"/>
             <div>
         </form>
         <div>

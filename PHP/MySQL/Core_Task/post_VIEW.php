@@ -29,12 +29,9 @@ include "dbConn.php";
 <body>
 <?php
 
-// if (isset($_POST['searchBtn'])) {
-    //SEARCH QUERY
-//     $vsql = "SELECT id, fname, lname, uname, email, gender, country, state, city, bio, profile, social_media FROM core_form WHERE empid LIKE '% ".$empid." %'";
-// } else {
 //VIEW QUERY
-$vsql = "SELECT * FROM core_post";
+$userID = $_GET['id'];
+$vsql = "SELECT * FROM core_post WHERE user_id = '$userID'";
 // }
 
 if ($result = $conn->query($vsql)) {
@@ -42,14 +39,7 @@ if ($result = $conn->query($vsql)) {
     <center><h2>POST DETAILS</h2></center>
     <table id = "searchTbl" class = "table">
         <thead class = "table-dark">
-            <th> <button class="btn btn-info" onclick="window.location.href = 'post_FORM.php';"> Add Post </a></button> </th>
-            <th>
-                <!-- SEARCHBAR -->
-                <!-- <form action = "search.php" method = "POST">
-                    <input type = "text" name = "keyword" placeholder = "Search">
-                    <input type = "submit" name = "searchBtn" value = "SEARCH">
-                </form> -->
-            </th>
+            <th> <button class="btn btn-info" onclick="window.location.href = 'post_FORM.php?id=<?=$userID?>';"> Add Post </a></button> </th>
         </thead>
     </table>
     <table class = "table">
@@ -89,13 +79,12 @@ if ($result = $conn->query($vsql)) {
                     <!-- EDIT Button -->
                     <button name = "edtbtn" class="btn btn-info" > <a href="post_EDIT.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>
 
-                    <!-- VIEW POST Button -->
-                    <button name = "vpostbtn" class="btn btn-info" > <a href="post_VIEW.php" style='text-decoration:none;'> VIEW POSTS </a></button>
                 </td>
                 </form>
             </tr>
     <?php
     }
+    
     ?>
     </table>
     <?php
