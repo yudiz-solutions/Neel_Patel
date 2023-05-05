@@ -43,8 +43,9 @@ include "DBconn.php";
             $update_filename = $old_profile;
         }
 
-        if (file_exists("Profilepics/".$_FILES['profile']['name'])) {
-            echo "File already exists";
+        if (file_exists("Profilepics/" . $_FILES['profile']['name'])) {
+            $filename = $_FILES['profile']['name'];
+            echo "Image already exists !".$filename;
         } else {
             //UPDATE QUERY
                 $edit_sql = "UPDATE core_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password', gender = '$gender', country = '$country', state = '$state', city = '$city', bio = '$bio', profile = '$update_filename', social_media = '$social_str' WHERE id = '$updtid'";
@@ -52,8 +53,12 @@ include "DBconn.php";
                 $result = $conn -> query($edit_sql);
     
                 if ($result == true) {
+
+                    if ($_FILES['profile']['name'] != '') {
+                        move_uploaded_file($_FILES['profile']['tmp_name'], "Profilepics/".$_FILES['profile']['name']);
+                        unlink("Profilepics/".$old_profile);
+                    }
                     echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
-                    
                     header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/form_VIEW.php");
                 } else {
                     echo "Error in updating!!" . $conn->error;
@@ -61,9 +66,6 @@ include "DBconn.php";
             }
         }
 
-        
-        
-       
     //GETTING ID FROM URL
     if (isset($_GET['id'])) {
         $id = $_GET["id"];

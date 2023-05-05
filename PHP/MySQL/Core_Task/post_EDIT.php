@@ -21,21 +21,38 @@ include "DBconn.php";
     //When EDIT button is pressed
     if (isset($_POST['updt_post_btn'])) {
         $updtid = $_POST['id'];
-        $p_img = $_POST['p_img'];
         $p_caption = $_POST['p_caption'];
         $p_hashtag = $_POST['p_hashtag'];
         
-        //UPDATE QUERY
-            $edit_sql = "UPDATE core_post SET p_img = '$p_img', p_caption = '$p_caption', p_hashtag = '$p_hashtag' WHERE id = '$updtid'";
-  
-            $result = $conn -> query($edit_sql);
-
-            if ($result == true) {
-                echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
-                
-                header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/post_VIEW.php");
-            } else {
-                echo "Error in updating!!" . $conn->error;
+        //IMG
+        // $p_img = $_POST['p_img'];
+        $new_post = $_FILES['p_img']['name'];
+        $old_post = $_POST['p_img_old'];
+        
+        if ($new_post != '') {
+            $update_filename = $_FILES['p_img']['name'];
+        } else {
+            $update_filename = $old_post;
+        }
+        if (file_exists("Postpics/" . $_FILES['p_img']['name'])) {
+            $filename = $_FILES['p_img']['name'];
+            echo "Image already exists !".$filename;
+        } else {
+            //UPDATE QUERY
+                $edit_sql = "UPDATE core_post SET p_img = '$update_filename', p_caption = '$p_caption', p_hashtag = '$p_hashtag' WHERE id = '$updtid'";
+      
+                $result = $conn -> query($edit_sql);
+    
+                if ($result == true) {
+                    if ($_FILES['p_img']['name'] != '') {
+                        move_uploaded_file($_FILES['p_img']['tmp_name'], "Postpics/".$_FILES['p_img']['name']);
+                        unlink("Postpics/".$old_post);
+                    }
+                    echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
+                    header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/post_VIEW.php");
+                } else {
+                    echo "Error in updating!!" . $conn->error;
+                }
             }
         }
        
@@ -60,7 +77,7 @@ include "DBconn.php";
 <!-- UPDATE form -->
         <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE POST</h1>
-        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post">
+        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype = "multipart/form-data">
             
             <!-- ID Hidden Value -->
             <input type = "hidden" value = "<?=$e_p_id?>" name = "id" />
@@ -70,6 +87,7 @@ include "DBconn.php";
                     <div class="form-outline ">
                         <label class="form-label col-5">Image</label>
                         <input type="file" name="p_img">
+                        <input type = "hidden" name = "p_img_old" value = "<?= $e_p_img?>">
                     </div>
                 </div>
                 

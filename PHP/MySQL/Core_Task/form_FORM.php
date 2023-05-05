@@ -42,66 +42,34 @@ if (isset($_POST['submit'])) {
     $city = $_POST['city'];
     $bio = $_POST['bio'];
 
-    $img_to_be_uploaded = '';
-    if (!empty($_FILES['profile']['name'])) {
-        $target_dir = "Profilepics/";
-        $target_file = $target_dir . basename($_FILES["profile"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-        // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["profile"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-
-        // Check if file already exists
-        if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
-
-        // Check file size
-        if ($_FILES["profile"]["size"] > 500000) {
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-
-        // Allow certain file formats
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif" ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["profile"]["tmp_name"], $target_file)) {
-                echo "The file ". htmlspecialchars( basename( $_FILES["profile"]["name"])). " has been uploaded.";
-                $img_to_be_uploaded = basename( $_FILES["profile"]["name"]);
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
-        }
+    $chk_social = "";
+    foreach ($_POST['social'] as $checked) {
+        $chk_social .= $checked . ",";
     }
-    
 
-    //INSERTION QUERY
+    $img_to_be_uploaded = $_FILES['profile']['name'];
+    $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
+    $filename = $_FILES['profile']['name'];
+    $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+    
+    if (!in_array($file_extension, $allowed_extension)) {
+        echo "Only jpg, jpeg, png, gif allowed !";
+    } else {
+        if (file_exists("Profilepics/" . $_FILES['profile']['name'])) {
+            $filename = $_FILES['profile']['name'];
+            echo "Image already exists !".$filename;
+        } else {
+        //INSERT QUERY
         $isql = "INSERT INTO core_form (fname, lname, uname, email, password, gender, country, state, city, bio, profile, social_media) VALUES ('$fname', '$lname', '$uname', '$email', '$password', '$gender', '$country', '$state', '$city', '$bio', '$img_to_be_uploaded', '$chk_social')";
         if ($conn -> query($isql) == true) {
+            move_uploaded_file($_FILES['profile']['tmp_name'], "Profilepics/".$_FILES['profile']['name']);
             echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
         } else {
             echo $conn->error;
         }
+      }
+     }
     }
-
 ?>
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">

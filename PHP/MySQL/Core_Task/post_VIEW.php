@@ -72,7 +72,7 @@ if ($result = $conn->query($vsql)) {
                 <?=$row["id"] ?>
             </td>
             <td>
-                <?=$row["p_img"] ?>
+                <img src = "<?= 'Postpics/'.$row['p_img']?>" width = "100px"  alt = "post_pic">
             </td>
             <td>
                 <?=$row["p_caption"] ?>
@@ -81,7 +81,7 @@ if ($result = $conn->query($vsql)) {
                 <?=$row["p_hashtag"] ?>
             </td>
             <td>
-                <!-- DELETE Button -->
+                <!-- DELETE Section -->
                 <form action="post_DELETE.php" method="post">
                     <input type="hidden" value="<?=$row['id']?>" name="dID" />
                     <input type="submit" class="btn btn-danger" value="DELETE" name="dlt_user_btn" />

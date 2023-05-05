@@ -28,25 +28,39 @@ include "dbConn.php";
 //When Submit button is pressed
 if (isset($_POST['post_submit'])) {
     
-    $p_img = $_POST['p_img'];
     $p_caption = $_POST['p_caption'];
     $p_hashtag = $_POST['p_hashtag'];
+
+    // $p_img = $_POST['p_img'];
+    $p_img_to_be_uploaded = $_FILES['p_img']['name'];
+    $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
+    $filename = $_FILES['p_img']['name'];
+    $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
     
+    if (!in_array($file_extension, $allowed_extension)) {
+        echo "Only jpg, jpeg, png, gif allowed !";
+    } else {
+        if (file_exists("Postpics/" . $_FILES['p_img']['name'])) {
+            $filename = $_FILES['p_img']['name'];
+            echo "Image already exists !".$filename;
+        } else {
     //INSERTION QUERY
-    
-        $isql = "INSERT INTO core_post (p_img, p_caption, p_hashtag) VALUES ('$p_img', '$p_caption', '$p_hashtag')";
+        $isql = "INSERT INTO core_post (p_img, p_caption, p_hashtag) VALUES ('$p_img_to_be_uploaded', '$p_caption', '$p_hashtag')";
         if ($conn -> query($isql) == true) {
-            echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
+            move_uploaded_file($_FILES['p_img']['tmp_name'], "Postpics/".$_FILES['p_img']['name']);
+            echo "<script> alert ('POST ADDED SUCCESSFULLY')</script>";
         } else {
             echo $conn->error;
         }
+      }
     }
+}
 
 ?>
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">CREATE POST</h1>
-        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post">
+        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype = "multipart/form-data">
             
             <!-- Post Image input -->
                 <div class = "row mb-3">
