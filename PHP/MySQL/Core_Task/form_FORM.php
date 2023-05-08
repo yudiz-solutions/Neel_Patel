@@ -47,20 +47,23 @@ if (isset($_POST['submit'])) {
         $chk_social .= $checked . ",";
     }
 
-    $img_to_be_uploaded = $_FILES['profile']['name'];
-    $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
+    // $img_to_be_uploaded = $_FILES['profile']['name'];
+    
+    //Commenting validations for testing test cases
+    // $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
     $filename = $_FILES['profile']['name'];
     $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
     
-    if (!in_array($file_extension, $allowed_extension)) {
-        echo "Only jpg, jpeg, png, gif allowed !";
-    } else {
-        if (file_exists("Profilepics/" . $_FILES['profile']['name'])) {
-            $filename = $_FILES['profile']['name'];
-            echo "Image already exists !".$filename;
-        } else {
+    // if (!in_array($file_extension, $allowed_extension)) {
+        // echo "Only jpg, jpeg, png, gif allowed !";
+    // } else {
+        // if (file_exists("Profilepics/" . $_FILES['profile']['name'])) {
+        //     // $filename = $_FILES['profile']['name'];
+        //     echo "Image already exists !".$filename;
+        // } else {
+
         //INSERT QUERY
-        $isql = "INSERT INTO core_form (fname, lname, uname, email, password, gender, country, state, city, bio, profile, social_media) VALUES ('$fname', '$lname', '$uname', '$email', '$password', '$gender', '$country', '$state', '$city', '$bio', '$img_to_be_uploaded', '$chk_social')";
+        $isql = "INSERT INTO core_form (fname, lname, uname, email, password, gender, country, state, city, bio, profile, social_media) VALUES ('$fname', '$lname', '$uname', '$email', '$password', '$gender', '$country', '$state', '$city', '$bio', '$filename', '$chk_social')";
         if ($conn -> query($isql) == true) {
             move_uploaded_file($_FILES['profile']['tmp_name'], "Profilepics/".$_FILES['profile']['name']);
             echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
@@ -68,8 +71,8 @@ if (isset($_POST['submit'])) {
             echo $conn->error;
         }
       }
-     }
-    }
+    //  }
+    // }
 ?>
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">

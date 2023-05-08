@@ -32,22 +32,22 @@ if (isset($_POST['post_submit'])) {
     $p_caption = $_POST['p_caption'];
     $p_hashtag = $_POST['p_hashtag'];
 
-    // $p_img = $_POST['p_img'];
-    $p_img_to_be_uploaded = $_FILES['p_img']['name'];
-    $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
+    //Commenting validations for testing test cases
+    // $p_img_to_be_uploaded = $_FILES['p_img']['name'];
+    // $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
     $filename = $_FILES['p_img']['name'];
     $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
     
-    if (!in_array($file_extension, $allowed_extension)) {
-        echo "Only jpg, jpeg, png, gif allowed !";
-    } else {
-        if (file_exists("Postpics/" . $_FILES['p_img']['name'])) {
-            $filename = $_FILES['p_img']['name'];
-            echo "Image already exists !".$filename;
-        } else {
+    // if (!in_array($file_extension, $allowed_extension)) {
+    //     echo "Only jpg, jpeg, png, gif allowed !";
+    // } else {
+    //     if (file_exists("Postpics/" . $_FILES['p_img']['name'])) {
+    //         $filename = $_FILES['p_img']['name'];
+    //         echo "Image already exists !".$filename;
+    //     } else {
 
     //INSERTION QUERY
-        $isql = "INSERT INTO core_post (user_id, p_img, p_caption, p_hashtag) VALUES ('$userID', '$p_img_to_be_uploaded', '$p_caption', '$p_hashtag')";
+        $isql = "INSERT INTO core_post (user_id, p_img, p_caption, p_hashtag) VALUES ('$userID', '$filename', '$p_caption', '$p_hashtag')";
         
         if ($conn -> query($isql) == true) {
             move_uploaded_file($_FILES['p_img']['tmp_name'], "Postpics/".$_FILES['p_img']['name']);
@@ -56,8 +56,8 @@ if (isset($_POST['post_submit'])) {
             echo $conn->error;
         }
       }
-    }
-}
+//     }
+// }
 
 ?>
     <!-- ADD FORM -->
@@ -96,7 +96,7 @@ if (isset($_POST['post_submit'])) {
             
                 <!-- View button -->
             <div class = "row mb-3">
-                <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php?id=<?= $userID ?>'"/>
+                <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php'"/>
             <div>
         </form>
         <div>

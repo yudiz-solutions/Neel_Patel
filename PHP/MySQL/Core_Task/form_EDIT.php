@@ -1,6 +1,7 @@
 <?php
 //DB Connection
 include "DBconn.php";
+// $id = $_GET["u_id"];
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +18,6 @@ include "DBconn.php";
     
     <body>
     <?php
-    $id = $_GET["id"];
 
     //When EDIT button is pressed
     if (isset($_POST['updt_user_btn'])) {
@@ -44,10 +44,12 @@ include "DBconn.php";
             $update_filename = $old_profile;
         }
 
-        if (file_exists("Profilepics/" . $_FILES['profile']['name'])) {
-            $filename = $_FILES['profile']['name'];
-            echo "Image already exists !".$filename;
-        } else {
+        //Commenting validations for testing test cases
+        // if (file_exists("Profilepics/" . $_FILES['profile']['name'])) {
+        //     $filename = $_FILES['profile']['name'];
+        //     echo "Image already exists !".$filename;
+        // } else {
+
             //UPDATE QUERY
                 $edit_sql = "UPDATE core_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password', gender = '$gender', country = '$country', state = '$state', city = '$city', bio = '$bio', profile = '$update_filename', social_media = '$social_str' WHERE id = '$updtid'";
       
@@ -65,11 +67,11 @@ include "DBconn.php";
                     echo "Error in updating!!" . $conn->error;
                 }
             }
-        }
+        // }
 
     //GETTING ID FROM URL
-    if (isset($_GET['id'])) {
-        $id = $_GET["id"];
+    if (isset($_GET['u_id'])) {
+        $id = $_GET["u_id"];
    
         $select_sql = "SELECT * FROM core_form WHERE id = '$id'";
         $result = $conn -> query($select_sql);

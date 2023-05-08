@@ -15,21 +15,20 @@ include "DBconn.php";
 <?php
 
 //When DLT button is pressed
-if (isset($_POST['dlt_user_btn'])) {
-    //Fetching postID
-    $dID = $_POST['dID'];
+
+    $u_id = $_GET['u_id'];
+    $p_id = $_GET['p_id'];
+    echo $u_id . "&" . $p_id;
     
     //DLT QUERY
-    $dsql = "DELETE FROM core_post WHERE id = $dID";
+    $dsql = "DELETE FROM core_post WHERE id = $p_id";
     
     if ($conn -> query($dsql) == true) {
-        echo "<script> alert ('POST DELETED SUCCESSFULLY')</script>";
+        // echo "<script> alert ('POST DELETED SUCCESSFULLY')</script>";
+        header("location:post_VIEW.php?u_id=".$u_id."&p_id=".$p_id);
     } else {
         echo "ERROR !!" .$conn -> error;
     }
-}
-
-header("refesh:5Location:post_VIEW.php");
-?>  
+?>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 //DB Connection
 include "dbConn.php";
+$userID = $_GET['u_id'];
 ?>
 
 <!DOCTYPE html>
@@ -25,19 +26,23 @@ include "dbConn.php";
         margin-top: 4px; */
     }
 
+    a{
+        text-decoration: none;
+        color  : white;
+    }
+
 </style>
 <body>
 <?php
 
 //VIEW QUERY
-$userID = $_GET['id'];
 $vsql = "SELECT * FROM core_post WHERE user_id = '$userID'";
 // }
 
 if ($result = $conn->query($vsql)) {
     ?>
     <center><h2>POST DETAILS</h2></center>
-    <table id = "searchTbl" class = "table">
+    <table class = "table">
         <thead class = "table-dark">
             <th> <button class="btn btn-info" onclick="window.location.href = 'post_FORM.php?id=<?=$userID?>';"> Add Post </a></button> </th>
         </thead>
@@ -72,12 +77,14 @@ if ($result = $conn->query($vsql)) {
             </td>
             <td>
                 <!-- DELETE Section -->
-                <form action="post_DELETE.php" method="post">
+                <!-- <form action="post_DELETE.php" method="post">
                     <input type="hidden" value="<?=$row['id']?>" name="dID" />
-                    <input type="submit" class="btn btn-danger" value="DELETE" name="dlt_user_btn" />
+                    <input type="submit" class="btn btn-danger" value="DELETE" name="dlt_user_btn" /> -->
                     
+                    <button name = "dlt_user_btn" class="btn btn-danger" > <a href="post_DELETE.php?u_id=<?=$userID?>&p_id=<?=$row["id"]?>" style='text-decoration:none;'> DELETE </a></button>
+
                     <!-- EDIT Button -->
-                    <button name = "edtbtn" class="btn btn-info" > <a href="post_EDIT.php?id=<?=$row['id']?>" style='text-decoration:none;'> Edit </a></button>
+                    <button name = "edtbtn" class="btn btn-info" > <a href="post_EDIT.php?u_id=<?=$userID?>&p_id=<?=$row["id"]?>" style='text-decoration:none;'> Edit </a></button>
 
                 </td>
                 </form>
