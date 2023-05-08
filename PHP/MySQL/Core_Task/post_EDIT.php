@@ -13,10 +13,10 @@ include "DBconn.php";
            
            if ($result -> num_rows > 0) {
                while ($row = $result -> fetch_assoc()) {
-                   $e_p_id = $row['id'];
-                   $e_p_img = $row['p_img'];
-                   $e_p_caption = $row['p_caption'];
-            $e_p_hashtag = $row['p_hashtag'];
+                $e_p_id = $row['id'];
+                $e_p_img = $row['p_img'];
+                $e_p_caption = $row['p_caption'];
+                $e_p_hashtag = $row['p_hashtag'];
         }
     }
 }

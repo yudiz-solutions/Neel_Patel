@@ -25,7 +25,7 @@ $userID = $_GET['u_id'];
 
     .head-button {
         display: inline-block;
-        padding-bottom: 8px;
+        padding-bottom: 8px; 
     }
 
 
@@ -60,7 +60,7 @@ if ($result = $conn->query($vsql)) {
             </th>
         </thead>
     </table>
-    <!-- <table class = "table">
+    <table class = "table">
         <thead class = "table-dark">
             <tr>
                 <th> ID </th>
@@ -69,17 +69,41 @@ if ($result = $conn->query($vsql)) {
                 <th> HASHTAG </th>
                 <th> ACTION </th>
             </tr>
-        </thead> -->
+        </thead>
         
 <?php
     //Displaying result in the form of table
     while ($row = $result->fetch_assoc()) {
-           ?>
+        ?>
+        <tr>
+            <td>
+                <?=$row["id"] ?>
+            </td>
+            <td>
+                <img src = "<?= 'Postpics/'.$row['p_img']?>" width = "100px"  alt = "post_pic">
+            </td>
+            <td>
+                <?=$row["p_caption"] ?>
+            </td>
+            <td>
+                <?=$row["p_hashtag"] ?>
+            </td>
+            <td>
+                    <!-- DELETE Button -->
+                    <button name = "dlt_user_btn" class="btn btn-danger" > <a href="post_DELETE.php?u_id=<?=$userID?>&p_id=<?=$row["id"]?>" style='text-decoration:none;'> DELETE </a></button>
+
+                    <!-- EDIT Button -->
+                    <button name = "edtbtn" class="btn btn-info" > <a href="post_EDIT.php?u_id=<?=$userID?>&p_id=<?=$row["id"]?>" style='text-decoration:none;'> Edit </a></button>
+
+                </td>
+                </form>
+            </tr>
+            </table>
             <div class="container">
 
             <div class="card-group">
                 <div class="card">
-                    <img src = "<?= 'Postpics/'.$row['p_img']?>" class="card-img-top"   alt="postImg">
+                    <img src = "<?= 'Postpics/'.$row['p_img']?>" class="card-img-top"   alt="...">
                     <div class="card-body">
                     <p class="card-text">  <?=$row["p_caption"] ?></p>
                     <p class="card-text mb-3"><small class="text-muted"> <?=$row["p_hashtag"] ?></small></p>
