@@ -14,32 +14,34 @@ include "dbConn.php";
     <title>form_VIEW</title>
 </head>
 <style>
-    
-    h2 {
-        display: inline-block;
-    }
 
+    h2 {
+        text-align: center;
+    }
+    
+    a {
+        color: black;
+    }
+    
     #AddEmpBtn {
         float: left;
-        /* margin-right: 260px;
-        margin-top: 4px; */
+        margin-top: 4px;
     }
 
 </style>
 <body>
 <?php
 
-
 //VIEW QUERY
 $vsql = "SELECT * FROM core_form";
 
 if ($result = $conn->query($vsql)) {
     ?>
-    <center><h2>USER DETAILS</h2></center>
-    <table id = "searchTbl" class = "table">
+    <table class = "table">
         <thead class = "table-dark">
-            <th> <button id = "AddEmpBtn" class="btn btn-info" onclick="window.location.href = 'form_FORM.php';"> Add Users </a></button> </th>
             <th>
+                <button id = "AddEmpBtn" class="btn btn-info" onclick="window.location.href = 'form_FORM.php';"> ADD NEW USER </a></button>
+                <h2>USER DETAILS</h2>
             </th>
         </thead>
     </table>
@@ -62,7 +64,7 @@ if ($result = $conn->query($vsql)) {
             </tr>
         </thead>
         
-    <?php
+<?php
     //Displaying result in the form of table
     while ($row = $result->fetch_assoc()) {
         ?>
@@ -117,11 +119,11 @@ if ($result = $conn->query($vsql)) {
                 </td>
                 </form>
             </tr>
-    <?php
+<?php
     }
-    ?>
+?>
     </table>
-    <?php
+<?php
     } else {
         echo "Error!";
     }

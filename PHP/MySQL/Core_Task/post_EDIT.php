@@ -6,7 +6,7 @@ include "DBconn.php";
        if (isset($_GET['u_id'])) {
            $u_id = $_GET['u_id'];
            $p_id = $_GET['p_id'];
-           echo $u_id . "&" . $p_id;
+        //    echo $u_id . "&" . $p_id;
            
            $select_sql = "SELECT * FROM core_post WHERE id = '$p_id'";
            $result = $conn -> query($select_sql);
@@ -20,7 +20,6 @@ include "DBconn.php";
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +32,7 @@ include "DBconn.php";
         <title>post_EDIT</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <style>.error {color: red;}</style>
-    </head> 
+    </head>
 <body>
 
 <!-- UPDATE form -->
@@ -71,19 +70,18 @@ include "DBconn.php";
                     </div>
                 </div>
 
-            <!-- Submit button -->
-                <div class = "row mb-3">
-                    <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "updt_post_btn" value = "UPDATE POST">
-                </div>
+        <!-- Submit button -->
+        <div class = "row mb-3">
+            <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "updt_post_btn" value = "UPDATE POST">
+        </div>
             
-            <!-- View button -->
-            <div class = "row mb-3">
-                <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php?id=<?=$id?>'"/>
-                <div>
-                    </form>
-                    <div>
+        <!-- View button -->
+        <!-- <div class = "row mb-3">
+            <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="window.location.href='post_VIEW.php?id=<?=$userID?>';"/>
+        <div> -->
+    </form>
+<div>
                         
-
     <?php
      ///When EDIT button is pressed
      if (isset($_POST['updt_post_btn'])) {
@@ -106,6 +104,7 @@ include "DBconn.php";
                 $update_filename = $old_post;
         }
         
+        //Commenting validations for testing test case
         // if (file_exists("Postpics/" . $_FILES['p_img']['name']))
         // {
         //     $filename = $_FILES['p_img']['name'];

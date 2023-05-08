@@ -14,11 +14,9 @@ include "DBconn.php";
 <body>
 <?php
 
-//When DLT button is pressed
-
+    //When DLT button is pressed
     $u_id = $_GET['u_id'];
     $p_id = $_GET['p_id'];
-    echo $u_id . "&" . $p_id;
     
     //DLT QUERY
     $dsql = "DELETE FROM core_post WHERE id = $p_id";

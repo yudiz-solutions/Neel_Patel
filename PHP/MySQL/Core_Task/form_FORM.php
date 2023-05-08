@@ -21,7 +21,7 @@ include "dbConn.php";
     }
 
     h1 {
-        : center;
+      text-align : center;
     }
 
     </style>
@@ -46,8 +46,6 @@ if (isset($_POST['submit'])) {
     foreach ($_POST['social'] as $checked) {
         $chk_social .= $checked . ",";
     }
-
-    // $img_to_be_uploaded = $_FILES['profile']['name'];
     
     //Commenting validations for testing test cases
     // $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');

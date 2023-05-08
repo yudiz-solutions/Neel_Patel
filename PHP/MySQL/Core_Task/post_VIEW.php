@@ -17,19 +17,27 @@ $userID = $_GET['u_id'];
 <style>
     
     h2 {
+        text-align: center;
         display: inline-block;
+        margin-left: 650px;
+        margin-top: 8px;
     }
 
-    #AddEmpBtn {
-        float: left;
-        /* margin-right: 260px;
-        margin-top: 4px; */
+    .head-button {
+        display: inline-block;
+        padding-bottom: 8px; 
     }
+
 
     a{
         text-decoration: none;
         color  : white;
     }
+    
+    #AddEmpBtn {
+        float: left;
+    }
+
 
 </style>
 <body>
@@ -41,10 +49,15 @@ $vsql = "SELECT * FROM core_post WHERE user_id = '$userID'";
 
 if ($result = $conn->query($vsql)) {
     ?>
-    <center><h2>POST DETAILS</h2></center>
     <table class = "table">
         <thead class = "table-dark">
-            <th> <button class="btn btn-info" onclick="window.location.href = 'post_FORM.php?id=<?=$userID?>';"> Add Post </a></button> </th>
+            <th>
+                <div class="head-button">
+                    <button class="btn btn-info" onclick="window.location.href = 'post_FORM.php?u_id=<?=$userID?>';"> ADD POST </a></button>
+                    <button class="btn btn-info" onclick="window.location.href = 'FORM_view.php';"> HOME </a></button>
+                </div>
+                <h2>POST DETAILS</h2>
+            </th>
         </thead>
     </table>
     <table class = "table">
@@ -58,7 +71,7 @@ if ($result = $conn->query($vsql)) {
             </tr>
         </thead>
         
-    <?php
+<?php
     //Displaying result in the form of table
     while ($row = $result->fetch_assoc()) {
         ?>
@@ -76,11 +89,7 @@ if ($result = $conn->query($vsql)) {
                 <?=$row["p_hashtag"] ?>
             </td>
             <td>
-                <!-- DELETE Section -->
-                <!-- <form action="post_DELETE.php" method="post">
-                    <input type="hidden" value="<?=$row['id']?>" name="dID" />
-                    <input type="submit" class="btn btn-danger" value="DELETE" name="dlt_user_btn" /> -->
-                    
+                    <!-- DELETE Button -->
                     <button name = "dlt_user_btn" class="btn btn-danger" > <a href="post_DELETE.php?u_id=<?=$userID?>&p_id=<?=$row["id"]?>" style='text-decoration:none;'> DELETE </a></button>
 
                     <!-- EDIT Button -->

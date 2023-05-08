@@ -23,43 +23,6 @@ include "dbConn.php";
 </style>
     </head>
 <body>
-    <?php
-// Getting user_id from URL
-    $userID = $_GET['id'];
-//When Submit button is pressed
-if (isset($_POST['post_submit'])) {
-
-    $p_caption = $_POST['p_caption'];
-    $p_hashtag = $_POST['p_hashtag'];
-
-    //Commenting validations for testing test cases
-    // $p_img_to_be_uploaded = $_FILES['p_img']['name'];
-    // $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
-    $filename = $_FILES['p_img']['name'];
-    $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
-    
-    // if (!in_array($file_extension, $allowed_extension)) {
-    //     echo "Only jpg, jpeg, png, gif allowed !";
-    // } else {
-    //     if (file_exists("Postpics/" . $_FILES['p_img']['name'])) {
-    //         $filename = $_FILES['p_img']['name'];
-    //         echo "Image already exists !".$filename;
-    //     } else {
-
-    //INSERTION QUERY
-        $isql = "INSERT INTO core_post (user_id, p_img, p_caption, p_hashtag) VALUES ('$userID', '$filename', '$p_caption', '$p_hashtag')";
-        
-        if ($conn -> query($isql) == true) {
-            move_uploaded_file($_FILES['p_img']['tmp_name'], "Postpics/".$_FILES['p_img']['name']);
-            echo "<script> alert ('POST ADDED SUCCESSFULLY')</script>";
-        } else {
-            echo $conn->error;
-        }
-      }
-//     }
-// }
-
-?>
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">CREATE POST</h1>
@@ -95,10 +58,50 @@ if (isset($_POST['post_submit'])) {
             </div>
             
                 <!-- View button -->
-            <div class = "row mb-3">
+            <!-- <div class = "row mb-3">
                 <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php'"/>
-            <div>
+            <div> -->
         </form>
         <div>
+    
+<?php
+    // Getting user_id from URL
+        $u_id = $_GET['u_id'];
+    
+    //When Submit button is pressed
+        if (isset($_POST['post_submit'])) {
+
+        $p_caption = $_POST['p_caption'];
+        $p_hashtag = $_POST['p_hashtag'];
+
+    //Commenting validations for testing test cases
+        // $p_img_to_be_uploaded = $_FILES['p_img']['name'];
+        // $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
+        $filename = $_FILES['p_img']['name'];
+        $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+    
+        // if (!in_array($file_extension, $allowed_extension)) {
+        //     echo "Only jpg, jpeg, png, gif allowed !";
+        // } else {
+        //     if (file_exists("Postpics/" . $_FILES['p_img']['name'])) {
+        //         $filename = $_FILES['p_img']['name'];
+        //         echo "Image already exists !".$filename;
+        //     } else {
+
+    //INSERTION QUERY
+        $isql = "INSERT INTO core_post (user_id, p_img, p_caption, p_hashtag) VALUES ('$u_id', '$filename', '$p_caption', '$p_hashtag')";
+        
+        if ($conn -> query($isql) == true) {
+            move_uploaded_file($_FILES['p_img']['tmp_name'], "Postpics/".$_FILES['p_img']['name']);
+            // echo "<script> alert ('POST ADDED SUCCESSFULLY')</script>";
+            header("Location: post_VIEW.php?u_id=" .$u_id);
+        } else {
+            echo $conn->error;
+        }
+      }
+//     }
+// }
+
+?>
 </body>
 </html>
