@@ -17,6 +17,20 @@ include "DBconn.php";
         .error {
             color: red;
         }
+        
+        #updt-head{
+            background-color: #212529;
+            color: white;
+        }
+
+        .form-outline {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+        
+        .form-label {
+            padding-left: 0px;
+        }
         </style>
     </head>
     
@@ -82,6 +96,8 @@ include "DBconn.php";
    
     if ($result -> num_rows > 0) {
         while ($row = $result -> fetch_assoc()) {
+            // print_r($row);
+            // die;
             $e_id = $row['id'];
             $e_fname = $row['fname'];
             $e_lname = $row['lname'];
@@ -102,7 +118,7 @@ include "DBconn.php";
 
 <!-- UPDATE form -->
         <div class = "container" style = "background-color: aliceblue">
-        <center><h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE USER DATA</h1></center>
+        <center><h1 class="form-outline mb-4" id="updt-head" style="background-color: #212529">UPDATE USER DATA</h1></center>
         <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype="multipart/form-data">
             
             <!-- ID Hidden Value -->
@@ -233,7 +249,6 @@ include "DBconn.php";
                         <label class="form-label col-5">Active social media</label><br>
                         <div class="col-7">
                         <?php
-
                             //Str to Arr for social media checkbox
                             $checked_val = explode(',', $e_social_media);
                             // print_r($b);

@@ -98,11 +98,29 @@ if ($result = $conn->query($vsql)) {
                 </td>
                 </form>
             </tr>
+            </table>
+            <div class="container">
+
+            <div class="card-group">
+                <div class="card">
+                    <img src = "<?= 'Postpics/'.$row['p_img']?>" class="card-img-top" style="width:360px;"  alt="...">
+                    <div class="card-body">
+                    <p class="card-text">  <?=$row["p_caption"] ?></p>
+                    <p class="card-text mb-3"><small class="text-muted"> <?=$row["p_hashtag"] ?></small></p>
+                      <button name = "dlt_user_btn" class="btn btn-danger" > <a href="post_DELETE.php?u_id=<?=$userID?>&p_id=<?=$row["id"]?>" style='text-decoration:none;'> DELETE </a></button>
+
+                    <!-- EDIT Button -->
+                    <button name = "edtbtn" class="btn btn-info" > <a href="post_EDIT.php?u_id=<?=$userID?>&p_id=<?=$row["id"]?>" style='text-decoration:none;'> Edit </a></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     <?php
     }
     
     ?>
-    </table>
+
     <?php
     } else {
         echo "Error!";

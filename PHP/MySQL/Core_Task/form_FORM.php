@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
 ?>
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">
-        <h1 class="form-outline mb-4" style = "background-color: khaki">INSERT USER DATA</h1>
+        <h1 class="form-outline mb-4" style = "background-color: khaki">INSERT NEW USER DATA</h1>
         <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype="multipart/form-data">
             
             <!-- First name input -->
