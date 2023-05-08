@@ -29,13 +29,9 @@ include "dbConn.php";
 <body>
 <?php
 
-// if (isset($_POST['searchBtn'])) {
-    //SEARCH QUERY
-//     $vsql = "SELECT id, fname, lname, uname, email, gender, country, state, city, bio, profile, social_media FROM core_form WHERE empid LIKE '% ".$empid." %'";
-// } else {
+
 //VIEW QUERY
 $vsql = "SELECT * FROM core_form";
-// }
 
 if ($result = $conn->query($vsql)) {
     ?>
@@ -44,11 +40,6 @@ if ($result = $conn->query($vsql)) {
         <thead class = "table-dark">
             <th> <button id = "AddEmpBtn" class="btn btn-info" onclick="window.location.href = 'form_FORM.php';"> Add Users </a></button> </th>
             <th>
-                <!-- SEARCHBAR -->
-                <!-- <form action = "search.php" method = "POST">
-                    <input type = "text" name = "keyword" placeholder = "Search">
-                    <input type = "submit" name = "searchBtn" value = "SEARCH">
-                </form> -->
             </th>
         </thead>
     </table>

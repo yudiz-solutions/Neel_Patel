@@ -29,7 +29,7 @@ if (isset($_POST['dlt_user_btn'])) {
     }
 }
 
-include "post_VIEW.php";
+header("refesh:5Location:post_VIEW.php");
 ?>  
 </body>
 </html>

@@ -17,6 +17,7 @@ include "DBconn.php";
     
     <body>
     <?php
+    $id = $_GET["id"];
 
     //When EDIT button is pressed
     if (isset($_POST['updt_user_btn'])) {
@@ -59,7 +60,7 @@ include "DBconn.php";
                         unlink("Profilepics/".$old_profile);
                     }
                     echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
-                    header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/form_VIEW.php");
+                    header("Location:form_VIEW.php");
                 } else {
                     echo "Error in updating!!" . $conn->error;
                 }
@@ -95,7 +96,7 @@ include "DBconn.php";
 
 <!-- UPDATE form -->
         <div class = "container" style = "background-color: aliceblue">
-        <h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE USER DATA</h1>
+        <center><h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE USER DATA</h1></center>
         <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype="multipart/form-data">
             
             <!-- ID Hidden Value -->

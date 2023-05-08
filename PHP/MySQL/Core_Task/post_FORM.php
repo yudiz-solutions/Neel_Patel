@@ -25,11 +25,10 @@ include "dbConn.php";
 <body>
     <?php
 // Getting user_id from URL
-$userID = $_GET['id'];
+    $userID = $_GET['id'];
 //When Submit button is pressed
 if (isset($_POST['post_submit'])) {
-    
-    
+
     $p_caption = $_POST['p_caption'];
     $p_hashtag = $_POST['p_hashtag'];
 
@@ -46,6 +45,7 @@ if (isset($_POST['post_submit'])) {
             $filename = $_FILES['p_img']['name'];
             echo "Image already exists !".$filename;
         } else {
+
     //INSERTION QUERY
         $isql = "INSERT INTO core_post (user_id, p_img, p_caption, p_hashtag) VALUES ('$userID', '$p_img_to_be_uploaded', '$p_caption', '$p_hashtag')";
         
@@ -63,7 +63,7 @@ if (isset($_POST['post_submit'])) {
     <!-- ADD FORM -->
     <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">CREATE POST</h1>
-        <form action = "" method = "post" enctype = "multipart/form-data">
+        <form action = "" method = "post" enctype = "multipart/form-data" >
             
             <!-- Post Image input -->
                 <div class = "row mb-3">

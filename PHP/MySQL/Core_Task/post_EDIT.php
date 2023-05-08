@@ -17,6 +17,7 @@ include "DBconn.php";
     
     <body>
     <?php
+    $id = $_GET["id"];
 
     //When EDIT button is pressed
     if (isset($_POST['updt_post_btn'])) {
@@ -43,7 +44,7 @@ include "DBconn.php";
             $filename = $_FILES['p_img']['name'];
             echo "Image already exists !".$filename;
         }
-        
+
         else
         {
             //UPDATE QUERY
@@ -57,7 +58,7 @@ include "DBconn.php";
                         unlink("Postpics/".$old_post);
                     }
                     echo "<script> alert ('UPDATED SUCCESSFULLY')</script>";
-                    header("Location: http://localhost/Yudiz/Neel_Patel/PHP/MySQL/Core_Task/post_VIEW.php");
+                    header("Location: post_VIEW.php?id=".$id);
                 }
                 
                 else
@@ -88,7 +89,7 @@ include "DBconn.php";
 <!-- UPDATE form -->
         <div class = "container" style = "background-color: aliceblue">
         <h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE POST</h1>
-        <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype = "multipart/form-data">
+        <form action = "" method = "post" enctype = "multipart/form-data">
             
             <!-- ID Hidden Value -->
             <input type = "hidden" value = "<?=$e_p_id?>" name = "id" />
@@ -125,7 +126,7 @@ include "DBconn.php";
             
             <!-- View button -->
                 <div class = "row mb-3">
-                    <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php'"/>
+                    <input type="button" class = "btn btn-primary btn-block mb-4" value="VIEW POST" onClick="document.location.href='post_VIEW.php?id=<?=$id?>'"/>
                 <div>
         </form>
     <div>
