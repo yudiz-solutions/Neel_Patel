@@ -33,7 +33,10 @@ include "dbConn.php";
     <?php
 
     //VIEW QUERY
+    // $vsql = "SELECT * FROM core_form";
+    // $vsql = "SELECT *,c.name AS country_name FROM core_form JOIN core_countries AS c ON c.id = core_form.country";
     $vsql = "SELECT *,c.name AS country_name FROM core_form JOIN core_countries AS c ON c.id = core_form.country";
+
 
     if ($result = $conn->query($vsql)) {
         ?>
