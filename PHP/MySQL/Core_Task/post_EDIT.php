@@ -31,13 +31,25 @@ include "DBconn.php";
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>post_EDIT</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <style>.error {color: red;}</style>
+        <style>
+            
+            .error {
+                color: red;
+            }
+
+            #updt-head{
+                background-color: #212529;
+                color: white;
+                text-align: center;
+            }
+
+        </style>
     </head>
 <body>
 
 <!-- UPDATE form -->
-<div class = "container" style = "background-color: aliceblue">
-    <h1 class="form-outline mb-4" style = "background-color: khaki">UPDATE POST</h1>
+<div class = "container">
+    <h1 class="form-outline mb-4" id = "updt-head">UPDATE POST</h1>
     <form action = "" method = "post" enctype = "multipart/form-data">
         
         <!-- ID Hidden Value -->
@@ -72,7 +84,7 @@ include "DBconn.php";
 
         <!-- Submit button -->
         <div class = "row mb-3">
-            <input type = "submit" class = "btn btn-primary btn-block mb-4" name = "updt_post_btn" value = "UPDATE POST">
+            <input type = "submit" class = "btn btn-dark btn-block mb-4" name = "updt_post_btn" value = "UPDATE POST">
         </div>
             
         <!-- View button -->

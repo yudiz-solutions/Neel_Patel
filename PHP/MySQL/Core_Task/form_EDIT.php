@@ -21,6 +21,7 @@ include "DBconn.php";
         #updt-head{
             background-color: #212529;
             color: white;
+            text-align: center;
         }
 
         .form-outline {
@@ -31,6 +32,7 @@ include "DBconn.php";
         .form-label {
             padding-left: 0px;
         }
+    
         </style>
     </head>
     
@@ -118,7 +120,7 @@ include "DBconn.php";
 
 <!-- UPDATE form -->
         <div class = "container" style = "background-color: aliceblue">
-        <center><h1 class="form-outline mb-4" id="updt-head" style="background-color: #212529">UPDATE USER DATA</h1></center>
+        <h1 class="form-outline mb-4" id="updt-head" style="background-color: #212529">UPDATE USER DATA</h1>
         <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" enctype="multipart/form-data">
             
             <!-- ID Hidden Value -->
