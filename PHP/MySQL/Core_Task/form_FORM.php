@@ -144,16 +144,13 @@ include "dbConn.php";
                 </div>
             </div>
 
+
             <!-- Country input -->
             <div class="row mb-3">
                 <div class="form-outline ">
                     <label class="form-label col-5">Country</label>
                     <select name="country" id="country-dropdown">
                         <option value="">Select Country</option>
-                        <!-- <option value="India">India</option>
-                        <option value="Australia">Australia</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Japan">Japan</option> -->
                         <?php
                         $result = mysqli_query($conn, "SELECT * FROM core_countries");
                         while ($row = mysqli_fetch_array($result)) {
@@ -174,10 +171,6 @@ include "dbConn.php";
                 <div class="form-outline">
                     <label class="form-label col-5">State</label>
                     <select name="state" id="state-dropdown">
-                        <!-- <option value=" Gujrat">Gujrat</option>
-                        <option value="Rajsthan">Rajsthan</option>
-                        <option value="Maharashtra"> Maharashtra</option>
-                        <option value="Kerla">Kerla</option> -->
                     </select>
                 </div>
             </div>
@@ -187,48 +180,13 @@ include "dbConn.php";
                 <div class="form-outline">
                     <label class="form-label col-5">City</label>
                     <select name="city" id="city-dropdown">
-                        <!-- <option value="Ahmedabad">Ahmedabad</option>
-                        <option value="Vadodara">Vadodara</option>
-                        <option value="Surat"> Surat</option>
-                        <option value="Jamnagar">Jamnagar</option> -->
                     </select>
                 </div>
             </div>
 
-            <!-- SCRIPT FOR DROPDOWN -->
-            <script>
-                $(document).ready(function () {
-                    $('#country-dropdown').on('change', function () {
-                        var country_id = this.value;
-                        $.ajax({
-                            url: "states-by-country.php",
-                            type: "POST",
-                            data: {
-                                country_id: country_id
-                            },
-                            cache: false,
-                            success: function (result) {
-                                $("#state-dropdown").html(result);
-                                $('#city-dropdown').html('<option value="">Select State First</option>');
-                            }
-                        });
-                    });
-                    $('#state-dropdown').on('change', function () {
-                        var state_id = this.value;
-                        $.ajax({
-                            url: "cities-by-state.php",
-                            type: "POST",
-                            data: {
-                                state_id: state_id
-                            },
-                            cache: false,
-                            success: function (result) {
-                                $("#city-dropdown").html(result);
-                            }
-                        });
-                    });
-                });
-            </script>
+            <!-- Including AJAX file for Relative dropdown  -->
+            <?php include_once 'AJAX_script.php'; ?>
+
 
             <!-- Bio input -->
             <div class="row mb-3">

@@ -34,10 +34,10 @@ include "dbConn.php";
 
     //VIEW QUERY
     // $vsql = "SELECT * FROM core_form";
-    // $vsql = "SELECT *,c.name AS country_name FROM core_form JOIN core_countries AS c ON c.id = core_form.country";
-    $vsql = "SELECT *,c.name AS country_name FROM core_form JOIN core_countries AS c ON c.id = core_form.country";
-
-
+    $vsql = "SELECT core_form.*,c.name AS country_name, s.name AS state_name, ct.name AS city_name FROM core_form JOIN core_countries AS c ON c.id = core_form.country JOIN core_states AS s ON s.id = core_form.state JOIN core_cities AS ct ON ct.id = core_form.city";
+    // echo $vsql;
+    // die;
+    
     if ($result = $conn->query($vsql)) {
         ?>
         <table class="table">
@@ -95,10 +95,10 @@ include "dbConn.php";
                         <?= $row["country_name"] ?>
                     </td>
                     <td>
-                        <?= $row["state"] ?>
+                        <?= $row["state_name"] ?>
                     </td>
                     <td>
-                        <?= $row["city"] ?>
+                        <?= $row["city_name"] ?>
                     </td>
                     <td>
                         <?= $row["bio"] ?>
@@ -131,7 +131,7 @@ include "dbConn.php";
         </table>
         <?php
     } else {
-        echo "Error!";
+        echo "Error!", $conn->error;
     }
     ?>
 </body>
