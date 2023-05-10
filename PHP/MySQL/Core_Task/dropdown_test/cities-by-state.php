@@ -1,5 +1,5 @@
 <?php
-require_once "DBconn.php";
+require "DBconn.php";
 $state_id = $_POST["state_id"];
 $result = mysqli_query($conn, "SELECT * FROM core_cities where state_id = $state_id");
 ?>

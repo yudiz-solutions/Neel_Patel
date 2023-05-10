@@ -78,7 +78,7 @@
                             <select class="form-control" id="country-dropdown">
                                 <option value="">Select Country</option>
                                 <?php
-                                require_once "DBconn.php";
+                                require "DBconn.php";
                                 $result = mysqli_query($conn, "SELECT * FROM core_countries");
                                 while ($row = mysqli_fetch_array($result)) {
                                     ?>
