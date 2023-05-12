@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <style>
         .form-control {
             width: initial;
@@ -20,7 +21,7 @@
 </head>
 
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" id="regForm" enctype="multipart/form-data">
         <!-- Firstname -->
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">Firstname</label>
@@ -161,41 +162,22 @@
         </div>
 
         <!-- Submit -->
-        <button type="submit" class="btn btn-primary" name="form_submit">Sign in</button>
+        <button type="submit" class="btn btn-primary" id="form_submit" name="form_submit">Sign in</button>
     </form>
+    <script>
+        // $("#form_submit").click(function () {
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "RegForm.php",
+        //         data: $("#regForm").serialize(),
+        //         success: function (data) {
+        //             // console.log(data);
+        //         }
+        //     });
+
+        //     return false;
+        // });
+    </script>
 </body>
 
 </html>
-
-<?php
-include 'DBconn.php';
-
-if (isset($_POST["form_submit"])) {
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $uname = $_POST['uname'];
-    $email = $_POST['email'];
-    $pswd = $_POST['pswd'];
-    $gender = $_POST['gender'];
-    $dob = $_POST['dob'];
-    $country = $_POST['country'];
-    $message = $_POST['message'];
-
-    $chk_hobby = "";
-    foreach ($_POST['hobby'] as $checked) {
-        $chk_hobby .= $checked . ",";
-    }
-
-    $filename = $_FILES['img']['name'];
-    $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
-
-    //INSERT QUERY
-    $isql = "INSERT INTO wp_form (fname, lname, uname, email, password, gender, dob, country, hobby, message, profile) VALUES ('$fname', '$lname', '$uname', '$email', '$pswd', '$gender', '$dob', '$country', '$chk_hobby', '$message', '$filename')";
-    if ($conn->query($isql) == true) {
-        move_uploaded_file($_FILES['img']['tmp_name'], "uploads/" . $_FILES['img']['name']);
-        echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
-    } else {
-        echo $conn->error;
-    }
-}
-?>
