@@ -27,9 +27,20 @@ if (isset($_POST["form_submit"])) {
         $isql = "INSERT INTO wp_form (fname, lname, uname, email, password, gender, dob, country, hobby, message, profile) VALUES ('$fname', '$lname', '$uname', '$email', '$pswd', '$gender', '$dob', '$country', '$chk_hobby', '$message', '$filename')";
         if ($conn->query($isql) == true) {
             move_uploaded_file($_FILES['img']['tmp_name'], "uploads/" . $_FILES['img']['name']);
-            echo "<script> alert ('ADDED SUCCESSFULLY')</script>";
+            $res = [
+                'id' => 1,
+                'message' => "ADDED SUCCESSFULLY"
+            ];
+            echo json_encode($res);
+            return;
         } else {
-            echo $conn->error;
+            // $res = $conn->error;
+            $res = [
+                'id' => 2,
+                'message' => "Error"
+            ];
+            echo json_encode($res);
+            return;
         }
     } else {
         echo "Check your entered password!!";
