@@ -18,126 +18,146 @@
         .form-control {
             width: initial;
         }
+
+        h1 {
+            text-align: center;
+        }
+
+        #form-head {
+            background-color: #212529;
+            color: white;
+            text-align: left;
+        }
+
+        .container {
+            width: max-content;
+        }
+
+        /* #selectors {
+            margin: auto;
+        } */
     </style>
 </head>
 
 <body>
-    <form action="" method="post" id="regForm" enctype="multipart/form-data">
+    <div class="container" style="background-color: aliceblue">
+        <h1 class="form-outline mb-4" id="form-head">INSERT NEW USER DATA</h1>
+        <form action="" method="post" id="regForm" enctype="multipart/form-data">
 
-        <!-- Firstname -->
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Firstname</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="fname">
-            </div>
-        </div>
-
-        <!-- Lastname -->
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Lastname</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="lname">
-            </div>
-        </div>
-
-        <!-- Username -->
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Username</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="uname">
-            </div>
-        </div>
-
-        <!-- Email -->
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" name="email">
-            </div>
-        </div>
-
-        <!-- Password -->
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" name="pswd">
-            </div>
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Confirm Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" name="c_pswd">
-            </div>
-        </div>
-
-        <!-- DOB Password -->
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Birthdate</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" name="dob">
-            </div>
-        </div>
-
-        <!-- Gender -->
-        <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" value="male" checked>
-                    <label class="form-check-label" for="gender8">
-                        Male
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" value="female">
-                    <label class="form-check-label" for="gender">
-                        Female
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" value="other">
-                    <label class="form-check-label" for="gender">
-                        Other
-                    </label>
+            <!-- Firstname -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Firstname</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="fname">
                 </div>
             </div>
-        </fieldset>
 
-        <!-- Hobby -->
-        <div class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Hobby</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="hobby[]" value="h1">
-                    <label class="form-check-label" for="gridCheck1">
-                        h1
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="hobby[]" value="h2">
-                    <label class=" form-check-label" for="gridCheck1">
-                        h2
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="hobby[]" value="h3">
-                    <label class=" form-check-label" for="gridCheck1">
-                        h3
-                    </label>
+            <!-- Lastname -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Lastname</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="lname">
                 </div>
             </div>
-        </div>
 
-        <!-- Country -->
-        <div class="row mb-3">
-            <div class="form-outline">
-                <label class="form-label col-5">Country</label>
-                <div class="col-sm-10">
-                    <select name="country" class="form-control" id="state-dropdown">
+            <!-- Username -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="uname">
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="email" class="form-control" name="email">
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" name="pswd">
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Confirm Password</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" name="c_pswd">
+                </div>
+            </div>
+
+            <!-- DOB Password -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Birthdate</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" name="dob">
+                </div>
+            </div>
+
+            <!-- Gender -->
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                <div class="col-sm-8" id="selectors">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="male" checked>
+                        <label class="form-check-label" for="gender8">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="female">
+                        <label class="form-check-label" for="gender">
+                            Female
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="other">
+                        <label class="form-check-label" for="gender">
+                            Other
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Hobby -->
+            <div class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0">Hobby</legend>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="hobby[]" value="h1">
+                        <label class="form-check-label" for="gridCheck1">
+                            h1
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="hobby[]" value="h2">
+                        <label class=" form-check-label" for="gridCheck1">
+                            h2
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="hobby[]" value="h3">
+                        <label class=" form-check-label" for="gridCheck1">
+                            h3
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Country input -->
+            <div class="row mb-3">
+                <div class="form-outline ">
+                    <label class="col-sm-2 col-form-label">Country</label>
+                    <select name="country" id="country-dropdown">
+                        <option value="">Select Country</option>
                         <option value="India">India</option>
                         <option value="USA">USA</option>
                         <option value="Australia">Australia</option>
@@ -145,31 +165,40 @@
                     </select>
                 </div>
             </div>
-        </div>
 
-        <!-- Message -->
-        <div class="row mb-3">
-            <div class="form-outline">
-                <label class="form-label col-5">Message</label>
-                <textarea name="message" rows="4" cols="50"></textarea>
+            <!-- Message -->
+            <div class="row mb-3">
+                <div class="form-outline">
+                    <label class="col-sm-2 col-form-label">Message</label>
+                    <textarea name="message" rows="4" cols="50"></textarea>
+                </div>
             </div>
-        </div>
 
-        <!-- Profile Image -->
-        <div class="row mb-3">
-            <div class="form-outline ">
-                <label class="form-label col-5">Profile Image</label>
-                <input type="file" name="img">
+            <!-- Profile Image -->
+            <div class="row mb-3">
+                <div class="form-outline ">
+                    <label class="col-sm-2 col-form-label">Profile Image</label>
+                    <input type="file" name="img">
+                </div>
             </div>
-        </div>
 
-        <!-- Submit -->
-        <button type="submit" class="btn btn-primary" id="form_submit" name="form_submit">Sign in</button>
+            <!-- Submit -->
+            <div class="row mb-3">
+                <button type="submit" class="btn btn-dark btn-block mb-4x" id="form_submit"
+                    name="form_submit">Submit</button>
+            </div>
 
-        <!-- Error Msg -->
-        <div id="err-msg">
-        </div>
-    </form>
+            <!-- View button -->
+            <div class="row mb-3">
+                <input type="button" class="btn btn-dark btn-block mb-4" value="VIEW"
+                    onClick="document.location.href='ViewPanel.php'" />
+            </div>
+
+            <!-- Error Msg -->
+            <div id="err-msg">
+            </div>
+        </form>
+    </div>
 
     <script>
         $(document).on('submit', '#regForm', function (e) {
@@ -187,11 +216,13 @@
                 success: function (response) {
 
                     var res = jQuery.parseJSON(response);
-                    if (res.id == 2) {
+                    // console.log(res);
+                    if (res.id == 0) {
                         $('#err-msg').text(res.message);
                     } else if (res.id == 1) {
                         $('#err-msg').text(res.message);
                         $('#regForm')[0].reset();
+
                     }
                 }
             });

@@ -36,7 +36,7 @@ if (isset($_POST["form_submit"])) {
         } else {
             // $res = $conn->error;
             $res = [
-                'id' => 2,
+                'id' => 0,
                 'message' => "Error"
             ];
             echo json_encode($res);
