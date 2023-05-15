@@ -107,6 +107,7 @@ include "DBconn.php";
                         <img src="<?= 'uploads/' . $row['profile'] ?>" width="100px" alt="profile_pic">
                     </td>
                     <td>
+
                         <!-- DELETE Button -->
                         <button id="dlt_btn" class="btn btn-danger" value="<?= $row["id"] ?>">DELETE</button>
                         <script>
@@ -136,12 +137,43 @@ include "DBconn.php";
                                         }
                                     });
                                 }
+                                die();
                             });
                         </script>
 
                         <!-- EDIT Button -->
-                        <button name="e_user" class="btn btn-info"> <a href="form_EDIT.php?u_id=<?= $row['id'] ?>"
+                        <button id="e_user" class="btn btn-info"> <a href="EditUser.php?u_id=<?= $row['id'] ?>"
                                 style='text-decoration:none;'> EDIT USER </a></button>
+                        <button id="edt_btn" class="btn btn-danger" value="<?= $row["id"] ?>">EDIT</button>
+                        <script>
+                            $(document).on('click', '#edt_btn', function (e) {
+                                e.preventDefault();
+
+                                var eID = $(this).val();
+                                alert(eID);
+                                die();
+                                $.ajax({
+                                    type: "POST",
+                                    url: "EditUser.php",
+                                    data: {
+                                        'edt_btn': true,
+                                        'eID': eID
+                                    },
+                                    success: function (response) {
+                                        console.log(response);
+                                        var res = jQuery.parseJSON(response);
+                                        if (res.u_id == 0) {
+                                            alert(res.message);
+                                            die();
+                                        } else {
+                                            alert(res.message);
+                                            $('#view-table').load(location.href + " #view-table");
+                                        }
+                                    }
+                                });
+                                // die();
+                            });
+                        </script>
                     </td>
                 </tr>
                 <?php

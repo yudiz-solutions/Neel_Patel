@@ -222,7 +222,6 @@
                     } else if (res.id == 1) {
                         $('#err-msg').text(res.message);
                         $('#regForm')[0].reset();
-
                     }
                 }
             });
