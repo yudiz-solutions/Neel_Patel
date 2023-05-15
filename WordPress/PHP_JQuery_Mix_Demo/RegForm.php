@@ -48,7 +48,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Firstname</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="fname">
+                    <input type="text" class="form-control" name="fname" id="fname">
                 </div>
             </div>
 
