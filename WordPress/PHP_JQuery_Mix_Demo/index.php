@@ -5,7 +5,7 @@ include "DBconn.php";
 
 $error_message = "";
 
-if (isset($_POST['login-btn'])) {
+if (isset($_POST['hidden'])) {
 
   $l_uname = $_POST['l_uname'];
   $l_pswd = $_POST['l_pswd'];
@@ -24,8 +24,11 @@ if (isset($_POST['login-btn'])) {
   } else {
     $error_message = 'Invalid username or password. Please try again.';
   }
-  $conn->close();
+
+
+  // $conn->close();
 }
+
 
 ?>
 
@@ -42,6 +45,9 @@ if (isset($_POST['login-btn'])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <title>LogIn</title>
   <style>
     .form-control {
@@ -60,21 +66,43 @@ if (isset($_POST['login-btn'])) {
       <div class="row mb-3">
         <label for="username" class="col-sm-2 col-form-label">Username</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="l_uname">
+          <input type="text" class="form-control" name="l_uname" id="l_uname">
+          <span class="error l_uname"></span>
         </div>
       </div>
       <div class="row mb-3">
         <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" name="l_pswd">
+          <input type="password" class="form-control" name="l_pswd" id="l_pswd">
         </div>
       </div>
       <div class="col-sm-2 col-form-label" id="err-msg">
         <?= $error_message ?>
       </div>
+      <input type="hidden" name="hidden" value="ok">
       <button type="submit" class="btn btn-primary" name="login-btn">Login</button>
+      <a href="RegForm.php">Register</a>
     </form>
   </div>
+
+  <script>
+    jQuery(document).on("submit", "form", function (e) {
+      e.preventDefault();
+
+
+      var l_uname = jQuery("#l_uname").val();
+      if (l_uname == undefined || l_uname == "") {
+        console.log("sfsdf");
+        jQuery("span.l_uname").html("this field is required");
+      } else {
+        this.submit();
+      }
+
+      console.log("ok");
+
+    });
+  </script>
+
 </body>
 
 </html>

@@ -89,10 +89,11 @@
                 <label class="col-sm-2 col-form-label">Confirm Password</label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" name="c_pswd">
+                    <span class="error c_pswd"></span>
                 </div>
             </div>
 
-            <!-- DOB Password -->
+            <!-- DOB -->
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Birthdate</label>
                 <div class="col-sm-8">
@@ -216,6 +217,24 @@
                 success: function (response) {
 
                     var res = jQuery.parseJSON(response);
+
+
+                    if (res.status == false) {
+                        Object.keys(res).forEach(function (key) {
+                            var value = res[key];
+
+                            jQuery('span.' + key).html(value)
+
+                            // ...
+                        });
+
+                    } else {
+                        // location
+                    }
+
+
+
+
                     // console.log(res);
                     if (res.id == 0) {
                         $('#err-msg').text(res.message);

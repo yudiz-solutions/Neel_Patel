@@ -12,8 +12,10 @@ if (isset($_POST["form_submit"])) {
     $message = $_POST['message'];
 
     $chk_hobby = "";
-    foreach ($_POST['hobby'] as $checked) {
-        $chk_hobby .= $checked . ",";
+    if (isset($_POST['hobby'])) {
+        foreach ($_POST['hobby'] as $checked) {
+            $chk_hobby .= $checked . ",";
+        }
     }
 
     $filename = $_FILES['img']['name'];
@@ -43,7 +45,13 @@ if (isset($_POST["form_submit"])) {
             return;
         }
     } else {
-        echo "Check your entered password!!";
+
+        $res = [
+            'c_pswd' => "Check your entered password!!",
+            'status' => false,
+
+        ];
+        echo json_encode($res);
     }
 }
 ?>

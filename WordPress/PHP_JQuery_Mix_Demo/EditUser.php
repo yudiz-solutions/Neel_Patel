@@ -7,8 +7,13 @@ if (isset($_GET["u_id"])) {
 
     $query_run = mysqli_query($conn, $select_sql);
 
+    // echo "<pre>";
+    // print_r(mysqli_fetch_array($query_run, MYSQLI_ASSOC));
+    // echo "</pre>";
+    // exit;
+
     if (mysqli_num_rows($query_run) == 1) {
-        $student = mysqli_fetch_array($query_run);
+        $student = mysqli_fetch_array($query_run, MYSQLI_ASSOC);
 
         $res = [
             'statusID' => 1,
@@ -31,9 +36,11 @@ if (isset($_GET["u_id"])) {
 
 <?php
 if (isset($_POST['updt_btn'])) {
-    $e_id = $_POST['id'];
-    $fname = $_POST['efname'];
-    $lname = $_POST['elname'];
+
+    $e_id = isset($_POST['id']) ? $_POST['id'] : '';
+    $fname = isset($_POST['efname']) ? $_POST['efname'] : '';
+
+    $lname = isset($_POST['elname']) ? $_POST['elname'] : '';
     $uname = $_POST['euname'];
     $email = $_POST['eemail'];
     // $password = $_POST['password'];
@@ -55,8 +62,30 @@ if (isset($_POST['updt_btn'])) {
         $update_filename = $old_img;
     }
 
-    $edit_sql = "UPDATE wp_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', gender = '$gender', dob = '$dob', country = '$country', hobby = '$hobby_str', message = $message, profile = '$update_filename' WHERE id = '$e_id'";
-    $query_run = mysqli_query($conn, $edit_sql);
+    $updateQu = "";
+    $updateQu .= "UPDATE wp_form SET ";
+
+    if ($fname) {
+        $updateQu .= "fname = '$fname' ";
+    }
+    if ($lname) {
+        $updateQu .= "lname = '$fname' ";
+    }
+    if ($uname) {
+        $updateQu .= "uname = '$fname' ";
+    }
+
+    // if ($fname) {
+    //     $updateQu .= "fname = $fname";
+    // }
+
+
+    $updateQu .= " WHERE id = '$e_id'";
+
+
+    // $edit_sql = "UPDATE wp_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', gender = '$gender', dob = '$dob', country = '$country', hobby = '$hobby_str', message = $message, profile = '$update_filename' WHERE id = '$e_id'";
+    // print_r($updateQu);
+    $query_run = mysqli_query($conn, $updateQu);
 
     if ($query_run) {
         $res = [
