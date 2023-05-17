@@ -417,8 +417,8 @@ include "DBconn.php";
                         } else if (res.u_id == 1) {
                             $('#err-msg').text(res.message);
                             $('.updt-form')[0].reset();
-                            // $(".overlay").hide();
-                            // $(".mycustomform").hide();
+                            $(".overlay").hide();
+                            $(".mycustomform").hide();
                         }
                     }
                 });

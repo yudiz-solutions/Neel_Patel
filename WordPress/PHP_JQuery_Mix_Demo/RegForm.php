@@ -15,6 +15,10 @@
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
+        .error {
+            color: #FF0000;
+        }
+
         .form-control {
             width: initial;
         }
@@ -41,6 +45,7 @@
 
 <body>
     <div class="container" style="background-color: aliceblue">
+        <p><span class="error">* required field</span></p>
         <h1 class="form-outline mb-4" id="form-head">INSERT NEW USER DATA</h1>
         <form action="" method="post" id="regForm" enctype="multipart/form-data">
 
@@ -49,7 +54,9 @@
                 <label class="col-sm-2 col-form-label">Firstname</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="fname" id="fname">
-                    <span class="error fname"></span>
+                    <span class="error">
+
+                    </span>
                 </div>
             </div>
 
@@ -238,10 +245,6 @@
                         // location
                         window.location.href = "index.php";
                     }
-
-
-
-
                     // console.log(res);
                     if (res.id == 0) {
                         $('#err-msg').text(res.message);

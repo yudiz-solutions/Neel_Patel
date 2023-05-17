@@ -109,6 +109,7 @@ if (isset($_POST['updt_btn'])) {
 
     // $updateQu .= " WHERE id = '$e_id'";
 
+    //////////////////////////////////////////////////
 
     $edit_sql = "UPDATE wp_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password', gender = '$gender', dob = '$dob', country = '$country', hobby = '$hobby_str', message = '$message', profile = '$update_filename' WHERE id = '$e_id'";
     $query_run = mysqli_query($conn, $edit_sql);

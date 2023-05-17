@@ -446,7 +446,7 @@ include "DBconn.php";
                             $(".overlay").hide();
                             $(".mycustomform").hide();
                             alert("SUCESS");
-                            // window.location.href = "profile.php";
+                            window.location.href = "profile.php";
                         }
                     }
                 });

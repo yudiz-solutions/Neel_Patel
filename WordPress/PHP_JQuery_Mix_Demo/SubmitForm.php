@@ -45,20 +45,19 @@ if (isset($_POST["form_submit"])) {
             return;
         }
     } elseif ($pswd !== $cpswd) {
-
         $res = [
             'c_pswd' => "Check your entered password!!",
             'status' => false,
         ];
         echo json_encode($res);
-    } elseif ($fname == "") {
+    } elseif (empty($fname)) {
 
         $res = [
             'fname' => "Enter Firstname!!",
             'status' => false,
         ];
         echo json_encode($res);
-    } elseif ($lname == "") {
+    } elseif (empty($lname)) {
         $res = [
             'lname' => "Enter Lastname!!",
             'status' => false,
