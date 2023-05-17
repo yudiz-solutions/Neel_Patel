@@ -44,12 +44,24 @@ if (isset($_POST["form_submit"])) {
             echo json_encode($res);
             return;
         }
-    } else {
+    } elseif ($pswd !== $cpswd) {
 
         $res = [
             'c_pswd' => "Check your entered password!!",
             'status' => false,
+        ];
+        echo json_encode($res);
+    } elseif ($fname == "") {
 
+        $res = [
+            'fname' => "Enter Firstname!!",
+            'status' => false,
+        ];
+        echo json_encode($res);
+    } elseif ($lname == "") {
+        $res = [
+            'lname' => "Enter Lastname!!",
+            'status' => false,
         ];
         echo json_encode($res);
     }

@@ -49,6 +49,7 @@
                 <label class="col-sm-2 col-form-label">Firstname</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="fname" id="fname">
+                    <span class="error fname"></span>
                 </div>
             </div>
 
@@ -57,6 +58,7 @@
                 <label class="col-sm-2 col-form-label">Lastname</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="lname">
+                    <span class="error lname"></span>
                 </div>
             </div>
 
@@ -65,6 +67,7 @@
                 <label class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="uname">
+                    <span class="error uname"></span>
                 </div>
             </div>
 
@@ -73,6 +76,7 @@
                 <label class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-8">
                     <input type="email" class="form-control" name="email">
+                    <span class="error email"></span>
                 </div>
             </div>
 
@@ -81,6 +85,7 @@
                 <label class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" name="pswd">
+                    <span class="error pswd"></span>
                 </div>
             </div>
 
@@ -98,6 +103,7 @@
                 <label class="col-sm-2 col-form-label">Birthdate</label>
                 <div class="col-sm-8">
                     <input type="date" class="form-control" name="dob">
+                    <span class="error dob"></span>
                 </div>
             </div>
 
@@ -123,6 +129,7 @@
                             Other
                         </label>
                     </div>
+                    <span class="error gender"></span>
                 </div>
             </fieldset>
 
@@ -151,6 +158,7 @@
                         </label>
                     </div>
                 </div>
+                <span class="error hobby"></span>
             </div>
 
             <!-- Country input -->
@@ -165,6 +173,7 @@
                         <option value="Canada">Canada</option>
                     </select>
                 </div>
+                <span class="error country"></span>
             </div>
 
             <!-- Message -->
@@ -173,6 +182,7 @@
                     <label class="col-sm-2 col-form-label">Message</label>
                     <textarea name="message" rows="4" cols="50"></textarea>
                 </div>
+                <span class="error message"></span>
             </div>
 
             <!-- Profile Image -->
@@ -181,6 +191,7 @@
                     <label class="col-sm-2 col-form-label">Profile Image</label>
                     <input type="file" name="img">
                 </div>
+                <span class="error profile"></span>
             </div>
 
             <!-- Submit -->
@@ -215,21 +226,17 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
-
                     var res = jQuery.parseJSON(response);
-
-
                     if (res.status == false) {
                         Object.keys(res).forEach(function (key) {
                             var value = res[key];
-
-                            jQuery('span.' + key).html(value)
-
+                            jQuery('span.' + key).html(value);
                             // ...
                         });
 
                     } else {
                         // location
+                        window.location.href = "index.php";
                     }
 
 

@@ -172,6 +172,7 @@ include "DBconn.php";
     ?>
 
 
+    INVOKING EDIT FORM
 
     <div class="container mycustomform" style="background-color: aliceblue">
         <h1 class="form-outline mb-4" id="form-head">UPDATE USER DATA</h1>
@@ -306,7 +307,8 @@ include "DBconn.php";
             <div class="row mb-3">
                 <div class="form-outline ">
                     <label class="col-sm-2 col-form-label">Profile Image</label>
-                    <input type="file" name="img" id="e_profile">
+                    <input type="file" name="img">
+                    <input type="hidden" name="e_img_old" id="e_img_old">
                 </div>
             </div>
 
@@ -364,7 +366,7 @@ include "DBconn.php";
                 success: function (response) {
                     // console.log(url);
                     // die();
-                    console.log(response);
+                    // console.log(response);
                     var res = jQuery.parseJSON(response);
                     // console.log(res.fname);
 
@@ -372,11 +374,7 @@ include "DBconn.php";
                         alert(res.message);
                         // die();
                     } else {
-                        // console.log(res.data.id);
-
                         $('#e_id').val(res.data.id);
-                        // $('#e_fname').val(res.data.fname);
-                        // console.log(eID);
                         $(`.updt-form #e_fname`).val(res.data.fname);
                         $(`.updt-form #e_lname`).val(res.data.lname);
                         $(`.updt-form #e_uname`).val(res.data.uname);
@@ -388,7 +386,8 @@ include "DBconn.php";
                         $(`.updt-form #hobby`).val(res.data.hobby);
                         $(`.updt-form #e_dob`).val(res.data.dob);
                         $(`.updt-form #e_message`).val(res.data.message);
-                        // $(`.updt-form #e_profile`).val(res.data.profile);
+                        $(`.updt-form #e_img_old`).val(res.data.profile);
+                        // console.log(es.data.profile);
 
                         //Invoking form
                         $(".mycustomform").show();
@@ -418,8 +417,8 @@ include "DBconn.php";
                         } else if (res.u_id == 1) {
                             $('#err-msg').text(res.message);
                             $('.updt-form')[0].reset();
-                            // $(".mycustomform").hide();
                             // $(".overlay").hide();
+                            // $(".mycustomform").hide();
                         }
                     }
                 });

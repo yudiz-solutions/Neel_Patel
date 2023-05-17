@@ -81,7 +81,8 @@ if (isset($_POST['hidden'])) {
       </div>
       <input type="hidden" name="hidden" value="ok">
       <button type="submit" class="btn btn-primary" name="login-btn">Login</button>
-      <a href="RegForm.php">Register</a>
+      <button class="btn btn-primary" style="text-decoration:"> <a href="RegForm.php"
+          style="color:white; text-decoration:none">Register</a></button>
     </form>
   </div>
 
@@ -93,7 +94,7 @@ if (isset($_POST['hidden'])) {
       var l_uname = jQuery("#l_uname").val();
       if (l_uname == undefined || l_uname == "") {
         console.log("sfsdf");
-        jQuery("span.l_uname").html("this field is required");
+        $("span.l_uname").html("this field is required");
       } else {
         this.submit();
       }
