@@ -90,7 +90,6 @@ if (isset($_POST['hidden'])) {
     jQuery(document).on("submit", "form", function (e) {
       e.preventDefault();
 
-
       var l_uname = jQuery("#l_uname").val();
       if (l_uname == undefined || l_uname == "") {
         console.log("sfsdf");

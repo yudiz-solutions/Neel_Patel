@@ -48,8 +48,13 @@ if (isset($_POST['updt_btn'])) {
     $dob = isset($_POST['e_dob']) ? $_POST['e_dob'] : '';
     $country = isset($_POST['e_country']) ? $_POST['e_country'] : '';
     $message = isset($_POST['e_message']) ? $_POST['e_message'] : '';
-    $hobby_arr = $_POST['hobby'];
-    $hobby_str = implode(",", $hobby_arr);
+    $hobby_arr = isset($_POST['hobby']) ? $_POST['hobby'] : '';
+    if ($hobby_arr != '') {
+        $hobby_str = implode(",", $hobby_arr);
+    } else {
+        $hobby_str = "";
+    }
+    // $hobby_updt = isset($_POST['hobby']) ? $hobby_str : '';
 
     $new_img = $_FILES['img']['name'];
     $old_img = $_POST['e_img_old'];

@@ -19,6 +19,11 @@
             color: #FF0000;
         }
 
+        .error-notation {
+            color: #FF0000;
+            display: inline;
+        }
+
         .form-control {
             width: initial;
         }
@@ -51,18 +56,16 @@
 
             <!-- Firstname -->
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Firstname</label>
+                <label class="col-sm-2 col-form-label">Firstname<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="fname" id="fname">
-                    <span class="error">
-
-                    </span>
+                    <span class="error fname"></span>
                 </div>
             </div>
 
             <!-- Lastname -->
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Lastname</label>
+                <label class="col-sm-2 col-form-label">Lastname<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="lname">
                     <span class="error lname"></span>
@@ -71,7 +74,7 @@
 
             <!-- Username -->
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Username</label>
+                <label class="col-sm-2 col-form-label">Username<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="uname">
                     <span class="error uname"></span>
@@ -80,7 +83,7 @@
 
             <!-- Email -->
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Email</label>
+                <label class="col-sm-2 col-form-label">Email<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
                     <input type="email" class="form-control" name="email">
                     <span class="error email"></span>
@@ -89,7 +92,7 @@
 
             <!-- Password -->
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Password</label>
+                <label class="col-sm-2 col-form-label">Password<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" name="pswd">
                     <span class="error pswd"></span>
@@ -98,7 +101,7 @@
 
             <!-- Confirm Password -->
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Confirm Password</label>
+                <label class="col-sm-2 col-form-label">Confirm Password<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" name="c_pswd">
                     <span class="error c_pswd"></span>
@@ -207,12 +210,6 @@
                     name="form_submit">Submit</button>
             </div>
 
-            <!-- View button -->
-            <div class="row mb-3">
-                <input type="button" class="btn btn-dark btn-block mb-4" value="VIEW"
-                    onClick="document.location.href='ViewPanel.php'" />
-            </div>
-
             <!-- Error Msg -->
             <div id="err-msg">
             </div>
@@ -233,25 +230,38 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    var res = jQuery.parseJSON(response);
-                    if (res.status == false) {
-                        Object.keys(res).forEach(function (key) {
-                            var value = res[key];
-                            jQuery('span.' + key).html(value);
-                            // ...
-                        });
 
-                    } else {
-                        // location
-                        window.location.href = "index.php";
-                    }
-                    // console.log(res);
-                    if (res.id == 0) {
-                        $('#err-msg').text(res.message);
-                    } else if (res.id == 1) {
-                        $('#err-msg').text(res.message);
-                        $('#regForm')[0].reset();
-                    }
+                    var res = jQuery.parseJSON(response);
+
+                    $.each(res, function (index, value) {
+                        jQuery('span.' + index).html(value);
+                    });
+
+
+
+                    // var res = jQuery.parseJSON(response);
+
+                    // if (res.status == false) {
+                    //     Object.keys(res).forEach(function (key) {
+                    //         var value = res[key];
+                    //         console.log(jQuery('span.' + key));
+                    //         // foreach(let x)
+                    //         jQuery('span.' + key).html(value);
+
+                    //     });
+
+                    // } else {
+                    //     // location
+                    //     window.location.href = "index.php";
+                    // }
+                    // // console.log(res);
+                    // if (res.id == 0) {
+                    //     $('#err-msg').text(res.message);
+                    // } else if (res.id == 1) {
+                    //     $('#err-msg').text(res.message);
+                    //     $('#regForm')[0].reset();
+                    //     alert("Registered Successfully");
+                    // }
                 }
             });
         });

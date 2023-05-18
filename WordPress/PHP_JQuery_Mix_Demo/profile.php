@@ -3,7 +3,7 @@ session_start();
 
 //If directly hitting URL (Without Login) 
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: LoginForm.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -76,16 +76,12 @@ include "DBconn.php";
     <?php
 
     if (isset($_POST['searchBtn'])) {
-        // echo "HELLO";
         $searchBar = $_POST['keyword'];
-        // echo $searchBar;
         //SEARCH QUERY
-        $vsql = "SELECT * FROM wp_form WHERE uname LIKE '%$searchBar%'";
+        $vsql = "SELECT * FROM wp_form WHERE fname LIKE '%$searchBar%' OR lname LIKE '%$searchBar%' OR uname LIKE '%$searchBar%' OR email LIKE '%$searchBar%'";
     } else {
         //VIEW QUERY
         $vsql = "SELECT * FROM wp_form";
-        // echo $vsql;
-        // die;
     }
 
     if ($result = $conn->query($vsql)) {
@@ -102,7 +98,7 @@ include "DBconn.php";
                         <thead class="table-dark">
                             <th>
                                 <form action="profile.php" method="POST">
-                                    <input type="text" name="keyword" placeholder="Search by Firstname">
+                                    <input type="text" name="keyword" placeholder="Search">
                                     <input type="submit" class="btn btn-info" name="searchBtn" value="SEARCH">
                                 </form>
                             </th>
