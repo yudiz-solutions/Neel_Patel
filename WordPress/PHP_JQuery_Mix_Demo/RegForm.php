@@ -41,10 +41,6 @@
         .container {
             width: max-content;
         }
-
-        /* #selectors {
-            margin: auto;
-        } */
     </style>
 </head>
 
@@ -232,36 +228,18 @@
                 success: function (response) {
 
                     var res = jQuery.parseJSON(response);
+                    console.log(res);
 
                     $.each(res, function (index, value) {
                         jQuery('span.' + index).html(value);
                     });
 
-
-
-                    // var res = jQuery.parseJSON(response);
-
-                    // if (res.status == false) {
-                    //     Object.keys(res).forEach(function (key) {
-                    //         var value = res[key];
-                    //         console.log(jQuery('span.' + key));
-                    //         // foreach(let x)
-                    //         jQuery('span.' + key).html(value);
-
-                    //     });
-
-                    // } else {
-                    //     // location
-                    //     window.location.href = "index.php";
-                    // }
-                    // // console.log(res);
-                    // if (res.id == 0) {
-                    //     $('#err-msg').text(res.message);
-                    // } else if (res.id == 1) {
-                    //     $('#err-msg').text(res.message);
-                    //     $('#regForm')[0].reset();
-                    //     alert("Registered Successfully");
-                    // }
+                    if ($res = "") {
+                        // $('#err-msg').text(res.message);
+                        alert("Registered Successfully");
+                        $('#regForm')[0].reset();
+                        // window.location.href = "index.php";
+                    }
                 }
             });
         });

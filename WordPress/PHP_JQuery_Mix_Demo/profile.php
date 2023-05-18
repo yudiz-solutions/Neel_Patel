@@ -203,7 +203,7 @@ include "DBconn.php";
 
     <div class="container mycustomform" style="background-color: aliceblue">
         <h1 class="form-outline mb-4" id="form-head">UPDATE USER DATA</h1>
-        <form action="" method="post" class="updt-form" id='<?= $row["id"] ?>' enctype="multipart/form-data">
+        <form action="" method="post" class="updt-form" enctype="multipart/form-data">
 
             <input type="hidden" name="id" id="e_id" />
 
@@ -309,7 +309,7 @@ include "DBconn.php";
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="hobby[]" id="e_hobby" value="h2">
                         <label class=" form-check-label" for="gridCheck1">
-                            h2
+                            H2
                         </label>
                     </div>
 
@@ -409,10 +409,22 @@ include "DBconn.php";
                         $(`.updt-form #e_uname`).val(res.data.uname);
                         $(`.updt-form #e_email`).val(res.data.email);
                         $(`.updt-form #e_password`).val(res.data.password);
-                        $(`.updt-form #e_gender`).val(res.data.gender);
+                        //$(`.updt-form #e_gender`).val(res.data.gender);
+                        $("input[value|=" + res.data.gender + "]").prop('checked', true);
+
+                        alert(res.data.gender);
                         $(`.updt-form #e_dob`).val(res.data.dob);
                         $(`.updt-form #e_country`).val(res.data.country);
-                        // $(`.updt-form #hobby`).val(res.data.hobby);
+
+                        var hobby_arr = res.data.hobby.split(",");
+
+                        console.log(hobby_arr)
+
+                        $.each(hobby_arr, function (index, value) {
+                            $("input[value|=" + value + "]").prop('checked', true);
+                        });
+
+                        $(`.updt-form #hobby`).val(res.data.hobby);
                         $(`.updt-form #e_message`).val(res.data.message);
                         $(`.updt-form #e_img_old`).val(res.data.profile);
                     }

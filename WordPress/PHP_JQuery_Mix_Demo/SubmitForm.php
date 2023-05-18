@@ -30,6 +30,7 @@ if (isset($_POST["form_submit"])) {
     $cpswd = $_POST['c_pswd'];
 
 
+    $res[] = "";
     if (empty($fname)) {
         $res['fname'] = 'Please enter Firstname';
         $has_error = true;
@@ -76,7 +77,5 @@ if (isset($_POST["form_submit"])) {
     }
 
     echo json_encode($res);
-    die;
-
 }
 ?>
