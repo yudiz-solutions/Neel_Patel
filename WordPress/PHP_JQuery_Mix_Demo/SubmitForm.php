@@ -4,16 +4,16 @@ include 'DBconn.php';
 if (isset($_POST["form_submit"])) {
 
 
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $uname = $_POST['uname'];
-    $email = $_POST['email'];
-    $password = $_POST['pswd'];
-    $c_password = $_POST['c_pswd'];
-    $gender = $_POST['gender'];
-    $dob = $_POST['dob'];
-    $country = $_POST['country'];
-    $message = $_POST['message'];
+    $fname = isset($_POST['fname']) ? $_POST['fname'] : '';
+    $lname = isset($_POST['lname']) ? $_POST['lname'] : '';
+    $uname = isset($_POST['uname']) ? $_POST['uname'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $password = isset($_POST['pswd']) ? $_POST['pswd'] : '';
+    $c_password = isset($_POST['c_pswd']) ? $_POST['c_pswd'] : '';
+    $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+    $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
+    $country = isset($_POST['country']) ? $_POST['country'] : '';
+    $message = isset($_POST['message']) ? $_POST['message'] : '';
 
     $chk_hobby = "";
     if (isset($_POST['hobby'])) {
