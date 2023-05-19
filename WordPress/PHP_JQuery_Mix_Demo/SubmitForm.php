@@ -3,7 +3,6 @@ include 'DBconn.php';
 
 if (isset($_POST["form_submit"])) {
 
-    $has_error = false;
 
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -31,39 +30,41 @@ if (isset($_POST["form_submit"])) {
 
 
     $res[] = "";
+    $has_error = false;
+
     if (empty($fname)) {
         $res['fname'] = 'Please enter Firstname';
         $has_error = true;
     }
 
     if (empty($lname)) {
-        $has_error = true;
         $res['lname'] = 'Please enter Lastname';
+        $has_error = true;
     }
 
     if (empty($uname)) {
-        $has_error = true;
         $res['uname'] = 'Please enter Username';
+        $has_error = true;
     }
 
     if (empty($email)) {
-        $has_error = true;
         $res['email'] = 'Please enter Email';
+        $has_error = true;
     }
 
     if (empty($password)) {
-        $has_error = true;
         $res['pswd'] = 'Please enter Password';
+        $has_error = true;
     }
 
     if (empty($c_password)) {
-        $has_error = true;
         $res['c_pswd'] = 'Please enter Confirm Password';
+        $has_error = true;
     }
 
     if ($password !== $c_password) {
-        $has_error = true;
         $res['c_pswd'] = "Your password and confirmation password do not match.";
+        $has_error = true;
     }
 
     if (!$has_error) {
@@ -71,11 +72,9 @@ if (isset($_POST["form_submit"])) {
         $isql = "INSERT INTO wp_form (fname, lname, uname, email, password, gender, dob, country, hobby, message, profile) VALUES ('$fname', '$lname', '$uname', '$email', '$pswd', '$gender', '$dob', '$country', '$chk_hobby', '$message', '$filename')";
         if ($conn->query($isql) == true) {
             move_uploaded_file($_FILES['img']['tmp_name'], "uploads/" . $_FILES['img']['name']);
-            $res['success'] = "ADDED SUCCESSFULLY";
-
+            $res['status'] = true;
         }
     }
-
     echo json_encode($res);
 }
 ?>

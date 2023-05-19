@@ -228,17 +228,16 @@
                 success: function (response) {
 
                     var res = jQuery.parseJSON(response);
-                    console.log(res);
-
+                    // console.log(res);
                     $.each(res, function (index, value) {
                         jQuery('span.' + index).html(value);
                     });
 
-                    if ($res = "") {
-                        // $('#err-msg').text(res.message);
+                    // If no validation errors
+                    if (res.status) {
                         alert("Registered Successfully");
                         $('#regForm')[0].reset();
-                        // window.location.href = "index.php";
+                        window.location.href = "index.php";
                     }
                 }
             });
