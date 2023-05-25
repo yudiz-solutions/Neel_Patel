@@ -81,9 +81,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <th>Action</th>
                     </thead>
                     <?php
+                    //Query for wp_post table
                     $post_view_sql = "SELECT * FROM `wp_post`";
                     $post_sql_result = $conn->query($post_view_sql);
 
+                    //Query for meta-values
                     $meta_view_sql = "SELECT pd.post_id , p1.meta_value AS p_caption , p2.meta_value AS p_hashtag FROM ( SELECT DISTINCT post_id FROM wp_meta ) AS pd LEFT JOIN wp_meta AS p1 ON p1.post_id = pd.post_id AND p1.meta_key = 'p_caption' LEFT JOIN wp_meta AS p2 ON p2.post_id = pd.post_id AND p2.meta_key = 'p_hashtag'";
                     $meta_sql_result = $conn->query($meta_view_sql);
 

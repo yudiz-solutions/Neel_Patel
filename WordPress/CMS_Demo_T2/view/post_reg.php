@@ -137,6 +137,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         $p_caption = isset($_POST['p_caption']) ? $_POST['p_caption'] : "";
         $p_hashtag = isset($_POST['p_hashtag']) ? $_POST['p_hashtag'] : "";
 
+
+        //Post Query
         $post_sql = "INSERT INTO wp_post (p_fname, p_lname, p_email, p_img) VALUES ('$p_fname', '$p_lname', '$p_email', '$filename')";
 
         if ($conn->query($post_sql) == true) {
@@ -158,6 +160,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                 if (in_array($key, $exceptional_fields)) {
                     continue;
                 }
+
+                //Meta Query
                 $meta_sql = "INSERT INTO wp_meta (post_id, meta_key, meta_value) VALUES ('$last_id', '$key', '$val')";
                 if ($conn->query($meta_sql) == true) {
                     echo "<script> alert ('POST ADDED SUCCESSFULLY')</script>";
