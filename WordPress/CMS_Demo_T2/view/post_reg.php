@@ -47,7 +47,17 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         </li>
                     </ul>
                     <a href="userdata.php" class="list-group-item list-group-item-action">Userdata</a>
-                    <a href="logout.php" class="list-group-item list-group-item-action">Log Out</a>
+
+                    <!-- LOGOUT SECTION -->
+                    <form method="post" id="logoutTbl">
+                        <input type="submit" class="btn btn-danger" name="logout-btn" value="Log Out">
+                    </form>
+                    <?php
+                    if (isset($_POST['logout-btn'])) {
+                        session_destroy();
+                        header("Location: ../index.php");
+                    }
+                    ?>
                 </div>
             </div>
             <!-- DISPLAY CONTENT -->

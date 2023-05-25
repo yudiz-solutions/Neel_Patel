@@ -25,6 +25,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         .sidebar {
             display: contents;
         }
+
+        .post-edt-btn {
+            color: white;
+        }
     </style>
 </head>
 
@@ -49,7 +53,17 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         </li>
                     </ul>
                     <a href="userdata.php" class="list-group-item list-group-item-action">Userdata</a>
-                    <a href="logout.php" class="list-group-item list-group-item-action">Log Out</a>
+
+                    <!-- LOGOUT SECTION -->
+                    <form method="post" id="logoutTbl">
+                        <input type="submit" class="btn btn-danger" name="logout-btn" value="Log Out">
+                    </form>
+                    <?php
+                    if (isset($_POST['logout-btn'])) {
+                        session_destroy();
+                        header("Location: ../index.php");
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -99,7 +113,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                             </td>
                             <td>
                                 <button class="btn btn-danger">Delete</button>
-                                <button class="btn btn-info">Edit</button>
+                                <button class="btn btn-info post-edt-btn" name="post-edt-btn"><a
+                                        href="post_edit.php?p_id=<?= $post_row['p_id'] ?>"
+                                        class="post-edt-btn">Edit</a></button>
                             </td>
                         </tr>
                         <?php
