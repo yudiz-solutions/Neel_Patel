@@ -25,6 +25,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         .error {
             color: red;
         }
+
+        input:invalid:required {
+            background-image: linear-gradient(to right, pink, lightgreen);
+        }
     </style>
 </head>
 

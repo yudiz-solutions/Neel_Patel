@@ -53,7 +53,9 @@ if (isset($_GET['p_id'])) {
             color: #fff;
         }
 
-        .postform {}
+        input:invalid:required {
+            background-image: linear-gradient(to right, pink, lightgreen);
+        }
     </style>
 </head>
 

@@ -41,6 +41,10 @@
         .container {
             width: max-content;
         }
+
+        input:invalid:required {
+            background-image: linear-gradient(to right, pink, lightgreen);
+        }
     </style>
 </head>
 
@@ -54,7 +58,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Firstname<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="fname" id="fname">
+                    <input type="text" class="form-control" name="fname" id="fname" required>
                     <span class="error fname"></span>
                 </div>
             </div>
@@ -63,7 +67,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Lastname<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="lname">
+                    <input type="text" class="form-control" name="lname" required>
                     <span class="error lname"></span>
                 </div>
             </div>
@@ -72,7 +76,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Username<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="uname">
+                    <input type="text" class="form-control" name="uname" required>
                     <span class="error uname"></span>
                 </div>
             </div>
@@ -81,7 +85,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Email<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" name="email" required>
                     <span class="error email"></span>
                 </div>
             </div>
@@ -90,7 +94,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Password<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" name="pswd">
+                    <input type="password" class="form-control" name="pswd" required>
                     <span class="error pswd"></span>
                 </div>
             </div>
@@ -99,7 +103,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Confirm Password<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" name="c_pswd">
+                    <input type="password" class="form-control" name="c_pswd" required>
                     <span class="error c_pswd"></span>
                 </div>
             </div>

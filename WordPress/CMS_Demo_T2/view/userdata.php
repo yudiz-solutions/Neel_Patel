@@ -188,7 +188,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Firstname</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control fname" name="e_fname" id="e_fname">
+                                <input type="text" class="form-control fname" name="e_fname" id="e_fname" required>
                             </div>
                         </div>
 
@@ -196,7 +196,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Lastname</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control fname" name="e_lname" id="e_lname">
+                                <input type="text" class="form-control fname" name="e_lname" id="e_lname" required>
                             </div>
                         </div>
 
@@ -204,7 +204,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control fname" name="e_uname" id="e_uname">
+                                <input type="text" class="form-control fname" name="e_uname" id="e_uname" required>
                             </div>
                         </div>
 
@@ -212,7 +212,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control fname" name="e_email" id="e_email">
+                                <input type="text" class="form-control fname" name="e_email" id="e_email" required>
                             </div>
                         </div>
 
@@ -220,7 +220,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control fname" name="e_password" id="e_password">
+                                <input type="text" class="form-control fname" name="e_password" id="e_password"
+                                    required>
                             </div>
                         </div>
 
