@@ -22,7 +22,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             color: #fff;
         }
 
-        .postform {}
+        .error {
+            color: red;
+        }
     </style>
 </head>
 
@@ -50,7 +52,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
                     <!-- LOGOUT SECTION -->
                     <form method="post" id="logoutTbl">
-                        <input type="submit" class="btn btn-danger" name="logout-btn" value="Log Out">
+                        <input type="submit" class="list-group-item list-group-item-action" name="logout-btn"
+                            value="Log Out">
                     </form>
                     <?php
                     if (isset($_POST['logout-btn'])) {
@@ -67,26 +70,33 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     <!-- Fname input -->
                     <div class="row mb-3">
                         <div class="form-outline ">
-                            <label class="form-label col-5">First Name</label>
-                            <input type="text" name="p_fname">
+                            <label class="form-label col-5">
+                                First Name
+                                <span class="error p_fname">*</span>
+                            </label>
+                            <input type="text" name="p_fname" required>
                         </div>
                     </div>
 
                     <!-- Lname input -->
                     <div class="row mb-3">
                         <div class="form-outline">
-                            <label class="form-label col-5">Last Name</label>
-                            <input type="text" name="p_lname">
-
+                            <label class="form-label col-5">
+                                Last Name
+                                <span class="error p_lname">*</span>
+                            </label>
+                            <input type="text" name="p_lname" required>
                         </div>
                     </div>
 
                     <!-- Email input -->
                     <div class="row mb-3">
                         <div class="form-outline">
-                            <label class="form-label col-5">Email</label>
-                            <input type="email" name="p_email">
-
+                            <label class="form-label col-5">
+                                Email
+                                <span class="error p_email">*</span>
+                            </label>
+                            <input type="email" name="p_email" required>
                         </div>
                     </div>
 
@@ -129,7 +139,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         $p_fname = isset($_POST['p_fname']) ? $_POST['p_fname'] : "";
         $p_lname = isset($_POST['p_lname']) ? $_POST['p_lname'] : "";
         $p_email = isset($_POST['p_email']) ? $_POST['p_email'] : "";
-        // $p_img = isset($_POST['p_img']) ? $_POST['p_img'] : "";
+
         $filename = $_FILES['p_img']['name'];
         $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
 

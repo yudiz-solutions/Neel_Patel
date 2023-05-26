@@ -56,7 +56,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
                     <!-- LOGOUT SECTION -->
                     <form method="post" id="logoutTbl">
-                        <input type="submit" class="btn btn-danger" name="logout-btn" value="Log Out">
+                        <input type="submit" class="list-group-item list-group-item-action" name="logout-btn"
+                            value="Log Out">
                     </form>
                     <?php
                     if (isset($_POST['logout-btn'])) {
@@ -114,7 +115,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                 <?= $meta_row['p_hashtag'] ?>
                             </td>
                             <td>
-                                <button class="btn btn-danger">Delete</button>
+                                <form action="post_dlt.php" method="post">
+                                    <input type="hidden" value="<?= $post_row['p_id'] ?>" name="post_dID" />
+                                    <input type="submit" class="btn btn-danger" value="DELETE" name="post_dltbtn" />
+                                </form>
                                 <button class="btn btn-info post-edt-btn" name="post-edt-btn"><a
                                         href="post_edit.php?p_id=<?= $post_row['p_id'] ?>"
                                         class="post-edt-btn">Edit</a></button>

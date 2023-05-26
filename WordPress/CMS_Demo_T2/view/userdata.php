@@ -24,9 +24,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             color: #fff;
         }
 
-        .sidebar {
-            display: contents;
-        }
 
         .mycustomform {
             display: none;
@@ -56,14 +53,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 <body>
     <?php
-    // session_start();
-    
-    //If directly hitting URL (Without Login) 
-    if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-        header('Location: ../index.php');
-        exit;
-    }
-
     //DB Connection
     include "../common/DBconn.php";
     ?>
@@ -78,7 +67,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
                     <!-- LOGOUT SECTION -->
                     <form method="post" id="logoutTbl">
-                        <input type="submit" class="btn btn-danger" name="logout-btn" value="Log Out">
+                        <input type="submit" class="list-group-item list-group-item-action" name="logout-btn"
+                            value="Log Out">
                     </form>
                     <?php
                     if (isset($_POST['logout-btn'])) {

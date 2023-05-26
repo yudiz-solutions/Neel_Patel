@@ -83,7 +83,8 @@ if (isset($_GET['p_id'])) {
 
                     <!-- LOGOUT SECTION -->
                     <form method="post" id="logoutTbl">
-                        <input type="submit" class="btn btn-danger" name="logout-btn" value="Log Out">
+                        <input type="submit" class="list-group-item list-group-item-action" name="logout-btn"
+                            value="Log Out">
                     </form>
                     <?php
                     if (isset($_POST['logout-btn'])) {
@@ -107,7 +108,7 @@ if (isset($_GET['p_id'])) {
                     <div class="row mb-3">
                         <div class="form-outline ">
                             <label class="form-label col-5">First Name</label>
-                            <input type="text" name="p_fname" value="<?= $p_fname ?>">
+                            <input type="text" name="p_fname" value="<?= $p_fname ?>" required>
                         </div>
                     </div>
 
@@ -115,7 +116,7 @@ if (isset($_GET['p_id'])) {
                     <div class="row mb-3">
                         <div class="form-outline">
                             <label class="form-label col-5">Last Name</label>
-                            <input type="text" name="p_lname" value="<?= $p_lname ?>">
+                            <input type="text" name="p_lname" value="<?= $p_lname ?>" required>
 
                         </div>
                     </div>
@@ -124,7 +125,7 @@ if (isset($_GET['p_id'])) {
                     <div class="row mb-3">
                         <div class="form-outline">
                             <label class="form-label col-5">Email</label>
-                            <input type="email" name="p_email" value="<?= $p_email ?>">
+                            <input type="email" name="p_email" value="<?= $p_email ?>" required>
 
                         </div>
                     </div>
@@ -134,7 +135,7 @@ if (isset($_GET['p_id'])) {
                         <div class="form-outline ">
                             <label class="form-label col-5">Post Image</label>
                             <input type="file" name="p_img">
-                            <input type="hidden" name="p_img_old" value="<?= $p_img ?>">
+                            <input type="hidden" name="p_img_old" value="<?= $p_img ?>" required>
                         </div>
                     </div>
 
@@ -165,12 +166,12 @@ if (isset($_GET['p_id'])) {
     </div>
     <?php
     if (isset($_POST['post_submit'])) {
-        $updt_p_id = $_POST['id'];
-        $new_p_fname = $_POST['p_fname'];
-        $new_p_lname = $_POST['p_lname'];
-        $new_p_email = $_POST['p_email'];
-        $new_p_caption = $_POST['p_caption'];
-        $new_p_hashtag = $_POST['p_hashtag'];
+        $updt_p_id = isset($_POST['id']) ? $_POST['id'] : "";
+        $new_p_fname = isset($_POST['p_fname']) ? $_POST['p_fname'] : "";
+        $new_p_lname = isset($_POST['p_lname']) ? $_POST['p_lname'] : "";
+        $new_p_email = isset($_POST['p_email']) ? $_POST['p_email'] : "";
+        $new_p_caption = isset($_POST['p_caption']) ? $_POST['p_caption'] : "";
+        $new_p_hashtag = isset($_POST['p_hashtag']) ? $_POST['p_hashtag'] : "";
         $new_p_profile = $_FILES['p_img']['name'];
         $old_profile = $_POST['p_img_old'];
 

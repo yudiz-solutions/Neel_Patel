@@ -65,57 +65,6 @@ if (isset($_POST['updt_btn'])) {
         $update_filename = $old_img;
     }
 
-    //////////////////////////////////////////////////
-
-    // $updateQu = "";
-    // $updateQu .= "UPDATE wp_form SET ";
-
-    // if ($fname) {
-    //     $updateQu .= "fname = '$fname' ";
-    // }
-    // if ($lname) {
-    //     $updateQu .= "lname = '$lname' ";
-    // }
-    // if ($uname) {
-    //     $updateQu .= "uname = '$uname' ";
-    // }
-
-    // if ($email) {
-    //     $updateQu .= "email = '$email' ";
-    // }
-
-    // if ($password) {
-    //     $updateQu .= "password = '$password' ";
-    // }
-
-    // if ($gender) {
-    //     $updateQu .= "gender = '$gender' ";
-    // }
-
-    // if ($dob) {
-    //     $updateQu .= "dob = '$dob' ";
-    // }
-
-    // if ($country) {
-    //     $updateQu .= "country = '$country' ";
-    // }
-
-    // if ($message) {
-    //     $updateQu .= "message = '$message' ";
-    // }
-
-    // if ($hobby_str) {
-    //     $updateQu .= "hobby = '$hobby_str' ";
-    // }
-
-    // if ($updt_filename) {
-    //     $updateQu .= "hobby = '$hobby_str' ";
-    // }
-
-    // $updateQu .= " WHERE id = '$e_id'";
-
-    //////////////////////////////////////////////////
-
     $edit_sql = "UPDATE wp_form SET fname = '$fname', lname = '$lname', uname = '$uname', email = '$email', password = '$password', gender = '$gender', dob = '$dob', country = '$country', hobby = '$hobby_str', message = '$message', profile = '$update_filename' WHERE id = '$e_id'";
     $query_run = mysqli_query($conn, $edit_sql);
     if ($query_run = true) {
