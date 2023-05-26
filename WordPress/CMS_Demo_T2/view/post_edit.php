@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-//If directly hitting URL (Without Login) 
+//If directly hitting URL (Without Login)
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: ../index.php');
     exit;
@@ -96,7 +96,6 @@ if (isset($_GET['p_id'])) {
                     ?>
                 </div>
             </div>
-
 
 
             <!-- DISPLAY CONTENT -->

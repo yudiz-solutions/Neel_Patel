@@ -58,7 +58,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Firstname<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="fname" id="fname" required>
+                    <input type="text" class="form-control" name="fname" id="fname">
                     <span class="error fname"></span>
                 </div>
             </div>
@@ -67,7 +67,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Lastname<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="lname" required>
+                    <input type="text" class="form-control" name="lname">
                     <span class="error lname"></span>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Username<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="uname" required>
+                    <input type="text" class="form-control" name="uname">
                     <span class="error uname"></span>
                 </div>
             </div>
@@ -85,7 +85,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Email<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="email" class="form-control" name="email" required>
+                    <input type="email" class="form-control" name="email">
                     <span class="error email"></span>
                 </div>
             </div>
@@ -94,7 +94,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Password<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" name="pswd" required>
+                    <input type="password" class="form-control" name="pswd">
                     <span class="error pswd"></span>
                 </div>
             </div>
@@ -103,7 +103,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Confirm Password<label class="error-notation">*</label></label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" name="c_pswd" required>
+                    <input type="password" class="form-control" name="c_pswd">
                     <span class="error c_pswd"></span>
                 </div>
             </div>

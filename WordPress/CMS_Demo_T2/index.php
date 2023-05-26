@@ -118,7 +118,7 @@ if (isset($_POST['hidden'])) {
                 this.submit();
             }
 
-            console.log("ok");
+            // console.log("ok");
 
         });
     </script>

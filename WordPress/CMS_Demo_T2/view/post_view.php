@@ -119,9 +119,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                     <input type="hidden" value="<?= $post_row['p_id'] ?>" name="post_dID" />
                                     <input type="submit" class="btn btn-danger" value="DELETE" name="post_dltbtn" />
                                 </form>
-                                <button class="btn btn-info post-edt-btn" name="post-edt-btn"><a
-                                        href="post_edit.php?p_id=<?= $post_row['p_id'] ?>"
-                                        class="post-edt-btn">Edit</a></button>
+
+                                <button class="btn btn-info post-edt-btn" name="post-edt-btn">
+                                    <a href="post_edit.php?p_id=<?= $post_row['p_id'] ?>" class="post-edt-btn">Edit</a>
+                                </button>
                             </td>
                         </tr>
                         <?php

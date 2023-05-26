@@ -36,7 +36,80 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <?php
     //DB Connection
     include "../common/DBconn.php";
+
+    $errors = array();
+
+    if (isset($_POST["post_submit"])) {
+        $p_fname = isset($_POST['p_fname']) ? $_POST['p_fname'] : "";
+        $p_lname = isset($_POST['p_lname']) ? $_POST['p_lname'] : "";
+        $p_email = isset($_POST['p_email']) ? $_POST['p_email'] : "";
+
+        $filename = $_FILES['p_img']['name'];
+        $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+        //Meta-table values
+        $p_caption = isset($_POST['p_caption']) ? $_POST['p_caption'] : "";
+        $p_hashtag = isset($_POST['p_hashtag']) ? $_POST['p_hashtag'] : "";
+
+        //VALIDATIONS
+        if (empty($p_fname)) {
+            $errors['err_fname'] = "Please enter Firstname";
+        }
+
+        if (empty($p_lname)) {
+            $errors['err_lname'] = "Please enter Lastname";
+        }
+
+        if (empty($p_email)) {
+            $errors['err_email'] = "Please enter Email";
+        }
+
+
+
+        if (empty($errors)) {
+            //Post Query
+            $post_sql = "INSERT INTO wp_post (p_fname, p_lname, p_email, p_img) VALUES ('$p_fname', '$p_lname', '$p_email', '$filename')";
+
+            if ($conn->query($post_sql) == true) {
+                move_uploaded_file($_FILES['p_img']['tmp_name'], "uploaded_posts/" . $_FILES['p_img']['name']);
+
+                $last_id = mysqli_insert_id($conn);
+                // echo $last_id;
+                // die;
+    
+                $exceptional_fields = array(
+                    'p_fname',
+                    'p_lname',
+                    'p_email',
+                    'p_img',
+                    'post_submit'
+                );
+
+                foreach ($_POST as $key => $val) {
+                    if (in_array($key, $exceptional_fields)) {
+                        continue;
+                    }
+
+                    //Meta Query
+                    $meta_sql = "INSERT INTO wp_meta (post_id, meta_key, meta_value) VALUES ('$last_id', '$key', '$val')";
+                    if ($conn->query($meta_sql) == true) {
+                        echo "<script> alert ('POST ADDED SUCCESSFULLY')</script>";
+                    }
+                }
+
+                // $meta_sql = "INSERT INTO wp_meta (post_id, meta_key, meta_value) VALUES 
+                //     ('$last_id', 'caption', '$val'),
+                //     ('$last_id', 'hashtag', '$val'),
+                //     ('$last_id', 'caption', '$val'),
+                //     ('$last_id', 'caption', '$val')";
+    
+            } else {
+                $zys = $conn->error;
+            }
+        }
+    }
     ?>
+
     <div class="container-fluid">
         <div class="row">
             <!-- SIDEBAR -->
@@ -67,6 +140,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     ?>
                 </div>
             </div>
+
             <!-- DISPLAY CONTENT -->
             <div class="post-form">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -78,7 +152,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                 First Name
                                 <span class="error p_fname">*</span>
                             </label>
-                            <input type="text" name="p_fname" required>
+                            <input type="text" name="p_fname">
+                            <span class="error">
+                                <?php echo (isset($errors['err_fname'])) ? $errors['err_fname'] : ""; ?>
+                            </span>
+
                         </div>
                     </div>
 
@@ -89,7 +167,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                 Last Name
                                 <span class="error p_lname">*</span>
                             </label>
-                            <input type="text" name="p_lname" required>
+                            <input type="text" name="p_lname">
+                            <span class="error">
+                                <?php echo (isset($errors['err_lname'])) ? $errors['err_lname'] : ""; ?>
+                            </span>
                         </div>
                     </div>
 
@@ -100,7 +181,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                 Email
                                 <span class="error p_email">*</span>
                             </label>
-                            <input type="email" name="p_email" required>
+                            <input type="email" name="p_email">
+                            <span class="error">
+                                <?php echo (isset($errors['err_email'])) ? $errors['err_email'] : ""; ?>
+                            </span>
                         </div>
                     </div>
 
@@ -137,55 +221,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             </div>
         </div>
     </div>
-
-    <?php
-    if (isset($_POST["post_submit"])) {
-        $p_fname = isset($_POST['p_fname']) ? $_POST['p_fname'] : "";
-        $p_lname = isset($_POST['p_lname']) ? $_POST['p_lname'] : "";
-        $p_email = isset($_POST['p_email']) ? $_POST['p_email'] : "";
-
-        $filename = $_FILES['p_img']['name'];
-        $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
-
-        //Meta-table values
-        $p_caption = isset($_POST['p_caption']) ? $_POST['p_caption'] : "";
-        $p_hashtag = isset($_POST['p_hashtag']) ? $_POST['p_hashtag'] : "";
-
-
-        //Post Query
-        $post_sql = "INSERT INTO wp_post (p_fname, p_lname, p_email, p_img) VALUES ('$p_fname', '$p_lname', '$p_email', '$filename')";
-
-        if ($conn->query($post_sql) == true) {
-            move_uploaded_file($_FILES['p_img']['tmp_name'], "uploaded_posts/" . $_FILES['p_img']['name']);
-
-            $last_id = mysqli_insert_id($conn);
-            // echo $last_id;
-            // die;
-    
-            $exceptional_fields = array(
-                'p_fname',
-                'p_lname',
-                'p_email',
-                'p_img',
-                'post_submit'
-            );
-
-            foreach ($_POST as $key => $val) {
-                if (in_array($key, $exceptional_fields)) {
-                    continue;
-                }
-
-                //Meta Query
-                $meta_sql = "INSERT INTO wp_meta (post_id, meta_key, meta_value) VALUES ('$last_id', '$key', '$val')";
-                if ($conn->query($meta_sql) == true) {
-                    echo "<script> alert ('POST ADDED SUCCESSFULLY')</script>";
-                }
-            }
-        } else {
-            echo $conn->error;
-        }
-    }
-    ?>
 </body>
 
 </html>
