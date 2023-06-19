@@ -26,6 +26,12 @@ include "dbConn.php";
         h1 {
             text-align: center;
         }
+
+        #form-head {
+            background-color: #212529;
+            color: white;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -77,7 +83,7 @@ include "dbConn.php";
     ?>
     <!-- ADD FORM -->
     <div class="container" style="background-color: aliceblue">
-        <h1 class="form-outline mb-4" style="background-color: khaki">INSERT NEW USER DATA</h1>
+        <h1 class="form-outline mb-4" id="form-head">INSERT NEW USER DATA</h1>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
             enctype="multipart/form-data">
 
@@ -239,12 +245,12 @@ include "dbConn.php";
 
             <!-- Submit button -->
             <div class="row mb-3">
-                <input type="submit" class="btn btn-primary btn-block mb-4" name="submit" value="ADD">
+                <input type="submit" class="btn btn-dark btn-block mb-4" name="submit" value="ADD">
             </div>
 
             <!-- View button -->
             <div class="row mb-3">
-                <input type="button" class="btn btn-primary btn-block mb-4" value="VIEW"
+                <input type="button" class="btn btn-dark btn-block mb-4" value="VIEW"
                     onClick="document.location.href='form_VIEW.php'" />
             </div>
         </form>

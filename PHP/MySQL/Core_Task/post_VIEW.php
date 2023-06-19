@@ -80,12 +80,14 @@ $userID = $_GET['u_id'];
 
                             <!-- DELETE Button -->
                             <button name="dlt_user_btn" class="btn btn-danger"> <a
-                                    href="post_DELETE.php?u_id=<?= $userID ?>&p_id=<?= $row["id"] ?>" style='text-decoration:none;'>
+                                    href="post_DELETE.php?u_id=<?= $userID ?>&p_id=<?= $row["id"] ?>"
+                                    style='text-decoration:none;'>
                                     DELETE </a></button>
 
                             <!-- EDIT Button -->
                             <button name="edtbtn" class="btn btn-info"> <a
-                                    href="post_EDIT.php?u_id=<?= $userID ?>&p_id=<?= $row["id"] ?>" style='text-decoration:none;'>
+                                    href="post_EDIT.php?u_id=<?= $userID ?>&p_id=<?= $row["id"] ?>"
+                                    style='text-decoration:none;'>
                                     Edit </a></button>
 
                         </div>
