@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let's Learn</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {
+        //When single click
+        // $("button").click(function(){
+        //     $("h1").hide();
+        // });
+
+        //When doubleclick
+        // $("button").dblclick(function () {
+        //     $("h1").hide();
+        // });
+
+        //When mouse cursor will in
+        // $("#p1").mouseenter(function () {
+        //     alert("You entered p1!");
+        // });
+
+        //When mouse cursor will out
+        // $("#p1").mouseleave(function () {
+        //     alert("Bye! You now leave p1!");
+        // });
+
+        //When Left-right-middle button will pressed
+        // $("#p1").mousedown(function () {
+        //     alert("Mouse down over p1!");
+        // });
+
+        //When Left-right-middle button will release
+        // $("#p1").mouseup(function () {
+        //     alert("Mouse up over p1!");
+        // });
+
+        //Combination of mouseenter and mouseleave
+        // $("#p1").hover(function () {
+        //     alert("You entered p1!");
+        // },
+        // function () {
+        //     alert("Bye! You now leave p1!");
+        // });
+
+        //To add one or more events
+        $(document).ready(function () {
+          $("button").on("click", function () {
+            $(this).hide();
+          });
+        });
+
+        $(document).ready(function () {
+          $("p").on({
+            mouseenter: function () {
+              $(this).css("background-color", "lightgray");
+            },
+            mouseleave: function () {
+              $(this).css("background-color", "lightblue");
+            },
+            click: function () {
+              $(this).css("background-color", "yellow");
+            },
+          });
+        });
+      });
+    </script>
+
+    <h1>Hello.. My name is NEEL.</h1>
+    <p id="p1">Click Me!!</p>
+    <p>Click Me!!</p>
+
+    <button>Click Me!</button>
+  </body>
+</html>
