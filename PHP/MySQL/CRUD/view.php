@@ -42,10 +42,17 @@ if ($result = $conn->query($vsql)) {
     <h2>EMPLOYEE DETAILS</h2>
     <table id = "searchTbl" class = "table">
         <thead class = "table-dark">
+
+            <th> <button id = "AddEmpBtn" class="btn btn-info" a href = "Neel_Patel\PHP\MySQL\CRUD\form.php"> Add Employee </a></button> </th>
+            <th>
+                <form action = "search.php" method = "POST">
+                    <input type = "text" name = "keyword" placeholder = "Search">
+
             <th> <button id = "AddEmpBtn" class="btn btn-info" a href = "form.php"> Add Employee </a></button> </th>
             <th>
                 <form action = "search.php" method = "POST">
                     <input type = "text" name = "searchBar" placeholder = "Search">
+
                     <input type = "submit" name = "searchBtn" value = "SEARCH">
                 </form>
             </th>

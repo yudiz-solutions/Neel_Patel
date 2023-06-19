@@ -1,3 +1,159 @@
+
+1.  Show all customers in the database.
+SELECT `customer_id`,`first_name`,`last_name` FROM `customers`
+
+2.  Show all products in the database.
+SELECT `product_id`,`name` FROM `products`
+
+3.  Show all orders in the database.
+SELECT `order_id`,`order_date`,`total` FROM `orders` WHERE 1
+
+4.  Show all order items in the database.
+SELECT `order_id`,`product_id`,`quantity` FROM `order_items` WHERE 1
+
+5.  Show the customer with ID 1.
+SELECT * FROM `customers` WHERE `customer_id`=1
+
+6.  Show the product with ID 2.
+SELECT `name`, `description`, `price` FROM `products` WHERE `product_id`=1
+
+7.  Show the order with ID 3.
+SELECT * FROM `orders` WHERE `order_id`=1
+
+8.  Show the order item for order ID 1 and product ID 1.
+SELECT * FROM `order_items` WHERE `order_id` = 1 & `product_id` = 1;
+
+9.  Show the total number of customers in the database.
+SELECT COUNT(`customer_id`) FROM `customers`
+
+10. Show the total number of products in the database.
+SELECT COUNT(`product_id`) FROM `products`
+
+11. Show the total number of orders in the database.
+SELECT COUNT(`order_id`) FROM `orders` WHERE 1;
+
+12. Show the total number of order items in the database.
+SELECT COUNT(`order_id`) FROM `order_items` 
+
+13. Show the average price of products in the database.
+SELECT AVG(`price`) FROM `products` WHERE 1;
+
+14. Show the maximum price of products in the database.
+SELECT MAX(`price`) FROM `products` WHERE 1;
+
+15. Show the minimum price of products in the database.
+SELECT MIN(`price`) FROM `products` WHERE 1
+
+16. Show the total inventory of all products.
+SELECT SUM(`inventory`) FROM `products` WHERE 1
+
+17. Show the orders for customer with ID 2.
+SELECT * FROM `orders` WHERE `customer_id`=2
+
+18. Show the order items for order with ID 4.
+SELECT * FROM `order_items` WHERE `order_id` = 4
+
+19. Show the total amount spent by customer with ID 1.
+SELECT SUM(`total`) FROM `orders` WHERE `customer_id` = 1
+
+20. Show the total number of order items for order with ID 2.
+SELECT SUM(`quantity`) FROM `order_items` WHERE `order_id` = 2
+
+21. Show the product with the highest price.
+SELECT MAX(`price`), `name` FROM `products` 
+
+22. Show the customer who has spent the most money.
+SELECT customers.customer_id, customers.first_name, customers.last_name, SUM(orders.total) AS total_sum FROM customers JOIN orders ON customers.customer_id = orders.customer_id GROUP BY orders.customer_id;  
+
+23. Show the customer who has placed the most orders.
+SELECT customers.customer_id, customers.first_name, customers.last_name, orders.order_id, SUM(order_items.quantity) AS Total_quantity FROM customers JOIN orders ON customers.customer_id = orders.customer_id JOIN order_items ON order_items.order_id = orders.order_id GROUP BY order_id;
+
+24. Show the product with the most inventory.
+SELECT `product_id`,`name`,MAX(`inventory`) FROM `products`;
+
+25. Show the order with the highest total.
+SELECT MAX(`total`), `customer_id` FROM `orders`
+
+26. Show the total revenue for the month of January 2022.
+SELECT SUM(`total`), `order_date` FROM `orders` WHERE 1
+
+27. Show the total revenue for each month in 2022.
+//WRONG SELECT order_id, customer_id, order_date, SUM(total) AS total_sum FROM orders where extract(YEAR FROM order_date) = '2022' GROUP BY customer_id;
+
+28. Show the average total spent per order.
+SELECT order_id , product_id , SUM(quantity) , AVG(price) FROM order_items GROUP BY order_id
+
+29. Show the average price of products with more than 50 units in inventory.
+SELECT product_id , name , description , AVG(price), inventory FROM products WHERE inventory > 50
+
+30. Show the number of orders placed each day in January 2022.
+SELECT order_date, COUNT(quantity) FROM order_items, orders GROUP BY order_date
+
+SELECT DATE(order_date) AS date, COUNT(*) AS order_count
+FROM Orders
+WHERE MONTH(order_date) = 1 AND YEAR(order_date) = 2022
+GROUP BY DATE(order_date);
+
+31. Show the number of orders placed each hour of the day.
+SELECT HOUR(order_date), COUNT(quantity) FROM order_items, orders GROUP BY order_date
+
+32. Show the number of orders placed on each day of the week.
+SELECT DAY(order_date), COUNT(quantity) FROM order_items, orders GROUP BY order_date
+
+33. Show the top 5 customers by total amount spent.
+//SUM baki SELECT customers.customer_id , customers.first_name , customers.last_name , orders.total FROM customers JOIN orders ON customers.customer_id = orders.customer_id ORDER BY  orders.total DESC LIMIT 5
+
+34. Show the top 5 products by total revenue.
+//Revenue - quantity SELECT order_id , product_id , quantity , price FROM order_items ORDER BY price DESC LIMIT 5
+
+35. Show the customers who have never placed an order.
+SELECT * FROM customers, order_items WHERE ISNULL(quantity);
+
+36. Show the products that have never been ordered.
+SELECT * FROM products, order_items WHERE ISNULL(name);
+
+37. Show the customers who have placed more than 2 orders.
+SELECT customers.customer_id , customers.first_name , customers.last_name , orders.customer_id FROM customers JOIN orders on customers.customer_id = orders.customer_id HAVING COUNT(orders.customer_id) >= 2;
+
+38. Show the products that have a price between $10 and $20.
+SELECT * FROM products WHERE price >= 10 AND price <= 20
+
+39. Show the orders placed in the month of January 2022, sorted by order date.
+SELECT order_id, order_date FROM `orders` WHERE MONTH(order_date) = 1 ORDER BY order_id ASC
+
+40. Show the order items for the order placed on January 2, 2022.
+SELECT order_id, order_date FROM orders WHERE DATE(order_date) = "2022-01-02"
+
+41. Show the orders placed by customer with ID 1, sorted by order date.
+SELECT customer_id, order_id, order_date FROM `orders` WHERE customer_id = 1 
+
+42. Show the customer who has placed the most orders in January 2022.
+SELECT customers.customer_id, customers.first_name, customers.last_name, orders.order_date, SUM(order_items.quantity) AS TOTAL_ORDER FROM customers JOIN orders ON customers.customer_id = orders.customer_id JOIN order_items ON order_items.order_id = orders.order_id HAVING MONTH(orders.order_date) = 1 AND MAX(TOTAL_ORDER) 
+
+43. Show the products that have been ordered at least once, sorted by product name.
+SELECT product_id, name, description FROM products WHERE product_id IN ( SELECT product_id FROM order_items ) ORDER BY name;
+
+44. Show the customers who live in California or Texas.
+SELECT * FROM `customers` WHERE state = 'CA' OR state = 'TX'
+
+45. Show the orders that were placed on January 1, 2022, and have a total greater than $20.
+SELECT * FROM orders WHERE DATE(order_date = '2022-01-01') AND total > 20;
+
+46. Show the products that have less than 10 units in inventory.
+SELECT * FROM products WHERE inventory < 10
+
+47. Show the customers who have spent more than $100.
+SELECT customers.customer_id, customers.first_name, customers.last_name, SUM(orders.total) AS TOTAL_SPENT FROM customers JOIN orders ON  customers.customer_id = orders.customer_id GROUP BY customer_id ORDER BY TOTAL_SPENT DESC
+
+48. Show the customers who have an email address that ends with '@example.com'.
+SELECT * FROM customers WHERE email LIKE '%example.com'
+
+49. Show the orders placed by customers who live in New York.
+SELECT * FROM customers WHERE state = 'NY';
+
+50. Show the products that have been ordered at least 5 times, sorted by total revenue.
+SELECT order_items.order_id, order_items.product_id, products.name , SUM(order_items.price) AS Revenue FROM order_items JOIN products ON order_items.product_id = products.product_id ORDER BY Revenue DESC;
+=======
 1.  SELECT `customer_id`,`first_name`,`last_name` FROM `customers`
 2.  SELECT `product_id`,`name` FROM `products`
 3.  SELECT `order_id`,`order_date`,`total` FROM `orders` WHERE 1
@@ -19,7 +175,7 @@
 19. SELECT SUM(`total`) FROM `orders` WHERE `customer_id` = 1
 20. SELECT SUM(`quantity`) FROM `order_items` WHERE `order_id` = 2
 21. SELECT MAX(`price`), `name` FROM `products` 
-<<<<<<< HEAD
+
 22. SELECT
     SUM(`total`) AS total,
     `customer_id`
@@ -70,4 +226,4 @@ LIMIT 1
 48.
 49. SELECT * FROM customers WHERE state = 'NY';
 50.
->>>>>>> parent of 9b68425 (Merge pull request #1 from yudiz-solutions/php)
+
