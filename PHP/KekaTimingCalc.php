@@ -20,12 +20,21 @@
 </head>
 
 <body>
+
     <section class="vh-100" style="background-color: #508bfc;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-2-strong" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
+
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        Enter your Effective hours:
+        <input type="number" name="hrs"><br><br>
+        Enter your Effective minutes:
+        <input type="number" name="min"><br><br>
+
 
                             <h3 class="mb-5">KEKA TIME CALCULATOR</h3>
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
@@ -72,6 +81,7 @@
                             $xHr = $remainHrs + $c_hours;
                             $xMin = $remainMin + $c_minutes;
 
+
                             if ($xMin >= 60) {
                                 $leavingHr = $xHr + 1;
                                 $leavingMin = $xMin - 60;
@@ -80,6 +90,37 @@
                                 $leavingMin = $xMin;
                             }
                             ?>
+
+        echo "<h3><br><br><b> You can go after: </b><br><h3>";
+        echo "<b>" . $leavingHr . ": </b> ";
+        echo "<b>" . $leavingMin  . "</b>";
+        echo "<h1><br> The min might be differ, please go after 2-3 min </h1>";
+
+    <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST">
+        Enter your Effective hours:
+        <input type=" number" name="hrs" required><br><br>
+        Enter your Effective minutes:
+        <input type=" number" name="min" required><br><br>
+        <input type="submit" name = "submit" value="Calculate">
+</body>
+
+<?php
+
+if (isset($_POST["submit"])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $hours = $_POST["hrs"];
+    $minutes = $_POST['min'];
+    
+    $remainHrs = 7 - $hours;
+    $remainMin = 60 -$minutes;
+    
+    echo "<br><br><b> You can go after: </b><br>";
+    echo "<b>" . $remainHrs ." </b> Hrs. ";
+    echo "<b>" . $remainMin . " </b> Min.";
+    
+    }
+}
+
 
                             <!-- <div class="form-outline mb-4"> -->
                             <div class="card">
