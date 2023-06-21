@@ -119,10 +119,10 @@ function footer_setup()
             'name' => __('Footer-Categories', 'wp-wrapp-project'),
             'id' => 'footer-categories',
             'description' => '',
-            'before_widget' => '',
-            'after_widget' => '',
-            'before_title' => '<h2 class="ftco-heading-2">',
-            'after_title' => '</h2>'
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
         )
     );
 
@@ -131,10 +131,10 @@ function footer_setup()
             'name' => __('Footer-Product', 'wp-wrapp-project'),
             'id' => 'footer-product',
             'description' => '',
-            'before_widget' => '',
-            'after_widget' => '',
-            'before_title' => '<h2 class="ftco-heading-2">',
-            'after_title' => '</h2>'
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
         )
     );
 
@@ -143,10 +143,10 @@ function footer_setup()
             'name' => __('Footer-Solutions', 'wp-wrapp-project'),
             'id' => 'footer-solutions',
             'description' => '',
-            'before_widget' => '',
-            'after_widget' => '',
-            'before_title' => '<h2 class="ftco-heading-2">',
-            'after_title' => '</h2>'
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
         )
     );
 
@@ -155,10 +155,10 @@ function footer_setup()
             'name' => __('Footer-Resources', 'wp-wrapp-project'),
             'id' => 'footer-resources',
             'description' => '',
-            'before_widget' => '',
-            'after_widget' => '',
-            'before_title' => '<h2 class="ftco-heading-2">',
-            'after_title' => '</h2>'
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
         )
     );
 
@@ -167,10 +167,10 @@ function footer_setup()
             'name' => __('Footer-Support', 'wp-wrapp-project'),
             'id' => 'footer-support',
             'description' => '',
-            'before_widget' => '',
-            'after_widget' => '',
-            'before_title' => '<h2 class="ftco-heading-2">',
-            'after_title' => '</h2>'
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
         )
     );
 
@@ -179,22 +179,10 @@ function footer_setup()
             'name' => __('Footer-Company', 'wp-wrapp-project'),
             'id' => 'footer-company',
             'description' => '',
-            'before_widget' => '',
-            'after_widget' => '',
-            'before_title' => '<h2 class="ftco-heading-2">',
-            'after_title' => '</h2>'
-        )
-    );
-
-    register_sidebar(
-        array(
-            'name' => __('Footer-Copyright', 'wp-wrapp-project'),
-            'id' => 'footer-copyright',
-            'description' => '',
-            'before_widget' => '',
-            'after_widget' => '',
-            'before_title' => '<h2 class="ftco-heading-2">',
-            'after_title' => '</h2>'
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
         )
     );
 }
