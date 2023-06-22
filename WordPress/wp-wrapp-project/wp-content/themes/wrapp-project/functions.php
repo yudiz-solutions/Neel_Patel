@@ -206,7 +206,7 @@ function custom_field_post()
         'update_item' => __('Update Story', 'wp-wrapp-project'),
         'search_items' => __('Search Story', 'wp-wrapp-project'),
         'not_found' => __('Not Found', 'wp-wrapp-project'),
-        'not_found_in_trash' => __('Not found in Trash', 'wp-wrapp-project'),
+        'not_found_in_trash' => __('Not found in Trash', 'wp-wrapp-project')
     );
 
     // Set other options for Custom Post Type
@@ -245,7 +245,7 @@ function custom_field_post()
         'add_or_remove_items' => __('Add or remove Category', 'wp-wrapp-project'),
         'choose_from_most_used' => __('Choose from the most used Category', 'wp-wrapp-project'),
         'not_found' => __('No Category found.', 'wp-wrapp-project'),
-        'menu_name' => __('Category', 'wp-wrapp-project'),
+        'menu_name' => __('Category', 'wp-wrapp-project')
     );
 
     $args_taxonomy_cat = array(
@@ -255,7 +255,7 @@ function custom_field_post()
         'show_admin_column' => true,
         'update_count_callback' => '_update_post_term_count',
         'query_var' => true,
-        'rewrite' => array('slug' => 'story-category'),
+        'rewrite' => array('slug' => 'story-category')
     );
     register_taxonomy('story-category', 'story', $args_taxonomy_cat);
 

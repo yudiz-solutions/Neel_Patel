@@ -246,7 +246,6 @@ $want_contact_form = get_field("want_contact_form");
                 <div class="counter-wrap ftco-animate d-flex mt-md-3">
                     <div class="text">
                         <p>
-                            <!-- <a href="#" class="btn btn-primary py-3 px-3">Download CV</a> -->
                             <a href="<?php echo $download_cv["url"]; ?>" class="btn btn-primary py-3 px-4"
                                 target="<?php echo $download_cv["target"]; ?>"><?php echo $download_cv["title"]; ?></a>
                         </p>
@@ -369,6 +368,17 @@ $want_contact_form = get_field("want_contact_form");
                         <i class="flaticon-analysis"></i>
                     </span>
                     <div class="desc">
+                        <h3 class="mb-5">Programming</h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 text-center d-flex ftco-animate">
+                <a href="#" class="services-1">
+                    <span class="icon">
+                        <i class="flaticon-analysis"></i>
+                    </span>
+                    <div class="desc">
                         <h3 class="mb-5">Web Design</h3>
                     </div>
                 </a>
@@ -380,48 +390,7 @@ $want_contact_form = get_field("want_contact_form");
                         <i class="flaticon-ideas"></i>
                     </span>
                     <div class="desc">
-                        <h3 class="mb-5">Web Developer</h3>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-4 text-center d-flex ftco-animate">
-                <a href="#" class="services-1">
-                    <span class="icon">
-                        <i class="flaticon-analysis"></i>
-                    </span>
-                    <div class="desc">
-                        <h3 class="mb-5">App Developing</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 text-center d-flex ftco-animate">
-                <a href="#" class="services-1">
-                    <span class="icon">
-                        <i class="flaticon-flasks"></i>
-                    </span>
-                    <div class="desc">
-                        <h3 class="mb-5">Branding</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 text-center d-flex ftco-animate">
-                <a href="#" class="services-1">
-                    <span class="icon">
-                        <i class="flaticon-ideas"></i>
-                    </span>
-                    <div class="desc">
-                        <h3 class="mb-5">Product Strategy</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 text-center d-flex ftco-animate">
-                <a href="#" class="services-1">
-                    <span class="icon">
-                        <i class="flaticon-analysis"></i>
-                    </span>
-                    <div class="desc">
-                        <h3 class="mb-5">Product Strategy</h3>
+                        <h3 class="mb-5">Web Developing</h3>
                     </div>
                 </a>
             </div>

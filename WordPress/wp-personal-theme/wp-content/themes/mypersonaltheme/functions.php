@@ -87,7 +87,7 @@ function menu_setup()
 
     register_nav_menus(
         array(
-            'header_menu' => __('Primary Menu', 'textdomain')
+            'header_menu' => __('Primary Menu', 'mypersonaltheme')
         )
     );
 }
@@ -107,9 +107,9 @@ function wpdocs_theme_slug_widgets_init()
 {
     register_sidebar(
         array(
-            'name' => __('Footer-About', 'textdomain'),
+            'name' => __('Footer-About', 'mypersonaltheme'),
             'id' => 'footer-about',
-            'description' => __('A passionate Full stack web developer and a curious learner from India &hearts;.', 'textdomain'),
+            'description' => __('A passionate Full stack web developer and a curious learner from India &hearts;.', 'mypersonaltheme'),
             'before_widget' => '',
             'after_widget' => '',
             'before_title' => '<h2 class="ftco-heading-2">',
@@ -119,9 +119,9 @@ function wpdocs_theme_slug_widgets_init()
 
     register_sidebar(
         array(
-            'name' => __('Footer-Links', 'textdomain'),
+            'name' => __('Footer-Links', 'mypersonaltheme'),
             'id' => 'footer-links',
-            'description' => __('Widgets in this area will be shown on all posts and pages.', 'textdomain'),
+            'description' => __('Widgets in this area will be shown on all posts and pages.', 'mypersonaltheme'),
             'before_widget' => '',
             'after_widget' => '',
             'before_title' => '<h3 class="widgettitle">',
@@ -131,9 +131,9 @@ function wpdocs_theme_slug_widgets_init()
 
     register_sidebar(
         array(
-            'name' => __('Footer-Interests', 'textdomain'),
+            'name' => __('Footer-Interests', 'mypersonaltheme'),
             'id' => 'footer-interests',
-            'description' => __('Widgets in this area will be shown on all posts and pages.', 'textdomain'),
+            'description' => __('Widgets in this area will be shown on all posts and pages.', 'mypersonaltheme'),
             'before_widget' => '',
             'after_widget' => '',
             'before_title' => '<h3 class="widgettitle">',
@@ -143,9 +143,9 @@ function wpdocs_theme_slug_widgets_init()
 
     register_sidebar(
         array(
-            'name' => __('Footer-Have Question', 'textdomain'),
+            'name' => __('Footer-Have Question', 'mypersonaltheme'),
             'id' => 'footer-have-question',
-            'description' => __('Widgets in this area will be shown on all posts and pages.', 'textdomain'),
+            'description' => __('Widgets in this area will be shown on all posts and pages.', 'mypersonaltheme'),
             'before_widget' => '',
             'after_widget' => '',
             'before_title' => '<h3 class="widgettitle">',
@@ -155,9 +155,9 @@ function wpdocs_theme_slug_widgets_init()
 
     register_sidebar(
         array(
-            'name' => __('Footer-Copyright', 'textdomain'),
+            'name' => __('Footer-Copyright', 'mypersonaltheme'),
             'id' => 'footer-copyright',
-            'description' => __('Widgets in this area will be shown on all posts and pages.', 'textdomain'),
+            'description' => __('Widgets in this area will be shown on all posts and pages.', 'mypersonaltheme'),
             'before_widget' => '',
             'after_widget' => '',
             'before_title' => '<h3 class="widgettitle">',

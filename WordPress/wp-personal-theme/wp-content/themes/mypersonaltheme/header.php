@@ -22,6 +22,7 @@
                 <?php
                 wp_nav_menu(
                     array(
+                        'menu' => 'Primary Menu',
                         'menu_class' => 'navbar-nav nav ml-auto',
                         'container' => 'ul'
                     )
