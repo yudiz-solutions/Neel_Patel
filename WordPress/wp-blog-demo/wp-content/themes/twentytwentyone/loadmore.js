@@ -1,13 +1,15 @@
-var page = 2;
+var currPage = 1;
 
 jQuery(document).ready(function () {
     jQuery(function ($) {
         $('#load-more-btn').click(function () {
             var button = jQuery(this);
+            var maxPage = $('#max-page').val();
             var data_obj = {
                 'action': 'load_more_ajax',
-                'page': page
+                'page': currPage
             };
+            currPage++;
             button.text('Loading...');
 
             jQuery.ajax({
@@ -15,10 +17,12 @@ jQuery(document).ready(function () {
                 url: blog.ajaxurl,
                 data: data_obj,
                 dataType: 'html',
-                beforeSend: function (xhr) {
-                },
                 success: function (data) {
                     jQuery('.blog-list').append(data);
+
+                    if (currPage == maxPage) {
+                        button.hide();
+                    }
                 }
             });
         });

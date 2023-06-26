@@ -788,7 +788,7 @@ function load_more_ajax()
 	$blogs = new WP_Query([
 		'post_type' => 'blog',
 		'post_status' => 'publish',
-		'posts_per_page' => 2,
+		'posts_per_page' => 40,
 		'paged' => $_POST['page'],
 	]);
 
