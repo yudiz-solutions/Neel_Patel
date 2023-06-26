@@ -667,8 +667,6 @@ if (!function_exists('wp_get_list_item_separator')):
 	}
 endif;
 
-
-
 //////////////////////////////////////////////////////////////////////
 /////////////////////////////CUSTOM CODE//////////////////////////////
 //////////////////////////////////////////////////////////////////////
@@ -729,6 +727,7 @@ function custom_post_type()
 	register_post_type('Blog', $cpt_args);
 
 	/////-----TAXONOMY-----/////
+
 	$taxo_labels = array(
 		'name' => _x('Category', 'taxonomy general name', 'twentytwentyone'),
 		'singular_name' => _x('category', 'taxonomy singular name', 'twentytwentyone'),
@@ -764,50 +763,56 @@ function custom_post_type()
 add_action('init', 'custom_post_type', 0);
 
 ///////////////////////////////////////////////////////////////////////////
-
-function load_more()
+function blog_script()
 {
-	global $wp_query;
+	wp_enqueue_script('jquery');
 
-	wp_register_script('my_loadmore', get_stylesheet_directory_uri() . '/loadmore.js', array('jquery'));
+	//Register
+	wp_register_script('my_loadmore', get_stylesheet_directory_uri() . '/loadmore.js', array('jquery'), true);
 
-	wp_localize_script(
-		'my_loadmore',
-		'loadmore_params',
-		array(
-			'ajaxurl' => admin_url('admin-ajax.php'),
-			'posts' => json_encode($wp_query->query_vars),
-			'current_page' => get_query_var('paged') ? get_query_var('paged') : 1,
-			'max_page' => $wp_query->max_num_pages
-		)
+	//Localize
+	$localize_array = array(
+		'ajaxurl' => admin_url('admin-ajax.php'),
 	);
+
+	wp_localize_script('my_loadmore', 'blog', $localize_array);
+
+	//Enqueue Script with localize data
 	wp_enqueue_script('my_loadmore');
 }
-add_action('wp_enqueue_scripts', 'load_more');
+add_action('wp_enqueue_scripts', 'blog_script');
 
 
-
-//TESTING DONE
-function load_more_handler()
+function load_more_ajax()
 {
-	$args = json_decode(stripslashes($_POST['query']), true);
-	$args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
-	$args['post_status'] = 'publish';
+	$blogs = new WP_Query([
+		'post_type' => 'blog',
+		'post_status' => 'publish',
+		'posts_per_page' => 2,
+		'paged' => $_POST['page'],
+	]);
 
-	query_posts($args);
-	print_r($args);
+	if ($blogs->have_posts()) { ?>
+		<?php
+		while ($blogs->have_posts()) {
+			$blogs->the_post();
+			?>
 
-	if (have_posts()) {
-		while (have_posts()) {
-			the_post();
-
-			the_title();
-			the_post_thumbnail();
-
-		}
+			<div class="blog-body" style="text-align: center">
+				<h3>
+					<?php the_title(); ?>
+				</h3>
+				<?php the_post_thumbnail(array(500, 500)); ?>
+				<p>
+					<?php the_content(); ?>
+				</p>
+			</div>
+		<?php }
+		?>
+		</div>
+		<?php
 	}
-	die;
+	wp_die();
 }
-
-add_action('wp_ajax_loadmore', 'load_more_handler');
-add_action('wp_ajax_nopriv_loadmore', 'load_more_handler');
+add_action('wp_ajax_load_more_ajax', 'load_more_ajax');
+add_action('wp_ajax_nopriv_load_more_ajax', 'load_more_ajax');
