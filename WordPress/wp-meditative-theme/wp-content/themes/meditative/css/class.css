@@ -1,0 +1,17 @@
+body{
+    background-color: #fff;
+}
+
+
+.img-wrapper{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 120px);
+}
+
+
+.classes-title{
+    margin-top: 50px;
+}
+
