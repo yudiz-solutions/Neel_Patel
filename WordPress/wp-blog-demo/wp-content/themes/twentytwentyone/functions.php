@@ -785,12 +785,20 @@ add_action('wp_enqueue_scripts', 'blog_script');
 
 function load_more_ajax()
 {
-	$blogs = new WP_Query([
+	$args = array(
 		'post_type' => 'blog',
 		'post_status' => 'publish',
 		'posts_per_page' => 40,
-		'paged' => $_POST['page'],
-	]);
+		'paged' => 1,
+		// 'meta_query' => array(
+		// 	array(
+		// 		'key' => 'Custom meta',
+		// 		'value' => 'Meta value for blog',
+		// 		'compare' => '='
+		// 	)
+		// )
+	);
+	$blogs = new WP_Query($args);
 
 	if ($blogs->have_posts()) { ?>
 		<?php

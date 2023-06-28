@@ -8,12 +8,20 @@ echo "Blog.php Template";
 ?>
 <div class="blog-list">
     <?php
-    $blogs = new WP_Query([
+    $args = array(
         'post_type' => 'blog',
         'post_status' => 'publish',
         'posts_per_page' => 40,
         'paged' => 1,
-    ]);
+        // 'meta_query' => array(
+        //     array(
+        //         'key' => 'Custom meta',
+        //         'value' => 'Meta value for blog',
+        //         'compare' => '='
+        //     )
+        // )
+    );
+    $blogs = new WP_Query($args);
     // echo "<pre>";
     // print_r($blogs);
     // echo "</pre>";

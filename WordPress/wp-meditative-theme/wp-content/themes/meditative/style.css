@@ -16,12 +16,12 @@ Tags: one-column, accessibility-ready, custom-colors, custom-menu, custom-logo, 
 
 @font-face {
     font-family: 'Circular Std';
-    src: url('../fonts/CircularStd-Bold.eot');
-    src: url('../fonts/CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/CircularStd-Bold.woff2') format('woff2'),
-        url('../fonts/CircularStd-Bold.woff') format('woff'),
-        url('../fonts/CircularStd-Bold.ttf') format('truetype'),
-        url('../fonts/CircularStd-Bold.svg#CircularStd-Bold') format('svg');
+    src: url('./fonts/CircularStd-Bold.eot');
+    src: url('./fonts/CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/CircularStd-Bold.woff2') format('woff2'),
+        url('./fonts/CircularStd-Bold.woff') format('woff'),
+        url('./fonts/CircularStd-Bold.ttf') format('truetype'),
+        url('./fonts/CircularStd-Bold.svg#CircularStd-Bold') format('svg');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -29,12 +29,12 @@ Tags: one-column, accessibility-ready, custom-colors, custom-menu, custom-logo, 
 
 @font-face {
     font-family: 'Oswald';
-    src: url('../fonts/Oswald-Regular.eot');
-    src: url('../fonts/Oswald-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Oswald-Regular.woff2') format('woff2'),
-        url('../fonts/Oswald-Regular.woff') format('woff'),
-        url('../fonts/Oswald-Regular.ttf') format('truetype'),
-        url('../fonts/Oswald-Regular.svg#Oswald-Regular') format('svg');
+    src: url('./fonts/Oswald-Regular.eot');
+    src: url('./fonts/Oswald-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Oswald-Regular.woff2') format('woff2'),
+        url('./fonts/Oswald-Regular.woff') format('woff'),
+        url('./fonts/Oswald-Regular.ttf') format('truetype'),
+        url('./fonts/Oswald-Regular.svg#Oswald-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -308,7 +308,7 @@ p {
 }
 
 .slick-dots li button {
-    background: url("../images/circle-24.png") no-repeat center/30%;
+    background: url("./images/circle-24.png") no-repeat center/30%;
     border-radius: 100%;
     text-indent: -9999px;
     overflow: hidden;
@@ -793,7 +793,7 @@ td i {
 
 .class-stories .slick-dots li button {
     padding: 0;
-    background: url("../images/imageedit_1_6587535692.png") no-repeat center/30%;
+    background: url("./images/imageedit_1_6587535692.png") no-repeat center/30%;
     border-radius: 100%;
     text-indent: -9999px;
     overflow: hidden;
@@ -807,7 +807,7 @@ td i {
 .counter-bg {
     margin-top: 100px;
     height: 315px;
-    background: url("../images/bg_3.jpg") no-repeat 0px -240px/cover;
+    background: url("./images/bg_3.jpg") no-repeat 0px -240px/cover;
     color: #f9b5b5;
 }
 
@@ -1439,7 +1439,7 @@ footer {
     .counter-bg {
         margin-top: 50px;
         height: 500px;
-        background: url("../images/bg_3_mobile.jpg") no-repeat center right/cover;
+        background: url("./images/bg_3_mobile.jpg") no-repeat center right/cover;
         color: #f9b5b5;
     }
 
@@ -1942,7 +1942,7 @@ footer {
         height: 400px;
         display: flex;
         align-items: center;
-        background: url("../images/bg_3_mobile.jpg") no-repeat center right/cover;
+        background: url("./images/bg_3_mobile.jpg") no-repeat center right/cover;
         color: #f9b5b5;
     }
 
@@ -2395,7 +2395,7 @@ footer {
         height: 300px;
         display: flex;
         align-items: center;
-        background: url("../images/bg_3_mobile.jpg") no-repeat center right/cover;
+        background: url("./images/bg_3_mobile.jpg") no-repeat center right/cover;
         color: #f9b5b5;
     }
 
