@@ -26,6 +26,9 @@ function add_css_scripts()
     wp_register_style('class', get_template_directory_uri() . "/css/class.css");
     wp_enqueue_style('class');
 
+    //Font_Awesome_CDN
+    wp_enqueue_style('font', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css');
+
     //======== JS ========//
 
     wp_register_script('jquery-script', get_template_directory_uri() . '/js/code.jquery.com_jquery-1.11.0.min.js', array(), '1.0.0', true);
