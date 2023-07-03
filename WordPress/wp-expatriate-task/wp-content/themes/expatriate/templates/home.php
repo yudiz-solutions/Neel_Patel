@@ -1,79 +1,95 @@
 <?php
 /* Template Name: Home */
-?>
-
-
-<?php
 get_header();
+
+$banner_slider_repeater = get_field('banner_slider_repeater');
+$about_us_grp = get_field('about_us_grp');
+$assessment_grp = get_field('assessment_grp');
+$team_heading = get_field('team_heading');
+$team_repeater = get_field('team_repeater');
+$full_team_btn = get_field('full_team_btn');
 ?>
 
 <!--******************* Banner Section Start *********************-->
-<div class="home-banner">
-    <div class="home-slider">
-        <div>
-            <div class="slide"
-                style="background: #5C5C5C url('<?php echo get_template_directory_uri() ?>/images/home-slide1.jpg') no-repeat center center / cover;">
-                <div class="container">
-                    <div class="slide-inner">
-                        <div class="slide-content">
-                            <h1>WE HELP YOU MOVE TO <span>CANADA</span></h1>
-                            <p class="tagline">Express Entry Visa Experts <br>Temporary Accomodation <br>Getting Job
-                                Ready for Canada</p>
-                            <ul class="btn-list">
-                                <li><a href="#" class="theme-btn">Read more</a></li>
-                                <li><a href="assessment.html" class="theme-btn fill-btn">Free Assessment</a></li>
-                            </ul>
+<?php if (!empty($banner_slider_repeater)) { ?>
+    <div class="home-banner">
+        <div class="home-slider">
+            <?php foreach ($banner_slider_repeater as $key_slider) { ?>
+                <div>
+                    <div class="slide"
+                        style="background: #5C5C5C url('<?php echo $key_slider['banner_bg_img']['url']; ?>') no-repeat center center / cover;">
+                        <div class="container">
+                            <div class="slide-inner">
+                                <div class="slide-content">
+                                    <h1>
+                                        <?php echo $key_slider['heading_normal']; ?> <span>
+                                            <?php echo $key_slider['heading_highlighted']; ?>
+                                        </span>
+                                    </h1>
+                                    <p class="tagline">
+                                        <?php echo $key_slider['tagling']; ?>
+                                    </p>
+                                    <ul class="btn-list">
+                                        <li><a href="<?php echo $key_slider['button_1']['url']; ?> "
+                                                target="<?php echo $key_slider['button_1']['target']; ?>"
+                                                class="theme-btn"><?php echo $key_slider['button_1']['title']; ?></a></li>
+                                        <li><a href="<?php echo $key_slider['button_2']['url']; ?>"
+                                                target="<?php echo $key_slider['button_2']['target']; ?>"
+                                                class="theme-btn fill-btn"><?php echo $key_slider['button_2']['title']; ?></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div>
-            <div class="slide"
-                style="background: #5C5C5C url('<?php echo get_template_directory_uri() ?>/images/home-slide2.jpg') no-repeat center center / cover;">
-                <div class="container">
-                    <div class="slide-inner">
-                        <div class="slide-content">
-                            <h1>Gary William Johnston</h1>
-                            <p class="tagline">Barrister & Solicitor, Immigration Advisor</p>
-                            <ul class="btn-list">
-                                <li><a href="#" class="theme-btn">Read more</a></li>
-                                <li><a href="assessment.html" class="theme-btn fill-btn">Free Assessment</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
-</div>
+<?php } ?>
 <!--******************* Banner Section End *********************-->
 <!--******************* Header Section End *********************-->
 
 <!--******************* Middle Section Start ******************-->
 <main>
+
+    <!-- ///////////////////////////////// -->
+    <!-- //// ABOUT US SECTION STARTS //// -->
+    <!-- ///////////////////////////////// -->
     <section class="common-section about-section">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="bg-img-block">
                         <div class="heading-block">
-                            <h2>About <br>Us</h2>
+                            <h2>
+                                <?php echo $about_us_grp['heading']; ?>
+                            </h2>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="desc-block">
-                        <p>Expatriate Assistance Services Inc. makes your move to Canada easy by helping you settle and
-                            integrate in the new geography. EASI provides customised and quality support services for
-                            you and your family to be secure and comfortable in Canada. Focus on the change - We will
-                            take care of the details for you. </p>
-                        <a href="about.html" class="theme-btn">Read more</a>
+                        <?php echo $about_us_grp['heading']; ?>
+                        <p>
+                            <?php echo $about_us_grp['para']; ?>
+                        </p>
+                        <a href="<?php echo $about_us_grp['read_more_btn']['url']; ?>"
+                            target="<?php echo $about_us_grp['read_more_btn']['target']; ?>" class="theme-btn"><?php echo $about_us_grp['read_more_btn']['title']; ?>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- ///////////////////////////////// -->
+    <!-- //// ABOUT US SECTION ENDS //// -->
+    <!-- ///////////////////////////////// -->
+
+
+    <!-- ///////////////////////////////// -->
+    <!-- //// SERVICE SECTION STARTS //// -->
+    <!-- ///////////////////////////////// -->
     <section class="common-section services-section">
         <div class="container">
             <div class="row">
@@ -169,18 +185,36 @@ get_header();
             </div>
         </div>
     </section>
+    <!-- ///////////////////////////////// -->
+    <!-- ///// SERVICE SECTION ENDS ///// -->
+    <!-- ///////////////////////////////// -->
+
+    <!-- ///////////////////////////////// -->
+    <!-- //// ASSESSMENT SECTION ENDS //// -->
+    <!-- ///////////////////////////////// -->
     <section class="assessment-section">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Get your free assessment done right now !</h2>
+                    <h2>
+                        <?php echo $assessment_grp['heading']; ?>
+                    </h2>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="assessment.html" class="theme-btn white-btn">apply now</a>
+                    <a href="<?php echo $assessment_grp['apply_now_btn']['url']; ?>"
+                        target="<?php echo $assessment_grp['apply_now_btn']['target']; ?>" class="theme-btn white-btn">
+                        <?php echo $assessment_grp['apply_now_btn']['title']; ?></a>
                 </div>
             </div>
         </div>
     </section>
+    <!-- ///////////////////////////////// -->
+    <!-- //// ASSESSMENT SECTION ENDS //// -->
+    <!-- ///////////////////////////////// -->
+
+    <!-- ///////////////////////////////// -->
+    <!-- //// NEWS SECTION STARTS //// -->
+    <!-- ///////////////////////////////// -->
     <section class="common-section home-news-section">
         <div class="container">
             <div class="home-news-list">
@@ -235,45 +269,47 @@ get_header();
             </div>
         </div>
     </section>
+    <!-- ///////////////////////////////// -->
+    <!-- //// NEWS SECTION ENDS //// -->
+    <!-- ///////////////////////////////// -->
+
+
+    <!-- ///////////////////////////////// -->
+    <!-- //// TEAM SECTION STARTS //// -->
+    <!-- ///////////////////////////////// -->
     <section class="common-section home-team-section">
         <div class="container">
             <div class="text-center">
-                <h2>our team</h2>
+                <h2>
+                    <?php echo $team_heading; ?>
+                </h2>
             </div>
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-box"
-                        style="background: #015e7d url('images/avtar_nilam.jpg') no-repeat center center / cover;">
-                        <div class="team-desc">
-                            <h3>Nilam Doctor</h3>
-                            <p>Director and Chief Technology Officer</p>
+                <?php foreach ($team_repeater as $key_team) { ?>
+                    <div class="col-sm-4">
+                        <div class="team-box"
+                            style="background: #015e7d url('<?php echo $key_team['image']['url']; ?>') no-repeat center center / cover;">
+                            <div class="team-desc">
+                                <h3>
+                                    <?php echo $key_team['heading']; ?>
+                                </h3>
+                                <p>
+                                    <?php echo $key_team['para']; ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-box"
-                        style="background: #015e7d url('images/avtar_danny.jpg') no-repeat center center / cover;">
-                        <div class="team-desc">
-                            <h3>Daniel Wettreich</h3>
-                            <p>Chairman of the Board and Secretary</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-box"
-                        style="background: #015e7d url('images/avtar_placeholder.jpg') no-repeat center center / cover;">
-                        <div class="team-desc">
-                            <h3>Sumedha Mahajan</h3>
-                            <p>Vice President</p>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
             <div class="text-center">
-                <a href="team.html" class="theme-btn white-btn">full team</a>
+                <a href="<?php echo $full_team_btn['url']; ?>" target="<?php echo $full_team_btn['target']; ?>"
+                    class="theme-btn white-btn"><?php echo $full_team_btn['title']; ?></a>
             </div>
         </div>
     </section>
+    <!-- ///////////////////////////////// -->
+    <!-- //// TEAM SECTION ENDS //// -->
+    <!-- ///////////////////////////////// -->
 </main>
 <!--******************* Middle Section End ******************-->
 <?php get_footer(); ?>
