@@ -788,8 +788,8 @@ function load_more_ajax()
 	$args = array(
 		'post_type' => 'blog',
 		'post_status' => 'publish',
-		'posts_per_page' => 40,
-		'paged' => 1,
+		'posts_per_page' => 5,
+		'paged' => 2,
 		// 'meta_query' => array(
 		// 	array(
 		// 		'key' => 'Custom meta',
