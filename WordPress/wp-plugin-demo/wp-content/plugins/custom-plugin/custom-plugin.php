@@ -60,13 +60,20 @@ function save_form_data()
         $form_data = array(
             'name' => $name,
             'empid' => $empid,
-            'email' => $email
+            'email' => $email,
         );
 
-        do_action('before_insert_form_data');
-        $form_data = apply_filters('insert_form_data', $form_data);
+        $form_data = apply_filters('before_insert_phone_data', $form_data, $_POST);
+
+        /** INSERT QUERY **/
         $wpdb->insert($tbl_name, $form_data);
-        do_action('after_insert_form_data', $form_data);
+        echo $wpdb->insert_id;
+
+        /** DELETE QUERY **/
+        // $wpdb->delete($tbl_name, ['id' => 2], ['%d']);
+
+        /** UPDATE QUERY **/
+
 
     }
 }

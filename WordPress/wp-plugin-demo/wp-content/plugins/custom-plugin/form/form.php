@@ -1,5 +1,4 @@
 <?php
-echo "HEyy";
 ?>
 <form method="POST">
     <h1>REGISTER HERE</h1>
@@ -12,5 +11,8 @@ echo "HEyy";
     Email: <input type="emails" name="email">
     <br>
     <br>
+    <?php
+    do_action('before_insert_form_data');
+    ?>
     <input type="submit" name="submitbtn" value="Register">
 </form>
