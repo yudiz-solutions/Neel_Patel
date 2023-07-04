@@ -141,7 +141,7 @@ function footer_setup()
 {
     register_sidebar(
         array(
-            'name' => __('Logo', 'expatriate'),
+            'name' => __('Footer-Logo', 'expatriate'),
             'id' => 'footer-logo',
             'description' => '',
             'before_widget' => '<ul>',
@@ -162,6 +162,19 @@ function footer_setup()
             'after_title' => '</li>'
         )
     );
+
+    register_sidebar(
+        array(
+            'name' => __('Footer-Copyright', 'expatriate'),
+            'id' => 'footer-copyright',
+            'description' => '',
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
+        )
+    );
+
 }
 add_action('widgets_init', 'footer_setup');
 
@@ -174,4 +187,87 @@ function special_nav_class($classes, $item)
     }
     return $classes;
 }
+
+
+////////////////////////////////////////////
+
+//== CUSTOM POST TYPE ==//
+function custom_field_post()
+{
+    // Set UI labels for Custom Post Type
+    $labels_services = array(
+        'name' => _x('Services', 'Post Type General Name', 'expatriate'),
+        'singular_name' => _x('Services', 'Post Type Singular Name', 'expatriate'),
+        'menu_name' => __('Services', 'expatriate'),
+        'parent_item_colon' => __('Parent Services', 'expatriate'),
+        'all_items' => __('All Services', 'expatriate'),
+        'view_item' => __('View Services', 'expatriate'),
+        'add_new_item' => __('Add New Services', 'expatriate'),
+        'add_new' => __('Add New', 'expatriate'),
+        'edit_item' => __('Edit Services', 'expatriate'),
+        'update_item' => __('Update Services', 'expatriate'),
+        'search_items' => __('Search Services', 'expatriate'),
+        'not_found' => __('Not Found', 'expatriate'),
+        'not_found_in_trash' => __('Not found in Trash', 'expatriate')
+    );
+
+    // Set other options for Custom Post Type
+    $args_services = array(
+        'label' => __('Services', 'expatriate'),
+        'description' => __('Services and reviews', 'expatriate'),
+        'labels' => $labels_services,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'services'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => true,
+        'menu_position' => 4,
+        'menu_icon' => 'dashicons-tickets',
+        'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments')
+    );
+    register_post_type('services', $args_services);
+
+    //TAXONOMY
+
+    $labels_taxonomy_cat = array(
+        'name' => _x('Category', 'taxonomy general name', 'expatriate'),
+        'singular_name' => _x('Category', 'taxonomy singular name', 'expatriate'),
+        'search_items' => __('Search Category', 'expatriate'),
+        'popular_items' => __('Popular Category', 'expatriate'),
+        'all_items' => __('All Category', 'expatriate'),
+        'parent_item' => null,
+        'parent_item_colon' => null,
+        'edit_item' => __('Edit Category', 'expatriate'),
+        'update_item' => __('Update Category', 'expatriate'),
+        'add_new_item' => __('Add New Category', 'expatriate'),
+        'new_item_name' => __('New Category Name', 'expatriate'),
+        'separate_items_with_commas' => __('Separate Category with commas', 'expatriate'),
+        'add_or_remove_items' => __('Add or remove Category', 'expatriate'),
+        'choose_from_most_used' => __('Choose from the most used Category', 'expatriate'),
+        'not_found' => __('No Category found.', 'expatriate'),
+        'menu_name' => __('Category', 'expatriate')
+    );
+
+    $args_taxonomy_cat = array(
+        'hierarchical' => true,
+        'labels' => $labels_taxonomy_cat,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var' => true,
+        'rewrite' => array('slug' => 'services-category')
+    );
+    register_taxonomy('services-category', 'services', $args_taxonomy_cat);
+
+    flush_rewrite_rules(); //Refresh the Permalink
+}
+
+add_action('init', 'custom_field_post', 0);
+
+
+
 ?>
