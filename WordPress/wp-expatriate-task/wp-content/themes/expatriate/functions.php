@@ -48,8 +48,37 @@ function add_css_js()
     // Sticky-Kit
     wp_register_script('sticky-kit', get_template_directory_uri() . './js/sticky-kit.js', array(), '1.0.0', true);
     wp_enqueue_script('sticky-kit');
+
+    // Custom-File-Input
+    wp_register_script('custom-file-input', get_template_directory_uri() . './js/custom-file-input.js', array(), '1.0.0', true);
+    wp_enqueue_script('custom-file-input');
+
+    // html5shiv.min
+    wp_register_script('html5shiv.min', get_template_directory_uri() . './js/html5shiv.min.js', array(), '1.0.0', true);
+    wp_enqueue_script('html5shiv.min');
+
+    // jcf.file
+    wp_register_script('jcf.file', get_template_directory_uri() . './js/jcf.file.js', array(), '1.0.0', true);
+    wp_enqueue_script('jcf.file');
+
+    // jcf
+    wp_register_script('jcf', get_template_directory_uri() . './js/jcf.js', array(), '1.0.0', true);
+    wp_enqueue_script('jcf');
+
+    // jcf.radio
+    wp_register_script('jcf.radio', get_template_directory_uri() . './js/jcf.radio.js', array(), '1.0.0', true);
+    wp_enqueue_script('jcf.radio');
+
+    // jcf.select
+    wp_register_script('jcf.select', get_template_directory_uri() . './js/jcf.select.js', array(), '1.0.0', true);
+    wp_enqueue_script('jcf.select');
+
+    // respond.min
+    wp_register_script('respond.min', get_template_directory_uri() . './js/respond.min.js', array(), '1.0.0', true);
+    wp_enqueue_script('respond.min');
 }
 add_action('wp_enqueue_scripts', 'add_css_js');
+
 
 //== ADDING DYNAMIC NAVBAR ==//
 function menu_setup()
@@ -83,6 +112,58 @@ function menu_setup()
 add_action('after_setup_theme', 'menu_setup');
 
 add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);
+
+
+//== ADDING DYNAMIC NAVBAR ==//
+function theme_general_setting()
+{
+
+    // Check function exists.
+    if (function_exists('acf_add_options_page')) {
+
+        // Register options page.
+        $option_page = acf_add_options_page(
+            array(
+                'page_title' => __('Theme General Settings'),
+                'menu_title' => __('Theme Settings'),
+                'menu_slug' => 'theme-general-settings',
+                'capability' => 'edit_posts',
+                'redirect' => false
+            )
+        );
+    }
+}
+add_action('acf/init', 'theme_general_setting');
+
+
+//== ADDING DYNAMIC NAVBAR ==//
+function footer_setup()
+{
+    register_sidebar(
+        array(
+            'name' => __('Logo', 'expatriate'),
+            'id' => 'footer-logo',
+            'description' => '',
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
+        )
+    );
+
+    register_sidebar(
+        array(
+            'name' => __('Footer-Menu', 'expatriate'),
+            'id' => 'footer-menu',
+            'description' => '',
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
+        )
+    );
+}
+add_action('widgets_init', 'footer_setup');
 
 
 //FOR ACTIVE CLASS

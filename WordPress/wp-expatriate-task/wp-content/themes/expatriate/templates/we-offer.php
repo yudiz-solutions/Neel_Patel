@@ -176,3 +176,4 @@ get_header();
 <!--******************* Middle Section End ******************-->
 <!--******************* Footer Section Start ******************-->
 <?php get_footer(); ?>
+<!--******************* Footer Section Ends ******************-->

@@ -251,4 +251,6 @@ get_header();
     </section>
 </main>
 <!--******************* Middle Section End ******************-->
+<!--******************* Footer Section Starts ******************-->
 <?php get_footer(); ?>
+<!--******************* Footer Section Ends ******************-->

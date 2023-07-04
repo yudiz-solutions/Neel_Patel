@@ -5,9 +5,7 @@ get_header();
 $banner_slider_repeater = get_field('banner_slider_repeater');
 $about_us_grp = get_field('about_us_grp');
 $assessment_grp = get_field('assessment_grp');
-$team_heading = get_field('team_heading');
-$team_repeater = get_field('team_repeater');
-$full_team_btn = get_field('full_team_btn');
+$team_section_grp = get_field('team_section_grp');
 ?>
 
 <!--******************* Banner Section Start *********************-->
@@ -27,7 +25,7 @@ $full_team_btn = get_field('full_team_btn');
                                         </span>
                                     </h1>
                                     <p class="tagline">
-                                        <?php echo $key_slider['tagling']; ?>
+                                        <?php echo $key_slider['tagline']; ?>
                                     </p>
                                     <ul class="btn-list">
                                         <li><a href="<?php echo $key_slider['button_1']['url']; ?> "
@@ -281,20 +279,20 @@ $full_team_btn = get_field('full_team_btn');
         <div class="container">
             <div class="text-center">
                 <h2>
-                    <?php echo $team_heading; ?>
+                    <?php echo $team_section_grp['heading']; ?>
                 </h2>
             </div>
             <div class="row">
-                <?php foreach ($team_repeater as $key_team) { ?>
+                <?php foreach ($team_section_grp['repeater'] as $key_team) { ?>
                     <div class="col-sm-4">
                         <div class="team-box"
-                            style="background: #015e7d url('<?php echo $key_team['image']['url']; ?>') no-repeat center center / cover;">
+                            style="background: #015e7d url('<?php echo $key_team['team_img']['url']; ?>') no-repeat center center / cover;">
                             <div class="team-desc">
                                 <h3>
-                                    <?php echo $key_team['heading']; ?>
+                                    <?php echo $key_team['team_heading']; ?>
                                 </h3>
                                 <p>
-                                    <?php echo $key_team['para']; ?>
+                                    <?php echo $key_team['team_para']; ?>
                                 </p>
                             </div>
                         </div>
@@ -302,8 +300,8 @@ $full_team_btn = get_field('full_team_btn');
                 <?php } ?>
             </div>
             <div class="text-center">
-                <a href="<?php echo $full_team_btn['url']; ?>" target="<?php echo $full_team_btn['target']; ?>"
-                    class="theme-btn white-btn"><?php echo $full_team_btn['title']; ?></a>
+                <a href="<?php echo $team_section_grp['button']['url']; ?>"
+                    target="<?php echo $team_section_grp['button']['target']; ?>" class="theme-btn white-btn"><?php echo $team_section_grp['button']['title']; ?></a>
             </div>
         </div>
     </section>
@@ -312,4 +310,6 @@ $full_team_btn = get_field('full_team_btn');
     <!-- ///////////////////////////////// -->
 </main>
 <!--******************* Middle Section End ******************-->
+<!--******************* Footer Section Starts ******************-->
 <?php get_footer(); ?>
+<!--******************* Footer Section Ends ******************-->
