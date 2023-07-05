@@ -188,6 +188,13 @@ function special_nav_class($classes, $item)
     return $classes;
 }
 
+//SVG SUPPORT
+function upload_svg($mimes)
+{
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'upload_svg');
 
 ////////////////////////////////////////////
 

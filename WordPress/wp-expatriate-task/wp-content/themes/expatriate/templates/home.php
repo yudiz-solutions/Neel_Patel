@@ -4,7 +4,9 @@ get_header();
 
 $banner_slider_repeater = get_field('banner_slider_repeater');
 $about_us_grp = get_field('about_us_grp');
+$service_section_grp = get_field('service_section_grp');
 $assessment_grp = get_field('assessment_grp');
+$news_grp = get_field('news_grp');
 $team_section_grp = get_field('team_section_grp');
 ?>
 
@@ -50,7 +52,6 @@ $team_section_grp = get_field('team_section_grp');
 
 <!--******************* Middle Section Start ******************-->
 <main>
-
     <!-- ///////////////////////////////// -->
     <!-- //// ABOUT US SECTION STARTS //// -->
     <!-- ///////////////////////////////// -->
@@ -93,13 +94,21 @@ $team_section_grp = get_field('team_section_grp');
             <div class="row">
                 <div class="col-sm-4 col-sm-push-8">
                     <div class="services-title">
-                        <h2>Services <br>we provide</h2>
+                        <?php echo $service_section_grp['heading']; ?>
                         <ul class="nav common-nav">
                             <li class="active">
-                                <h3><a data-toggle="pill" href="#pre-arrival">Pre Arrival</a></h3>
+                                <h3>
+                                    <a data-toggle="pill" href="#pre-arrival">
+                                        <?php echo $service_section_grp['category_1']; ?>
+                                    </a>
+                                </h3>
                             </li>
                             <li>
-                                <h3><a data-toggle="pill" href="#post-arrival">Post Arrival</a></h3>
+                                <h3>
+                                    <a data-toggle="pill" href="#post-arrival">
+                                        <?php echo $service_section_grp['category_2']; ?>
+                                    </a>
+                                </h3>
                             </li>
                         </ul>
                     </div>
@@ -108,74 +117,36 @@ $team_section_grp = get_field('team_section_grp');
                     <div class="tab-content">
                         <div id="pre-arrival" class="tab-pane fade in active">
                             <div class="row">
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/immigration.svg" alt="immigration">
-                                        <div class="bottom-block">
-                                            <p>Immigration Services</p>
+                                <?php foreach ($service_section_grp['cat1_showcase'] as $key_service_1) { ?>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="service-item">
+                                            <img src="<?php echo $key_service_1['service_img']['url']; ?>"
+                                                alt="<?php echo $key_service_1['service_img']['alt']; ?>">
+                                            <div class="bottom-block">
+                                                <p>
+                                                    <?php echo $key_service_1['service_title']; ?>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/career.svg" alt="career">
-                                        <div class="bottom-block">
-                                            <p>Career Transition</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/accomodation.svg" alt="accomodation">
-                                        <div class="bottom-block">
-                                            <p>Temporary Accomodation</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/financial.svg" alt="financial">
-                                        <div class="bottom-block">
-                                            <p>Financial Assistance</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                         <div id="post-arrival" class="tab-pane fade">
                             <div class="row">
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/immigration.svg" alt="immigration">
-                                        <div class="bottom-block">
-                                            <p>Immigration Services</p>
+                                <?php foreach ($service_section_grp['cat2_showcase'] as $key_service_2) { ?>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="service-item">
+                                            <img src="<?php echo $key_service_2['service_img']['url']; ?>"
+                                                alt="<?php echo $key_service_2['service_img']['url']; ?>">
+                                            <div class="bottom-block">
+                                                <p>
+                                                    <?php echo $key_service_1['service_title']; ?>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/career.svg" alt="career">
-                                        <div class="bottom-block">
-                                            <p>Career Transition</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/accomodation.svg" alt="accomodation">
-                                        <div class="bottom-block">
-                                            <p>Temporary Accomodation</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="service-item">
-                                        <img src="images/financial.svg" alt="financial">
-                                        <div class="bottom-block">
-                                            <p>Financial Assistance</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -186,6 +157,7 @@ $team_section_grp = get_field('team_section_grp');
     <!-- ///////////////////////////////// -->
     <!-- ///// SERVICE SECTION ENDS ///// -->
     <!-- ///////////////////////////////// -->
+
 
     <!-- ///////////////////////////////// -->
     <!-- //// ASSESSMENT SECTION ENDS //// -->
@@ -210,6 +182,7 @@ $team_section_grp = get_field('team_section_grp');
     <!-- //// ASSESSMENT SECTION ENDS //// -->
     <!-- ///////////////////////////////// -->
 
+
     <!-- ///////////////////////////////// -->
     <!-- //// NEWS SECTION STARTS //// -->
     <!-- ///////////////////////////////// -->
@@ -219,52 +192,83 @@ $team_section_grp = get_field('team_section_grp');
                 <div class="col-sm-3">
                     <div class="news-box news-list-title">
                         <div class="news-desc">
-                            <h2>recent news</h2>
+                            <h2>
+                                <?php echo $news_grp['heading']; ?>
+                            </h2>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-6">
                     <div class="news-box"
-                        style="background: url('images/about-img.jpg') no-repeat center center / cover;">
+                        style="background: url('<?php echo $news_grp['news_1_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
-                            <p><span>Press Release </span>31 Jul, 2018</p>
-                            <h5><a href="#">New Changes to Canada’s Application Intake System for Parents and
-                                    Grandparents</a></h5>
+                            <p>
+                                <?php echo $news_grp['news_1_grp']['tagline']; ?>
+                            </p>
+                            <h5><a href="<?php echo $news_grp['news_1_grp']['description']['url']; ?>"
+                                    target="<?php echo $news_grp['news_1_grp']['description']['target']; ?>"><?php echo $news_grp['news_1_grp']['description']['title']; ?></a></h5>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-3">
                     <div class="news-box"
-                        style="background: url('images/about-img.jpg') no-repeat center center / cover;">
+                        style="background: url('<?php echo $news_grp['news_2_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
-                            <p><span>Press Release </span>31 Jul, 2018</p>
-                            <h5><a href="#">New Changes to Canada’s Application Intake…</a></h5>
+                            <p>
+                                <?php echo $news_grp['news_2_grp']['tagline']; ?>
+                            </p>
+                            <h5>
+                                <a href="<?php echo $news_grp['news_2_grp']['description']['url']; ?>"
+                                    target="<?php echo $news_grp['news_2_grp']['description']['target']; ?>">
+                                    <?php echo $news_grp['news_2_grp']['description']['title']; ?>
+                                </a>
+                            </h5>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-5">
                     <div class="news-box"
-                        style="background: url('images/about-img.jpg') no-repeat center center / cover;">
+                        style="background: url('<?php echo $news_grp['news_3_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
-                            <p><span>Press Release </span>31 Jul, 2018</p>
-                            <h5><a href="#">New Changes to Canada’s Application Intake System for Parents…</a></h5>
+                            <p>
+                                <?php echo $news_grp['news_3_grp']['tagline']; ?>
+                            </p>
+                            <h5>
+                                <a href="<?php echo $news_grp['news_3_grp']['description']['url']; ?>"
+                                    target="<?php echo $news_grp['news_3_grp']['description']['target']; ?>">
+                                    <?php echo $news_grp['news_3_grp']['description']['title']; ?>
+                                </a>
+                            </h5>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-7">
                     <div class="news-box"
-                        style="background: url('images/about-img.jpg') no-repeat center center / cover;">
+                        style="background: url('<?php echo $news_grp['news_4_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
-                            <p><span>Press Release </span>31 Jul, 2018</p>
-                            <h5><a href="#">New Changes to Canada’s Application Intake System for Parents and
-                                    Grandparents</a></h5>
+                            <p>
+                                <?php echo $news_grp['news_4_grp']['tagline']; ?>
+                            </p>
+                            <h5>
+                                <a href="<?php echo $news_grp['news_4_grp']['description']['url']; ?>"
+                                    target="<?php echo $news_grp['news_4_grp']['description']['target']; ?>">
+                                    <?php echo $news_grp['news_4_grp']['description']['title']; ?>
+                                </a>
+                            </h5>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="text-center">
-                <a href="news.html" class="theme-btn">More News</a>
+                <a href="<?php echo $news_grp['more_news_btn']['url']; ?>"
+                    target="<?php echo $news_grp['more_news_btn']['target']; ?>" class="theme-btn"><?php echo $news_grp['more_news_btn']['title']; ?></a>
             </div>
+
         </div>
     </section>
     <!-- ///////////////////////////////// -->
@@ -310,6 +314,7 @@ $team_section_grp = get_field('team_section_grp');
     <!-- ///////////////////////////////// -->
 </main>
 <!--******************* Middle Section End ******************-->
+
 <!--******************* Footer Section Starts ******************-->
 <?php get_footer(); ?>
 <!--******************* Footer Section Ends ******************-->
