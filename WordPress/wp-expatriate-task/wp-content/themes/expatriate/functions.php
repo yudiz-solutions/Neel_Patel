@@ -4,80 +4,110 @@ function add_css_js()
     //********CSS********//
 
     // Font Awsome
-    wp_register_style('fontawsome', get_template_directory_uri() . './css/fontawesome.css');
+    wp_register_style('fontawsome', get_template_directory_uri() . '/css/fontawesome.css');
     wp_enqueue_style('fontawsome');
 
     // Bootstrap
-    wp_register_style('bootstrap', get_template_directory_uri() . './css/bootstrap.css');
+    wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css');
     wp_enqueue_style('bootstrap');
 
     // Slick
-    wp_register_style('slick', get_template_directory_uri() . './css/slick.css');
+    wp_register_style('slick', get_template_directory_uri() . '/css/slick.css');
     wp_enqueue_style('slick');
 
     // Slick theme
-    wp_register_style('slick-theme', get_template_directory_uri() . './css/slick-theme.css');
+    wp_register_style('slick-theme', get_template_directory_uri() . '/css/slick-theme.css');
     wp_enqueue_style('slick-theme');
 
     // Style
-    wp_register_style('style', get_template_directory_uri() . './style.css');
+    wp_register_style('style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('style');
 
     //********JS********//
 
     // jQuery
-    wp_register_script('jquery', get_template_directory_uri() . './js/lib/jquery.js', array(), '1.0.0', true);
+    wp_register_script('jquery', get_template_directory_uri() . '/js/lib/jquery.js', array(), '1.0.0', true);
     wp_enqueue_script('jquery');
 
     // Slick
-    wp_register_script('slick', get_template_directory_uri() . './js/slick.js', array(), '1.0.0', true);
+    wp_register_script('slick', get_template_directory_uri() . '/js/slick.js', array(), '1.0.0', true);
     wp_enqueue_script('slick');
 
     // Bootstrap
-    wp_register_script('bootstrap', get_template_directory_uri() . './js/bootstrap.js', array(), '1.0.0', true);
+    wp_register_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.js', array(), '1.0.0', true);
     wp_enqueue_script('bootstrap');
 
     // Modernizr
-    wp_register_script('modernizr', get_template_directory_uri() . './js/modernizr.js', array(), '1.0.0', true);
+    wp_register_script('modernizr', get_template_directory_uri() . '/js/modernizr.js', array(), '1.0.0', true);
     wp_enqueue_script('modernizr');
 
     // Custom JS
-    wp_register_script('customJS', get_template_directory_uri() . './customjs.js', array(), '1.0.0', true);
+    wp_register_script('customJS', get_template_directory_uri() . '/customjs.js', array(), '1.0.0', true);
     wp_enqueue_script('customJS');
 
     // Sticky-Kit
-    wp_register_script('sticky-kit', get_template_directory_uri() . './js/sticky-kit.js', array(), '1.0.0', true);
+    wp_register_script('sticky-kit', get_template_directory_uri() . '/js/sticky-kit.js', array(), '1.0.0', true);
     wp_enqueue_script('sticky-kit');
 
     // Custom-File-Input
-    wp_register_script('custom-file-input', get_template_directory_uri() . './js/custom-file-input.js', array(), '1.0.0', true);
+    wp_register_script('custom-file-input', get_template_directory_uri() . '/js/custom-file-input.js', array(), '1.0.0', true);
     wp_enqueue_script('custom-file-input');
 
     // html5shiv.min
-    wp_register_script('html5shiv.min', get_template_directory_uri() . './js/html5shiv.min.js', array(), '1.0.0', true);
+    wp_register_script('html5shiv.min', get_template_directory_uri() . '/js/html5shiv.min.js', array(), '1.0.0', true);
     wp_enqueue_script('html5shiv.min');
 
     // jcf.file
-    wp_register_script('jcf.file', get_template_directory_uri() . './js/jcf.file.js', array(), '1.0.0', true);
+    wp_register_script('jcf.file', get_template_directory_uri() . '/js/jcf.file.js', array(), '1.0.0', true);
     wp_enqueue_script('jcf.file');
 
     // jcf
-    wp_register_script('jcf', get_template_directory_uri() . './js/jcf.js', array(), '1.0.0', true);
+    wp_register_script('jcf', get_template_directory_uri() . '/js/jcf.js', array(), '1.0.0', true);
     wp_enqueue_script('jcf');
 
     // jcf.radio
-    wp_register_script('jcf.radio', get_template_directory_uri() . './js/jcf.radio.js', array(), '1.0.0', true);
+    wp_register_script('jcf.radio', get_template_directory_uri() . '/js/jcf.radio.js', array(), '1.0.0', true);
     wp_enqueue_script('jcf.radio');
 
     // jcf.select
-    wp_register_script('jcf.select', get_template_directory_uri() . './js/jcf.select.js', array(), '1.0.0', true);
+    wp_register_script('jcf.select', get_template_directory_uri() . '/js/jcf.select.js', array(), '1.0.0', true);
     wp_enqueue_script('jcf.select');
 
     // respond.min
-    wp_register_script('respond.min', get_template_directory_uri() . './js/respond.min.js', array(), '1.0.0', true);
+    wp_register_script('respond.min', get_template_directory_uri() . '/js/respond.min.js', array(), '1.0.0', true);
     wp_enqueue_script('respond.min');
 }
 add_action('wp_enqueue_scripts', 'add_css_js');
+
+//---------------------------------------------------------------------------//
+//== COMMON ASSESSMENT SECTION ==//
+function add_assessment_section()
+{
+    $assessment_grp = get_field('assessment_grp', 'option');
+    ?>
+    <section class="assessment-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>
+                        <?php echo $assessment_grp['heading']; ?>
+                    </h2>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <a href="<?php echo $assessment_grp['btn']['url']; ?>"
+                        target="<?php echo $assessment_grp['btn']['target']; ?>" class="theme-btn white-btn">
+                        <?php echo $assessment_grp['btn']['title']; ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+add_action('insert_assessment_section', 'add_assessment_section');
+
+//---------------------------------------------------------------------------//
+
 
 
 //== ADDING DYNAMIC NAVBAR ==//
@@ -272,9 +302,4 @@ function custom_field_post()
 
     flush_rewrite_rules(); //Refresh the Permalink
 }
-
 add_action('init', 'custom_field_post', 0);
-
-
-
-?>

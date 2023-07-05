@@ -52,6 +52,7 @@ $team_section_grp = get_field('team_section_grp');
 
 <!--******************* Middle Section Start ******************-->
 <main>
+
     <!-- ///////////////////////////////// -->
     <!-- //// ABOUT US SECTION STARTS //// -->
     <!-- ///////////////////////////////// -->
@@ -158,30 +159,15 @@ $team_section_grp = get_field('team_section_grp');
     <!-- ///// SERVICE SECTION ENDS ///// -->
     <!-- ///////////////////////////////// -->
 
-
     <!-- ///////////////////////////////// -->
     <!-- //// ASSESSMENT SECTION ENDS //// -->
     <!-- ///////////////////////////////// -->
-    <section class="assessment-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h2>
-                        <?php echo $assessment_grp['heading']; ?>
-                    </h2>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <a href="<?php echo $assessment_grp['apply_now_btn']['url']; ?>"
-                        target="<?php echo $assessment_grp['apply_now_btn']['target']; ?>" class="theme-btn white-btn">
-                        <?php echo $assessment_grp['apply_now_btn']['title']; ?></a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php
+    do_action('insert_assessment_section');
+    ?>
     <!-- ///////////////////////////////// -->
     <!-- //// ASSESSMENT SECTION ENDS //// -->
     <!-- ///////////////////////////////// -->
-
 
     <!-- ///////////////////////////////// -->
     <!-- //// NEWS SECTION STARTS //// -->
@@ -268,7 +254,6 @@ $team_section_grp = get_field('team_section_grp');
                 <a href="<?php echo $news_grp['more_news_btn']['url']; ?>"
                     target="<?php echo $news_grp['more_news_btn']['target']; ?>" class="theme-btn"><?php echo $news_grp['more_news_btn']['title']; ?></a>
             </div>
-
         </div>
     </section>
     <!-- ///////////////////////////////// -->
@@ -314,7 +299,6 @@ $team_section_grp = get_field('team_section_grp');
     <!-- ///////////////////////////////// -->
 </main>
 <!--******************* Middle Section End ******************-->
-
 <!--******************* Footer Section Starts ******************-->
 <?php get_footer(); ?>
 <!--******************* Footer Section Ends ******************-->

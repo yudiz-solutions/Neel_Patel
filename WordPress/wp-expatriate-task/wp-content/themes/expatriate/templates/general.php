@@ -15,18 +15,11 @@ get_header();
 <!--******************* Header Section End *********************-->
 <!--******************* Middle Section Start ******************-->
 <main>
-    <section class="assessment-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h2>Get your free assessment done right now !</h2>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <a href="assessment.html" class="theme-btn white-btn">apply now</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!--========= ASSESMENT SECTION STARTS =========-->
+    <?php
+    do_action('insert_assessment_section');
+    ?>
+    <!--========= ASSESMENT SECTION ENDS =========-->
 </main>
 <!--******************* Middle Section End ******************-->
 <!--******************* Footer Section Starts ******************-->
