@@ -45,38 +45,57 @@ $packages_repeater = get_field('packages_repeater');
                         // echo $temp;
                         
                         foreach ($packages_repeater as $key => $val) {
-                            print_r($key);
-                            if ($key = 0 || $key % 2 != 0) {
+                            // echo "<pre>";
+                            // print_r($key);
+                            // echo "</pre>";
+                        
+                            if ($key = 0) {
                                 ?>
-                                <b>
-                                    <?php print_r($key); ?>
-                                </b>
-                                <!-- <div class="col-sm-6">
-                                    <div class="package-box">
-                                        <h5>Pre Arrival Services</h5>
-                                        <div class="package-price">
-                                            <span>
-                                                $1800
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <?php
-                            }
-
-                            if ($key % 2 == 0) {
-                                ?>
-                                <!-- <div class="col-sm-6 col-sm-offset-3">
+                                <div class="col-sm-6">
                                     <div class="package-box">
                                         <h5>
-                                            Discounted package for <br><em>[ Pre- Arrival + Post-
-                                                Arrival]</em><br> Services
+                                            <?php echo $key; ?>
+                                        </h5>
+                                        <h5>
+                                            <?php echo $val['title']; ?>
                                         </h5>
                                         <div class="package-price">
-                                            <span>$3000</span>
+                                            <?php echo $val['price']; ?>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
+                                <?php
+                            } elseif ($key % 2 != 0) {
+                                ?>
+                                <div class="col-sm-6">
+                                    <div class="package-box">
+                                        <h5>
+                                            <?php echo $key; ?>
+                                        </h5>
+                                        <h5>
+                                            <?php echo $val['title']; ?>
+                                        </h5>
+                                        <div class="package-price">
+                                            <?php echo $val['price']; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                            } elseif ($key % 2 == 0) {
+                                ?>
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div class="package-box">
+                                        <h5>
+                                            <?php echo $key; ?>
+                                        </h5>
+                                        <h5>
+                                            <?php echo $val['title']; ?>
+                                        </h5>
+                                        <div class="package-price">
+                                            <?php echo $val['price']; ?>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php }
                         } ?>
 

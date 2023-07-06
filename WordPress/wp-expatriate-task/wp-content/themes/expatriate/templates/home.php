@@ -10,7 +10,7 @@ $news_grp = get_field('news_grp');
 $team_section_grp = get_field('team_section_grp');
 ?>
 
-<!--******************* Banner Section Start *********************-->
+<!--========= BANNER SECTION STARTS =========-->
 <?php if (!empty($banner_slider_repeater)) { ?>
     <div class="home-banner">
         <div class="home-slider">
@@ -47,15 +47,12 @@ $team_section_grp = get_field('team_section_grp');
         </div>
     </div>
 <?php } ?>
-<!--******************* Banner Section End *********************-->
-<!--******************* Header Section End *********************-->
+<!--========= BANNER SECTION ENDS =========-->
 
-<!--******************* Middle Section Start ******************-->
 <main>
-
-    <!-- ///////////////////////////////// -->
-    <!-- //// ABOUT US SECTION STARTS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!------ ABOUT US SECTION STARTS----->
+    <!----------------------------------->
     <section class="common-section about-section">
         <div class="container">
             <div class="row">
@@ -82,14 +79,13 @@ $team_section_grp = get_field('team_section_grp');
             </div>
         </div>
     </section>
-    <!-- ///////////////////////////////// -->
-    <!-- //// ABOUT US SECTION ENDS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!------- ABOUT US SECTION ENDS ----->
+    <!----------------------------------->
 
-
-    <!-- ///////////////////////////////// -->
-    <!-- //// SERVICE SECTION STARTS //// -->
-    <!-- ///////////////////////////////// -->
+    <!------------------------------------->
+    <!------ SERVICE SECTION STARTS-------->
+    <!------------------------------------->
     <section class="common-section services-section">
         <div class="container">
             <div class="row">
@@ -119,34 +115,34 @@ $team_section_grp = get_field('team_section_grp');
                         <div id="pre-arrival" class="tab-pane fade in active">
                             <div class="row">
                                 <?php foreach ($service_section_grp['cat1_showcase'] as $key_service_1) { ?>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="service-item">
-                                            <img src="<?php echo $key_service_1['service_img']['url']; ?>"
-                                                alt="<?php echo $key_service_1['service_img']['alt']; ?>">
-                                            <div class="bottom-block">
-                                                <p>
-                                                    <?php echo $key_service_1['service_title']; ?>
-                                                </p>
-                                            </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="service-item">
+                                        <img src="<?php echo $key_service_1['service_img']['url']; ?>"
+                                            alt="<?php echo $key_service_1['service_img']['alt']; ?>">
+                                        <div class="bottom-block">
+                                            <p>
+                                                <?php echo $key_service_1['service_title']; ?>
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
                                 <?php } ?>
                             </div>
                         </div>
                         <div id="post-arrival" class="tab-pane fade">
                             <div class="row">
                                 <?php foreach ($service_section_grp['cat2_showcase'] as $key_service_2) { ?>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="service-item">
-                                            <img src="<?php echo $key_service_2['service_img']['url']; ?>"
-                                                alt="<?php echo $key_service_2['service_img']['url']; ?>">
-                                            <div class="bottom-block">
-                                                <p>
-                                                    <?php echo $key_service_1['service_title']; ?>
-                                                </p>
-                                            </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="service-item">
+                                        <img src="<?php echo $key_service_2['service_img']['url']; ?>"
+                                            alt="<?php echo $key_service_2['service_img']['url']; ?>">
+                                        <div class="bottom-block">
+                                            <p>
+                                                <?php echo $key_service_1['service_title']; ?>
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
                                 <?php } ?>
                             </div>
                         </div>
@@ -155,23 +151,23 @@ $team_section_grp = get_field('team_section_grp');
             </div>
         </div>
     </section>
-    <!-- ///////////////////////////////// -->
-    <!-- ///// SERVICE SECTION ENDS ///// -->
-    <!-- ///////////////////////////////// -->
+    <!------------------------------------->
+    <!-------- SERVICE SECTION ENDS-------->
+    <!------------------------------------->
 
-    <!-- ///////////////////////////////// -->
-    <!-- //// ASSESSMENT SECTION ENDS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!---- ASSESSMENT SECTION ENDS ------>
+    <!----------------------------------->
     <?php
     do_action('insert_assessment_section');
     ?>
-    <!-- ///////////////////////////////// -->
-    <!-- //// ASSESSMENT SECTION ENDS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!----- ASSESSMENT SECTION ENDS ----->
+    <!----------------------------------->
 
-    <!-- ///////////////////////////////// -->
-    <!-- //// NEWS SECTION STARTS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!-------- NEWS SECTION STARTS------->
+    <!----------------------------------->
     <section class="common-section home-news-section">
         <div class="container">
             <div class="home-news-list">
@@ -256,14 +252,13 @@ $team_section_grp = get_field('team_section_grp');
             </div>
         </div>
     </section>
-    <!-- ///////////////////////////////// -->
-    <!-- //// NEWS SECTION ENDS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!-------- NEWS SECTION ENDS--------->
+    <!----------------------------------->
 
-
-    <!-- ///////////////////////////////// -->
-    <!-- //// TEAM SECTION STARTS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!-------- TEAM SECTION STARTS--------->
+    <!----------------------------------->
     <section class="common-section home-team-section">
         <div class="container">
             <div class="text-center">
@@ -273,19 +268,19 @@ $team_section_grp = get_field('team_section_grp');
             </div>
             <div class="row">
                 <?php foreach ($team_section_grp['repeater'] as $key_team) { ?>
-                    <div class="col-sm-4">
-                        <div class="team-box"
-                            style="background: #015e7d url('<?php echo $key_team['team_img']['url']; ?>') no-repeat center center / cover;">
-                            <div class="team-desc">
-                                <h3>
-                                    <?php echo $key_team['team_heading']; ?>
-                                </h3>
-                                <p>
-                                    <?php echo $key_team['team_para']; ?>
-                                </p>
-                            </div>
+                <div class="col-sm-4">
+                    <div class="team-box"
+                        style="background: #015e7d url('<?php echo $key_team['team_img']['url']; ?>') no-repeat center center / cover;">
+                        <div class="team-desc">
+                            <h3>
+                                <?php echo $key_team['team_heading']; ?>
+                            </h3>
+                            <p>
+                                <?php echo $key_team['team_para']; ?>
+                            </p>
                         </div>
                     </div>
+                </div>
                 <?php } ?>
             </div>
             <div class="text-center">
@@ -294,11 +289,15 @@ $team_section_grp = get_field('team_section_grp');
             </div>
         </div>
     </section>
-    <!-- ///////////////////////////////// -->
-    <!-- //// TEAM SECTION ENDS //// -->
-    <!-- ///////////////////////////////// -->
+    <!----------------------------------->
+    <!-------- TEAM SECTION ENDS--------->
+    <!----------------------------------->
+
 </main>
-<!--******************* Middle Section End ******************-->
-<!--******************* Footer Section Starts ******************-->
+<!----------------------------------->
+<!-------- FOOTER SECTION ENDS ------>
+<!----------------------------------->
 <?php get_footer(); ?>
-<!--******************* Footer Section Ends ******************-->
+<!----------------------------------->
+<!-------- FOOTER SECTION ENDS ------>
+<!----------------------------------->
