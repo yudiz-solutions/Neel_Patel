@@ -1,31 +1,49 @@
 <?php
 /* Template Name: Investor */
 get_header();
+
+$banner_grp = get_field('banner_grp');
+$content = get_field("content");
 ?>
 
-<!--******************* Banner Section Start *********************-->
-<div class="home-banner">
-    <div class="banner" style="background: #5C5C5C url('images/home-slide1.jpg') no-repeat center center / cover;">
-        <div class="container">
-            <h1>Investor Information</h1>
+<!--========= BANNER SECTION STARTS =========-->
+<?php if (!empty($banner_grp)) { ?>
+    <div class="home-banner">
+
+        <?php if (!empty($banner_grp['img'])) { ?>
+            <div class="banner"
+                style="background: #5C5C5C url('<?php echo $banner_grp['img']['url']; ?>') no-repeat center center / cover;">
+            <?php } ?>
+
+            <?php if (!empty($banner_grp['heading'])) { ?>
+                <div class="container">
+                    <h1>
+                        <?php echo $banner_grp['heading']; ?>
+                    </h1>
+                </div>
+            <?php } ?>
         </div>
     </div>
-</div>
-<!--******************* Banner Section End *********************-->
-<!--******************* Header Section End *********************-->
-<!--******************* Middle Section Start ******************-->
+<?php } ?>
+<!--========= BANNER SECTION ENDS =========-->
+
 <main>
-    <section class="common-section">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <h3>Expatriate Assistance Services Inc is a 100% subsidiary of GreenBank Capital Inc. GreenBank is a
-                        merchant banking business listed on the Canadian Securities Exchange (CSE:GBC | OTCMKTS:GRNBF |
-                        FRA:2TL), and is included in the CSE Composite Index</h3>
+    <!--========= COMMON SECTION STARTS =========-->
+    <?php if (!empty($content)) { ?>
+        <section class="common-section">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h3>
+                            <?php echo $content; ?>
+                        </h3>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php } ?>
+    <!--========= COMMON SECTION ENDS =========-->
+
 
     <!--========= ASSESMENT SECTION STARTS =========-->
     <?php
@@ -33,7 +51,7 @@ get_header();
     ?>
     <!--========= ASSESMENT SECTION ENDS =========-->
 </main>
-<!--******************* Middle Section End ******************-->
+
 <!--******************* Footer Section Starts ******************-->
 <?php get_footer(); ?>
 <!--******************* Footer Section Ends ******************-->

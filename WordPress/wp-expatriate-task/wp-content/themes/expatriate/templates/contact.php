@@ -1,64 +1,88 @@
 <?php
 /* Template Name: Contact */
 get_header();
+$banner_grp = get_field('banner_grp');
+$common_grp = get_field('common_grp');
 ?>
 
-<!--******************* Banner Section Start *********************-->
-<div class="home-banner">
-  <div class="banner" style="background: #5C5C5C url('images/home-slide1.jpg') no-repeat center center / cover;">
-    <div class="container">
-      <h1>contact us</h1>
+<!--========= BANNER SECTION STARTS =========-->
+<?php if (!empty($banner_grp)) { ?>
+  <div class="home-banner">
+    <?php if (!empty($banner_grp['img'])) { ?>
+      <div class="banner"
+        style="background: #5C5C5C url('<?php echo $banner_grp['img']['url']; ?>') no-repeat center center / cover;">
+      <?php } ?>
+
+      <?php if (!empty($banner_grp['heading'])) { ?>
+        <div class="container">
+          <h1>
+            <?php echo $banner_grp['heading']; ?>
+          </h1>
+        </div>
+      <?php } ?>
     </div>
   </div>
-</div>
-<!--******************* Banner Section End *********************-->
-<!--******************* Header Section End *********************-->
-<!--******************* Middle Section Start ******************-->
+<?php } ?>
+<!--========= BANNER SECTION ENDS =========-->
 <main>
+  <!--========= COMMON SECTION STARTS =========-->
   <section class="common-section contact-section">
     <div class="container-fluid">
       <div class="contact-right col-sm-6 col-sm-offset-6"></div>
     </div>
+
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
           <div class="contact-form">
-            <h3 class="blue-text">Message Us</h3>
-            <form action="#" method="post">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="First Name">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Last Name">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="tel" class="form-control" placeholder="Phone">
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Submit" class="form-control button submit theme-btn">
-              </div>
-            </form>
+            <?php if (!empty($common_grp['heading'])) { ?>
+              <h3 class="blue-text">
+                <?php echo $common_grp['heading']; ?>
+              </h3>
+            <?php }
+            echo do_shortcode('[contact-form-7 id="256" title="Contact Us Page"]');
+            ?>
           </div>
         </div>
+
         <div class="col-sm-6 fill-mob">
           <div class="contact-info">
-            <h3 class="blue-text">Contact Info</h3>
-            <h4>Expatriat Assistance Services Inc. </h4>
-            <p>100 King Street West, Suite 5700 <br>Toronto, Ontario, M5X 1C7</p>
-            <p>Phone: <a href="tel:(647) 931 – 9768">(647) 931 – 9768</a><br>Email: <a
-                href="mailto:dw@greenbankcapitalinc.com">dw@greenbankcapitalinc.com</a></p>
+            <?php if (!empty($common_grp['contact_info_grp']['heading'])) { ?>
+              <h3 class="blue-text">
+                <?php echo $common_grp['contact_info_grp']['heading']; ?>
+              </h3>
+            <?php } ?>
+
+            <?php if (!empty($common_grp['contact_info_grp']['company_name'])) { ?>
+              <h4>
+                <?php echo $common_grp['contact_info_grp']['company_name']; ?>
+              </h4>
+            <?php } ?>
+
+            <?php if (!empty($common_grp['contact_info_grp']['company_address'])) { ?>
+              <p>
+                <?php echo $common_grp['contact_info_grp']['company_address']; ?>
+              </p>
+            <?php } ?>
+
+            <p>
+              <?php if (!empty($common_grp['contact_info_grp']['phone_number'])) { ?>
+                Phone: <a href="tel:<?php echo $common_grp['contact_info_grp']['phone_number']; ?>"><?php echo $common_grp['contact_info_grp']['phone_number'] ?></a>
+              <?php } ?>
+              <br>
+              <?php if (!empty($common_grp['contact_info_grp']['email'])) { ?>
+                Email: <a href="mailto:<?php echo $common_grp['contact_info_grp']['email']; ?>"><?php echo $common_grp['contact_info_grp']['email'] ?></a>
+              <?php } ?>
+            </p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section id="map"></section>
+
+  <section id="map">
+  </section>
+  <!--========= COMMON SECTION ENDS =========-->
 
   <!--========= ASSESMENT SECTION STARTS =========-->
   <?php
@@ -66,11 +90,11 @@ get_header();
   ?>
   <!--========= ASSESMENT SECTION ENDS =========-->
 </main>
-<!--******************* Middle Section End ******************-->
 
-<!--******************* Footer Section Start ******************-->
+<!--========= FOOTER SECTION ENDS =========-->
 <?php get_footer(); ?>
-<!--******************* Footer Section End ******************-->
+<!--========= FOOTER SECTION ENDS =========-->
+
 
 <!-- Custom Map -->
 <!-- <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script> -->
