@@ -56,6 +56,7 @@ $news_banner_grp = get_field('news_banner_grp', 'option');
                     <?php
                     $get_post = array(
                         'post_type' => 'news',
+
                     );
 
                     $get_news = get_posts($get_post);
@@ -69,19 +70,19 @@ $news_banner_grp = get_field('news_banner_grp', 'option');
                             <div class="row">
                                 <div class="col-sm-4">
                                     <?php
-                                    $img_url = get_the_post_thumbnail_url($val->ID);
-                                    $url = get_the_permalink($val->ID);
-                                    $title = get_the_title($val->ID);
-                                    $category = get_the_terms($val->ID, 'Category');
-                                    $excerpt = get_the_excerpt($val->ID);
+                                    // $img_url = get_the_post_thumbnail_url($val->ID);
+                                    // $url = get_the_permalink($val->ID);
+                                    // $title = get_the_title($val->ID);
+                                    // $category = get_the_terms($val->ID, 'news-category');
+                                    // $excerpt = get_the_excerpt($val->ID);
                                     ?>
-                                    <a href="<?php echo $url ?>" class="news-image"><img alt="news"
-                                            src="<?php echo $img_url; ?>"></a>
+                                    <a href="<?php echo get_the_permalink($val->ID) ?>" class="news-image"><img alt="news"
+                                            src="<?php echo $get_the_post_thumbnail_url($val->ID); ?>"></a>
                                 </div>
                                 <div class="col-sm-8 paddingl-none">
                                     <h6>
-                                        <a href="<?php echo $url ?>">
-                                            <?php echo $title; ?>
+                                        <a href="<?php echo get_the_permalink($val->ID) ?>">
+                                            <?php echo get_the_title($val->ID); ?>
                                         </a>
                                     </h6>
                                     <?php
@@ -92,12 +93,14 @@ $news_banner_grp = get_field('news_banner_grp', 'option');
 
                                     <p class="meta">
                                         <span class="category">
-                                            <?php //print_r($category); ?>
+                                            <?php
+                                            //print_r($category); 
+                                            ?>
                                         </span> Jul 31, 2018
                                     </p>
                                     <p>
-                                        <?php echo $excerpt; ?>
-                                        <a href="<?php echo $url ?>" class="read-more">Read More</a>
+                                        <?php echo $get_the_excerpt($val->ID); ?>
+                                        <a href="<?php echo get_the_permalink($val->ID) ?>" class="read-more">Read More</a>
                                     </p>
                                 </div>
                             </div>
