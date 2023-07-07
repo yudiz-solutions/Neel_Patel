@@ -21,6 +21,7 @@ echo "Blog.php Template";
         //     )
         // )
     );
+
     $blogs = new WP_Query($args);
     // echo "<pre>";
     // print_r($blogs);

@@ -260,17 +260,17 @@ function custom_field_post()
         'query_var' => true,
         'rewrite' => array('slug' => 'services'),
         'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => true,
+        'has_archive' => false,
+        'hierarchical' => false,
         'menu_position' => 4,
         'menu_icon' => 'dashicons-tickets',
-        'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments')
+        'supports' => array('title', 'author', 'thumbnail', 'excerpt', 'comments')
     );
     register_post_type('services', $args_services);
 
     //TAXONOMY
 
-    $labels_taxonomy_cat = array(
+    $service_taxonomy_cat = array(
         'name' => _x('Category', 'taxonomy general name', 'expatriate'),
         'singular_name' => _x('Category', 'taxonomy singular name', 'expatriate'),
         'search_items' => __('Search Category', 'expatriate'),
@@ -289,16 +289,90 @@ function custom_field_post()
         'menu_name' => __('Category', 'expatriate')
     );
 
-    $args_taxonomy_cat = array(
+    $service_args_cat = array(
         'hierarchical' => true,
-        'labels' => $labels_taxonomy_cat,
+        'labels' => $service_taxonomy_cat,
         'show_ui' => true,
         'show_admin_column' => true,
         'update_count_callback' => '_update_post_term_count',
         'query_var' => true,
         'rewrite' => array('slug' => 'services-category')
     );
-    register_taxonomy('services-category', 'services', $args_taxonomy_cat);
+    register_taxonomy('services-category', 'services', $service_args_cat);
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// N E W S  P O S T //////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Set UI labels for Custom Post Type
+    $labels_news = array(
+        'name' => _x('News', 'Post Type General Name', 'expatriate'),
+        'singular_name' => _x('News', 'Post Type Singular Name', 'expatriate'),
+        'menu_name' => __('News', 'expatriate'),
+        'parent_item_colon' => __('Parent News', 'expatriate'),
+        'all_items' => __('All News', 'expatriate'),
+        'view_item' => __('View News', 'expatriate'),
+        'add_new_item' => __('Add New News', 'expatriate'),
+        'add_new' => __('Add New', 'expatriate'),
+        'edit_item' => __('Edit News', 'expatriate'),
+        'update_item' => __('Update News', 'expatriate'),
+        'search_items' => __('Search News', 'expatriate'),
+        'not_found' => __('Not Found', 'expatriate'),
+        'not_found_in_trash' => __('Not found in Trash', 'expatriate')
+    );
+
+    // Set other options for Custom Post Type
+    $args_news = array(
+        'label' => __('News', 'expatriate'),
+        'description' => __('News and reviews', 'expatriate'),
+        'labels' => $labels_news,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'news'),
+        'capability_type' => 'post',
+        'has_archive' => false,
+        'hierarchical' => false,
+        'menu_position' => 4,
+        'menu_icon' => 'dashicons-feedback',
+        'supports' => array('title', 'author', 'thumbnail', 'excerpt', 'comments')
+    );
+    register_post_type('news', $args_news);
+
+    //TAXONOMY
+
+    $news_taxonomy_cat = array(
+        'name' => _x('Category', 'taxonomy general name', 'expatriate'),
+        'singular_name' => _x('Category', 'taxonomy singular name', 'expatriate'),
+        'search_items' => __('Search Category', 'expatriate'),
+        'popular_items' => __('Popular Category', 'expatriate'),
+        'all_items' => __('All Category', 'expatriate'),
+        'parent_item' => null,
+        'parent_item_colon' => null,
+        'edit_item' => __('Edit Category', 'expatriate'),
+        'update_item' => __('Update Category', 'expatriate'),
+        'add_new_item' => __('Add New Category', 'expatriate'),
+        'new_item_name' => __('New Category Name', 'expatriate'),
+        'separate_items_with_commas' => __('Separate Category with commas', 'expatriate'),
+        'add_or_remove_items' => __('Add or remove Category', 'expatriate'),
+        'choose_from_most_used' => __('Choose from the most used Category', 'expatriate'),
+        'not_found' => __('No Category found.', 'expatriate'),
+        'menu_name' => __('Category', 'expatriate')
+    );
+
+    $news_args_cat = array(
+        'hierarchical' => true,
+        'labels' => $news_taxonomy_cat,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var' => true,
+        'rewrite' => array('slug' => 'news-category'),
+        'support' => array('tag')
+    );
+    register_taxonomy('news-category', 'news', $news_args_cat);
 
     flush_rewrite_rules(); //Refresh the Permalink
 }
