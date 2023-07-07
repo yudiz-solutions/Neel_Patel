@@ -25,4 +25,6 @@ jQuery(document).ready(function () {
     });
 });
 
-jQuery(".assessment-section").stick_in_parent();
+jQuery(document).ready(function () {
+    jQuery(".assessment-section").stick_in_parent();
+});

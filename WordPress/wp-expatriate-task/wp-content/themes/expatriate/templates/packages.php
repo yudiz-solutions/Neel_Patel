@@ -28,100 +28,61 @@ $packages_repeater = get_field('packages_repeater');
 
 <main>
     <!--========= COMMON SECTION STARTS =========-->
-    <?php
-    // echo "<pre>";
-    // print_r($packages_repeater);
-    // echo "</pre>";
-    
-    ?>
+    <?php if (!empty($packages_repeater)) { ?>
+        <section class="common-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="row">
+                            <?php
+                            foreach ($packages_repeater as $key => $val) {
+                                if ($key == 0 || $key % 2 != 0) {
+                                    ?>
+                                    <div class="col-sm-6">
+                                        <div class="package-box">
+                                            <?php if (!empty($val['title'])) { ?>
+                                                <h5>
+                                                    <?php echo $val['title']; ?>
+                                                </h5>
+                                            <?php }
 
-    <section class="common-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="row">
-                        <?php
-                        $temp = count($packages_repeater);
-                        // echo $temp;
-                        
-                        foreach ($packages_repeater as $key => $val) {
-                            // echo "<pre>";
-                            // print_r($key);
-                            // echo "</pre>";
-                        
-                            if ($key = 0) {
-                                ?>
-                                <div class="col-sm-6">
-                                    <div class="package-box">
-                                        <h5>
-                                            <?php echo $key; ?>
-                                        </h5>
-                                        <h5>
-                                            <?php echo $val['title']; ?>
-                                        </h5>
-                                        <div class="package-price">
-                                            <?php echo $val['price']; ?>
+                                            if (!empty($val['price'])) {
+                                                ?>
+                                                <div class="package-price">
+                                                    <?php echo $val['price']; ?>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
-                                </div>
-                                <?php
-                            } elseif ($key % 2 != 0) {
-                                ?>
-                                <div class="col-sm-6">
-                                    <div class="package-box">
-                                        <h5>
-                                            <?php echo $key; ?>
-                                        </h5>
-                                        <h5>
-                                            <?php echo $val['title']; ?>
-                                        </h5>
-                                        <div class="package-price">
-                                            <?php echo $val['price']; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                            } elseif ($key % 2 == 0) {
-                                ?>
-                                <div class="col-sm-6 col-sm-offset-3">
-                                    <div class="package-box">
-                                        <h5>
-                                            <?php echo $key; ?>
-                                        </h5>
-                                        <h5>
-                                            <?php echo $val['title']; ?>
-                                        </h5>
-                                        <div class="package-price">
-                                            <?php echo $val['price']; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php }
-                        } ?>
 
-                        <!-- <div class="col-sm-6">
-                            <div class="package-box">
-                                <h5>Post Arrival Services</h5>
-                                <div class="package-price"><span>$1800</span></div>
-                            </div>
+                                    <?php
+                                } elseif ($key != 0 && $key % 2 == 0) {
+                                    ?>
+
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <div class="package-box">
+                                            <?php if (!empty($val['title'])) { ?>
+                                                <h5>
+                                                    <?php echo $val['title']; ?>
+                                                </h5>
+                                            <?php }
+
+                                            if (!empty($val['price'])) {
+                                                ?>
+                                                <div class="package-price">
+                                                    <?php echo $val['price']; ?>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                <?php }
+                            } ?>
                         </div>
-
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <div class="package-box">
-                                <h5>
-                                    Discounted package for <br><em>[ Pre- Arrival + Post-
-                                        Arrival]</em><br> Services
-                                </h5>
-                                <div class="package-price">
-                                    <span>$3000</span>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php } ?>
     <!--========= COMMON SECTION ENDS =========-->
 
     <!--========= ASSESMENT SECTION STARTS =========-->
