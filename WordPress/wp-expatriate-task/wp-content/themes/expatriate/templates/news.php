@@ -5,6 +5,17 @@ get_header();
 $news_banner_grp = get_field('news_banner_grp', 'option');
 $news_post_grp = get_field('news_post_grp', 'option');
 $first_news_ID = $news_post_grp['first_news'];
+$first_news_cat = get_the_terms($first_news_ID, 'news-category');
+// $first_news_cat_name = $first_news_cat['name'];
+// foreach ($first_news_cat as $key) {
+//     echo "<pre>";
+//     print_r($key->name);
+//     echo "</pre>";
+// }
+// echo "<pre>";
+// print_r($first_news_cat[0]->name);
+// echo "</pre>";
+
 ?>
 
 <!--========= BANNER SECTION STARTS =========-->
@@ -44,7 +55,14 @@ $first_news_ID = $news_post_grp['first_news'];
                                     </a>
                                 </h6>
                                 <p>
-                                    <span class="category">Press Releases</span> Jul 31, 2018
+                                    <span class="category">
+                                        <?php print_r($first_news_cat[0]->name); ?>
+                                    </span>
+                                    <?php
+                                    echo get_the_date('M j, Y', $first_news_ID);
+                                    // echo $post_date . "This is Date";
+                                    ?>
+                                    <!-- Jul 31, 2018 -->
                                 </p>
                             </div>
                         </div>
@@ -57,8 +75,8 @@ $first_news_ID = $news_post_grp['first_news'];
                     <?php
                     $post_args = array(
                         'post_type' => 'news',
-                        'posts_per_page' => 50,
                         'exclude' => array($first_news_ID),
+                        'posts_per_page' => 50,
                     );
 
                     $get_news = get_posts($post_args);
@@ -80,7 +98,12 @@ $first_news_ID = $news_post_grp['first_news'];
                                     </h6>
 
                                     <p class="meta">
-                                        <span class="category">Press Releases</span> Jul 31, 2018
+                                        <span class="category">
+                                            <?php
+                                            $list_cat_arr = get_the_terms($post_val->ID, 'news-category');
+                                            echo $list_cat_arr[0]->name; ?>
+                                        </span>
+                                        <?php echo get_the_date('M j, Y', $post_val->ID); ?>
                                     </p>
 
                                     <p>
