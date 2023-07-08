@@ -3,13 +3,8 @@
 
 get_header();
 $news_banner_grp = get_field('news_banner_grp', 'option');
-// $news_grp = get_field('news_grp');
-// echo '<pre>';
-// print_r($news_grp);
-// echo '</pre>';
-// die;
-
-
+$news_post_grp = get_field('news_post_grp', 'option');
+$first_news_ID = $news_post_grp['first_news'];
 ?>
 
 <!--========= BANNER SECTION STARTS =========-->
@@ -37,127 +32,68 @@ $news_banner_grp = get_field('news_banner_grp', 'option');
     <section class="common-section">
         <div class="container">
             <div class="news-blocks">
+                <!-- /************ FIRST POST STARTS ************/ -->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="image-news"
-                            style="background: #ccc url('images/news-feature.jpg') no-repeat center center / cover;">
+                            style="background: #ccc url('<?php echo get_the_post_thumbnail_url($first_news_ID); ?>') no-repeat center center / cover;">
                             <div class="news-inner">
-                                <h6><a href="news-inner.html">Blockchain Evolution updates its 5 projects and seeks
-                                        $10 Mn. funding to coincide with its CSE...</a></h6>
-                                <p><span class="category">Press Releases</span> Jul 31, 2018</p>
+                                <h6>
+                                    <a href="<?php the_permalink($first_news_ID); ?>">
+                                        <?php echo get_the_title($first_news_ID); ?>
+                                    </a>
+                                </h6>
+                                <p>
+                                    <span class="category">Press Releases</span> Jul 31, 2018
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <?php
-                global $post;
-                ?>
+                <!-- /************ FIRST POST STARTS ************/ -->
+
+                <!-- /************ POST LISTING STARTS ************/ -->
                 <div class="row">
                     <?php
-                    $get_post = array(
+                    $post_args = array(
                         'post_type' => 'news',
-
+                        'posts_per_page' => 50,
+                        'exclude' => array($first_news_ID),
                     );
 
-                    $get_news = get_posts($get_post);
+                    $get_news = get_posts($post_args);
+                    ?>
 
-                    foreach ($get_news as $val) {
-                        // echo '<pre>';
-                        // print_r($val);
-                        // echo '</pre>';
-                        ?>
+                    <?php foreach ($get_news as $post_val) { ?>
                         <div class="col-md-6 col-sm-12 news-side">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <?php
-                                    // $img_url = get_the_post_thumbnail_url($val->ID);
-                                    // $url = get_the_permalink($val->ID);
-                                    // $title = get_the_title($val->ID);
-                                    // $category = get_the_terms($val->ID, 'news-category');
-                                    // $excerpt = get_the_excerpt($val->ID);
-                                    ?>
-                                    <a href="<?php echo get_the_permalink($val->ID) ?>" class="news-image"><img alt="news"
-                                            src="<?php echo $get_the_post_thumbnail_url($val->ID); ?>"></a>
+                                    <a href="<?php echo get_the_permalink($post_val->ID); ?>" class="news-image">
+                                        <img alt="news" src="<?php echo get_the_post_thumbnail_url($post_val->ID); ?>">
+                                    </a>
                                 </div>
                                 <div class="col-sm-8 paddingl-none">
                                     <h6>
-                                        <a href="<?php echo get_the_permalink($val->ID) ?>">
-                                            <?php echo get_the_title($val->ID); ?>
+                                        <a href="<?php echo get_the_permalink($post_val->ID); ?>">
+                                            <?php echo get_the_title($post_val->ID); ?>
                                         </a>
                                     </h6>
-                                    <?php
-                                    echo "<pre>";
-                                    print_r($category);
-                                    echo "</pre>";
-                                    ?>
 
                                     <p class="meta">
-                                        <span class="category">
-                                            <?php
-                                            //print_r($category); 
-                                            ?>
-                                        </span> Jul 31, 2018
+                                        <span class="category">Press Releases</span> Jul 31, 2018
                                     </p>
+
                                     <p>
-                                        <?php echo $get_the_excerpt($val->ID); ?>
-                                        <a href="<?php echo get_the_permalink($val->ID) ?>" class="read-more">Read More</a>
+                                        <?php echo get_the_excerpt($post_val->ID); ?>
+                                        <a href="<?php echo get_the_permalink($post_val->ID); ?>" class="read-more">Read
+                                            More</a>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
-
-                    <!-- <div class="col-md-6 col-sm-12 news-side">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a href="news-inner.html" class="news-image"><img alt="news"
-                                        src="images/news-feature-sq2.jpg"></a>
-                            </div>
-                            <div class="col-sm-8 paddingl-none">
-                                <h6><a href="news-inner.html">Blockchain Evolution updates its 5 projects and seeks
-                                        $10 Mn. funding to coincide with its CSE...</a></h6>
-                                <p class="meta"><span class="category">Press Releases</span> Jul 31, 2018</p>
-                                <p>The Right Honourable Justin Trudeau, Prime Minister of Canada, at the New Delhi
-                                    residence of His Excellency Nadir Patel, High Commissioner … <a
-                                        href="news-inner.html" class="read-more">Read More</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 news-side">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a href="news-inner.html" class="news-image"><img alt="news"
-                                        src="images/news-feature-sq1.jpg"></a>
-                            </div>
-                            <div class="col-sm-8 paddingl-none">
-                                <h6><a href="news-inner.html">Blockchain Evolution updates its 5 projects and seeks
-                                        $10 Mn. funding to coincide with its CSE...</a></h6>
-                                <p class="meta"><span class="category">Press Releases</span> Jul 31, 2018</p>
-                                <p>The Right Honourable Justin Trudeau, Prime Minister of Canada, at the New Delhi
-                                    residence of His Excellency Nadir Patel, High Commissioner … <a
-                                        href="news-inner.html" class="read-more">Read More</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-12 news-side">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a href="news-inner.html" class="news-image"><img alt="news"
-                                        src="images/news-feature-sq2.jpg"></a>
-                            </div>
-                            <div class="col-sm-8 paddingl-none">
-                                <h6><a href="news-inner.html">Blockchain Evolution updates its 5 projects and seeks
-                                        $10 Mn. funding to coincide with its CSE...</a></h6>
-                                <p class="meta"><span class="category">Press Releases</span> Jul 31, 2018</p>
-                                <p>The Right Honourable Justin Trudeau, Prime Minister of Canada, at the New Delhi
-                                    residence of His Excellency Nadir Patel, High Commissioner … <a
-                                        href="news-inner.html" class="read-more">Read More</a></p>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
+                <!-- /************ POST LISTING ENDS ************/ -->
             </div>
             <div class="text-center">
                 <a href="#" class="theme-btn">Load More</a>
