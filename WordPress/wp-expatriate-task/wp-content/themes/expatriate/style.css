@@ -1273,15 +1273,6 @@ ol.breadcrumb li a:hover {
     line-height: 20px;
 }
 
-.article-detail {}
-
-.featured-articles {
-    margin: 24px 0 12px;
-    background: url("./images/news-feature.jpg") no-repeat center center / cover;
-    height: 320px;
-    border-radius: 2px;
-}
-
 .article-title {
     color: #015E7D;
 }

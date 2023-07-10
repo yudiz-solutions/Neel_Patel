@@ -23,10 +23,7 @@ echo "Blog.php Template";
     );
 
     $blogs = new WP_Query($args);
-    // echo "<pre>";
-    // print_r($blogs);
-    // echo "</pre>";
-    
+
     if ($blogs->have_posts()) { ?>
         <?php
         while ($blogs->have_posts()) {

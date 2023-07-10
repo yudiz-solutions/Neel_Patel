@@ -80,6 +80,7 @@ function add_css_js()
 add_action('wp_enqueue_scripts', 'add_css_js');
 
 //---------------------------------------------------------------------------//
+
 //== COMMON ASSESSMENT SECTION ==//
 function add_assessment_section()
 {
@@ -108,7 +109,24 @@ add_action('insert_assessment_section', 'add_assessment_section');
 
 //---------------------------------------------------------------------------//
 
+//== BREADCRUMB SHORTCODE ==//
+function add_breadcrumb()
+{
+    global $post;
+    if (is_singular('news')) {
+        ?>
+        <ol class="breadcrumb">
+            <li><a href="<?php echo site_url(); ?>">Home</a></li>
+            <li><a href="<?php the_permalink('25'); ?>">News</a></li>
+            <li class="active">
+                <?php echo $post->post_title ?>
+            </li>
+        </ol>
+    <?php }
+}
+add_action('insert_breadcrumb', 'add_breadcrumb');
 
+//---------------------------------------------------------------------------//
 
 //== ADDING DYNAMIC NAVBAR ==//
 function menu_setup()
@@ -143,8 +161,9 @@ add_action('after_setup_theme', 'menu_setup');
 
 add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);
 
+//---------------------------------------------------------------------------//
 
-//== ADDING DYNAMIC NAVBAR ==//
+//== ADDING THEME SETTINGS ==//
 function theme_general_setting()
 {
 
@@ -165,6 +184,7 @@ function theme_general_setting()
 }
 add_action('acf/init', 'theme_general_setting');
 
+//---------------------------------------------------------------------------//
 
 //== ADDING DYNAMIC NAVBAR ==//
 function footer_setup()
@@ -205,9 +225,22 @@ function footer_setup()
         )
     );
 
+    register_sidebar(
+        array(
+            'name' => __('Social Icons', 'expatriate'),
+            'id' => 'social-icons',
+            'description' => '',
+            'before_widget' => '<ul>',
+            'after_widget' => '</ul>',
+            'before_title' => '<li>',
+            'after_title' => '</li>'
+        )
+    );
+
 }
 add_action('widgets_init', 'footer_setup');
 
+//---------------------------------------------------------------------------//
 
 //FOR ACTIVE CLASS
 function special_nav_class($classes, $item)
@@ -218,6 +251,8 @@ function special_nav_class($classes, $item)
     return $classes;
 }
 
+//---------------------------------------------------------------------------//
+
 //SVG SUPPORT
 function upload_svg($mimes)
 {
@@ -226,7 +261,7 @@ function upload_svg($mimes)
 }
 add_filter('upload_mimes', 'upload_svg');
 
-///////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------------//
 
 //== CUSTOM POST TYPE ==//
 function custom_field_post()
@@ -377,3 +412,81 @@ function custom_field_post()
     flush_rewrite_rules(); //Refresh the Permalink
 }
 add_action('init', 'custom_field_post', 0);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////// N E W S  L O A D  M O R E /////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function news_loadmore_support()
+{
+    //Register
+    wp_register_script('myNewsLoadmore', get_stylesheet_directory_uri() . '/js/loadmore-news.js');
+
+    //Localize
+    $localize_array = array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+    );
+
+    wp_localize_script('myNewsLoadmore', 'news', $localize_array);
+
+    //Enqueue script with Localize data
+    wp_enqueue_script('myNewsLoadmore');
+}
+add_action('wp_enqueue_scripts', 'news_loadmore_support');
+
+function load_more_news()
+{
+    $page = (isset($_POST['page'])) ? $_POST['page'] : 1;
+
+    $news_post_grp = get_field('news_post_grp', 'option');
+    $first_news_ID = $news_post_grp['first_news'];
+
+    $post_args = array(
+        'post_type' => 'news',
+        'post_status' => 'publish',
+        'exclude' => array($first_news_ID),
+        'posts_per_page' => 4,
+        'paged' => $page
+    );
+
+    $get_news = get_posts($post_args);
+
+    foreach ($get_news as $post_val) { ?>
+        <div class="col-md-6 col-sm-12 news-side">
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="<?php echo get_the_permalink($post_val->ID); ?>" class="news-image">
+                        <img alt="news" src="<?php echo get_the_post_thumbnail_url($post_val->ID); ?>">
+                    </a>
+                </div>
+                <div class="col-sm-8 paddingl-none">
+                    <h6>
+                        <a href="<?php echo get_the_permalink($post_val->ID); ?>">
+                            <?php echo get_the_title($post_val->ID); ?>
+                        </a>
+                    </h6>
+
+                    <p class="meta">
+                        <span class="category">
+                            <?php
+                            $list_cat_arr = get_the_terms($post_val->ID, 'news-category');
+                            echo $list_cat_arr[0]->name; ?>
+                        </span>
+                        <?php echo get_the_date('M j, Y', $post_val->ID); ?>
+                    </p>
+
+                    <p>
+                        <?php echo get_the_excerpt($post_val->ID); ?>
+                        <a href="<?php echo get_the_permalink($post_val->ID); ?>" class="read-more">Read
+                            More</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <?php }
+
+
+    wp_die();
+}
+add_action('wp_ajax_load_more_news', 'load_more_news');
+add_action('wp_ajax_nopriv_load_more_news', 'load_more_news');

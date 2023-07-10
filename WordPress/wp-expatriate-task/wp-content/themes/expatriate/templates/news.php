@@ -12,9 +12,7 @@ $first_news_cat = get_the_terms($first_news_ID, 'news-category');
 //     print_r($key->name);
 //     echo "</pre>";
 // }
-// echo "<pre>";
-// print_r($first_news_cat[0]->name);
-// echo "</pre>";
+
 
 ?>
 
@@ -60,9 +58,7 @@ $first_news_cat = get_the_terms($first_news_ID, 'news-category');
                                     </span>
                                     <?php
                                     echo get_the_date('M j, Y', $first_news_ID);
-                                    // echo $post_date . "This is Date";
                                     ?>
-                                    <!-- Jul 31, 2018 -->
                                 </p>
                             </div>
                         </div>
@@ -71,18 +67,24 @@ $first_news_cat = get_the_terms($first_news_ID, 'news-category');
                 <!-- /************ FIRST POST STARTS ************/ -->
 
                 <!-- /************ POST LISTING STARTS ************/ -->
-                <div class="row">
+                <div class="row" id="news-list">
                     <?php
                     $post_args = array(
                         'post_type' => 'news',
+                        'post_status' => 'publish',
                         'exclude' => array($first_news_ID),
-                        'posts_per_page' => 50,
+                        'posts_per_page' => 4,
+                        'paged' => 1
                     );
 
                     $get_news = get_posts($post_args);
+                    $max_page = count($get_news);
                     ?>
 
-                    <?php foreach ($get_news as $post_val) { ?>
+                    <?php foreach ($get_news as $post_val) {
+                        ?>
+                        <input type="hidden" id="max-page" value=<?= $max_page ?>>
+
                         <div class="col-md-6 col-sm-12 news-side">
                             <div class="row">
                                 <div class="col-sm-4">
@@ -114,12 +116,14 @@ $first_news_cat = get_the_terms($first_news_ID, 'news-category');
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php }
+                    wp_reset_postdata();
+                    ?>
                 </div>
                 <!-- /************ POST LISTING ENDS ************/ -->
             </div>
             <div class="text-center">
-                <a href="#" class="theme-btn">Load More</a>
+                <button class="theme-btn" id="news-loadmore-btn">Load More</button>
             </div>
         </div>
     </section>
