@@ -2,7 +2,8 @@ var currPage = 2;
 
 jQuery(document).ready(function () {
     jQuery(function ($) {
-        $("#news-loadmore-btn").click(function () {
+        // $("#news-loadmore-btn").click(function () {
+        $("#news-loadmore-btn").on("click", function () {
             // alert('Working');
             var button = jQuery(this);
             var maxPage = $('#max-page').val();

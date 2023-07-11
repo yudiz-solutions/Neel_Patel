@@ -299,7 +299,7 @@ function custom_field_post()
         'hierarchical' => false,
         'menu_position' => 4,
         'menu_icon' => 'dashicons-tickets',
-        'supports' => array('title', 'author', 'thumbnail', 'excerpt', 'comments')
+        'supports' => array('title', 'author', 'thumbnail', 'editor', 'excerpt', 'comments')
     );
     register_post_type('services', $args_services);
 

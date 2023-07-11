@@ -17,38 +17,38 @@ $team_section_grp = get_field('team_section_grp');
             <?php foreach ($banner_slider_repeater as $key_slider) { ?>
                 <div>
                     <div class="slide"
-                        style="background: #5C5C5C url('<?php echo $key_slider['banner_bg_img']['url']; ?>') no-repeat center center / cover;">
+                        style="background: #5C5C5C url('<?= $key_slider['banner_bg_img']['url']; ?>') no-repeat center center / cover;">
                         <div class="container">
                             <div class="slide-inner">
                                 <div class="slide-content">
                                     <?php if (!empty($key_slider['heading_normal']) || !empty($key_slider['heading_highlighted'])) { ?>
                                         <h1>
-                                            <?php echo $key_slider['heading_normal']; ?> <span>
-                                                <?php echo $key_slider['heading_highlighted']; ?>
+                                            <?= $key_slider['heading_normal']; ?> <span>
+                                                <?= $key_slider['heading_highlighted']; ?>
                                             </span>
                                         </h1>
                                     <?php } ?>
 
                                     <?php if (!empty($key_slider['tagline'])) { ?>
                                         <p class="tagline">
-                                            <?php echo $key_slider['tagline']; ?>
+                                            <?= $key_slider['tagline']; ?>
                                         </p>
                                     <?php } ?>
 
                                     <ul class="btn-list">
                                         <?php if (!empty($key_slider['button_1'])) { ?>
                                             <li>
-                                                <a href="<?php echo $key_slider['button_1']['url']; ?> "
-                                                    target="<?php echo $key_slider['button_1']['target']; ?>"
-                                                    class="theme-btn"><?php echo $key_slider['button_1']['title']; ?>
+                                                <a href="<?= $key_slider['button_1']['url']; ?> "
+                                                    target="<?= $key_slider['button_1']['target']; ?>"
+                                                    class="theme-btn"><?= $key_slider['button_1']['title']; ?>
                                                 </a>
                                             </li>
                                         <?php } ?>
                                         <?php if (!empty($key_slider['button_2'])) { ?>
                                             <li>
-                                                <a href="<?php echo $key_slider['button_2']['url']; ?>"
-                                                    target="<?php echo $key_slider['button_2']['target']; ?>"
-                                                    class="theme-btn fill-btn"><?php echo $key_slider['button_2']['title']; ?>
+                                                <a href="<?= $key_slider['button_2']['url']; ?>"
+                                                    target="<?= $key_slider['button_2']['target']; ?>"
+                                                    class="theme-btn fill-btn"><?= $key_slider['button_2']['title']; ?>
                                                 </a>
                                             </li>
                                         <?php } ?>
@@ -77,7 +77,7 @@ $team_section_grp = get_field('team_section_grp');
                         <div class="heading-block">
                             <?php if (!empty($about_us_grp['heading'])) { ?>
                             <h2>
-                                <?php echo $about_us_grp['heading']; ?>
+                                <?= $about_us_grp['heading']; ?>
                             </h2>
                             <?php } ?>
                         </div>
@@ -87,13 +87,13 @@ $team_section_grp = get_field('team_section_grp');
                     <div class="desc-block">
                         <?php if (!empty($about_us_grp['para'])) { ?>
                         <p>
-                            <?php echo $about_us_grp['para']; ?>
+                            <?= $about_us_grp['para']; ?>
                         </p>
                         <?php } ?>
 
                         <?php if (!empty($about_us_grp['read_more_btn'])) { ?>
-                        <a href="<?php echo $about_us_grp['read_more_btn']['url']; ?>"
-                            target="<?php echo $about_us_grp['read_more_btn']['target']; ?>" class="theme-btn"><?php echo $about_us_grp['read_more_btn']['title']; ?>
+                        <a href="<?= $about_us_grp['read_more_btn']['url']; ?>"
+                            target="<?= $about_us_grp['read_more_btn']['target']; ?>" class="theme-btn"><?= $about_us_grp['read_more_btn']['title']; ?>
                         </a>
                         <?php } ?>
                     </div>
@@ -126,7 +126,7 @@ $team_section_grp = get_field('team_section_grp');
                             <li class="active">
                                 <h3>
                                     <a data-toggle="pill" href="#pre-arrival">
-                                        <?php echo $service_section_grp['category_1']; ?>
+                                        <?= $service_section_grp['category_1']; ?>
                                     </a>
                                 </h3>
                             </li>
@@ -136,7 +136,7 @@ $team_section_grp = get_field('team_section_grp');
                             <li>
                                 <h3>
                                     <a data-toggle="pill" href="#post-arrival">
-                                        <?php echo $service_section_grp['category_2']; ?>
+                                        <?= $service_section_grp['category_2']; ?>
                                     </a>
                                 </h3>
                             </li>
@@ -155,14 +155,14 @@ $team_section_grp = get_field('team_section_grp');
                                 <div class="col-sm-6 col-md-3">
                                     <div class="service-item">
                                         <?php if (!empty($key_service_1['service_img'])) { ?>
-                                        <img src="<?php echo $key_service_1['service_img']['url']; ?>"
-                                            alt="<?php echo $key_service_1['service_img']['alt']; ?>">
+                                        <img src="<?= $key_service_1['service_img']['url']; ?>"
+                                            alt="<?= $key_service_1['service_img']['alt']; ?>">
                                         <?php } ?>
 
                                         <?php if (!empty($key_service_1['service_title'])) { ?>
                                         <div class="bottom-block">
                                             <p>
-                                                <?php echo $key_service_1['service_title']; ?>
+                                                <?= $key_service_1['service_title']; ?>
                                             </p>
                                         </div>
                                         <?php } ?>
@@ -180,14 +180,14 @@ $team_section_grp = get_field('team_section_grp');
                                 <div class="col-sm-6 col-md-3">
                                     <div class="service-item">
                                         <?php if (!empty($key_service_2['service_img'])) { ?>
-                                        <img src="<?php echo $key_service_2['service_img']['url']; ?>"
-                                            alt="<?php echo $key_service_2['service_img']['url']; ?>">
+                                        <img src="<?= $key_service_2['service_img']['url']; ?>"
+                                            alt="<?= $key_service_2['service_img']['url']; ?>">
                                         <?php } ?>
 
                                         <?php if (!empty($key_service_2['service_img'])) { ?>
                                         <div class="bottom-block">
                                             <p>
-                                                <?php echo $key_service_2['service_title']; ?>
+                                                <?= $key_service_2['service_title']; ?>
                                             </p>
                                         </div>
                                         <?php } ?>
@@ -229,7 +229,7 @@ $team_section_grp = get_field('team_section_grp');
                     <div class="news-box news-list-title">
                         <div class="news-desc">
                             <h2>
-                                <?php echo $news_grp['heading']; ?>
+                                <?= $news_grp['heading']; ?>
                             </h2>
                         </div>
                     </div>
@@ -238,18 +238,18 @@ $team_section_grp = get_field('team_section_grp');
 
                 <div class="col-sm-6">
                     <div class="news-box"
-                        style="background: url('<?php echo $news_grp['news_1_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
+                        style="background: url('<?= $news_grp['news_1_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
                             <?php if (!empty($news_grp['news_1_grp']['tagline'])) { ?>
                             <p>
-                                <?php echo $news_grp['news_1_grp']['tagline']; ?>
+                                <?= $news_grp['news_1_grp']['tagline']; ?>
                             </p>
                             <?php
                             }
                             if ($news_grp['news_1_grp']['description']) { ?>
                             <h5>
-                                <a href="<?php echo $news_grp['news_1_grp']['description']['url']; ?>"
-                                    target="<?php echo $news_grp['news_1_grp']['description']['target']; ?>"><?php echo $news_grp['news_1_grp']['description']['title']; ?>
+                                <a href="<?= $news_grp['news_1_grp']['description']['url']; ?>"
+                                    target="<?= $news_grp['news_1_grp']['description']['target']; ?>"><?= $news_grp['news_1_grp']['description']['title']; ?>
                                 </a>
                             </h5>
                             <?php } ?>
@@ -259,11 +259,11 @@ $team_section_grp = get_field('team_section_grp');
 
                 <div class="col-sm-3">
                     <div class="news-box"
-                        style="background: url('<?php echo $news_grp['news_2_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
+                        style="background: url('<?= $news_grp['news_2_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
                             <?php if (!empty($news_grp['news_2_grp']['tagline'])) { ?>
                             <p>
-                                <?php echo $news_grp['news_2_grp']['tagline']; ?>
+                                <?= $news_grp['news_2_grp']['tagline']; ?>
                             </p>
                             <?php
                             }
@@ -271,9 +271,9 @@ $team_section_grp = get_field('team_section_grp');
                             if (!empty($news_grp['news_2_grp']['description'])) {
                                 ?>
                             <h5>
-                                <a href="<?php echo $news_grp['news_2_grp']['description']['url']; ?>"
-                                    target="<?php echo $news_grp['news_2_grp']['description']['target']; ?>">
-                                    <?php echo $news_grp['news_2_grp']['description']['title']; ?>
+                                <a href="<?= $news_grp['news_2_grp']['description']['url']; ?>"
+                                    target="<?= $news_grp['news_2_grp']['description']['target']; ?>">
+                                    <?= $news_grp['news_2_grp']['description']['title']; ?>
                                 </a>
                             </h5>
                             <?php } ?>
@@ -283,11 +283,11 @@ $team_section_grp = get_field('team_section_grp');
 
                 <div class="col-sm-5">
                     <div class="news-box"
-                        style="background: url('<?php echo $news_grp['news_3_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
+                        style="background: url('<?= $news_grp['news_3_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
                             <?php if (!empty($news_grp['news_3_grp']['tagline'])) { ?>
                             <p>
-                                <?php echo $news_grp['news_3_grp']['tagline']; ?>
+                                <?= $news_grp['news_3_grp']['tagline']; ?>
                             </p>
                             <?php
                             }
@@ -295,9 +295,9 @@ $team_section_grp = get_field('team_section_grp');
                             if (!empty($news_grp['news_3_grp']['description'])) {
                                 ?>
                             <h5>
-                                <a href="<?php echo $news_grp['news_3_grp']['description']['url']; ?>"
-                                    target="<?php echo $news_grp['news_3_grp']['description']['target']; ?>">
-                                    <?php echo $news_grp['news_3_grp']['description']['title']; ?>
+                                <a href="<?= $news_grp['news_3_grp']['description']['url']; ?>"
+                                    target="<?= $news_grp['news_3_grp']['description']['target']; ?>">
+                                    <?= $news_grp['news_3_grp']['description']['title']; ?>
                                 </a>
                             </h5>
                             <?php } ?>
@@ -307,11 +307,11 @@ $team_section_grp = get_field('team_section_grp');
 
                 <div class="col-sm-7">
                     <div class="news-box"
-                        style="background: url('<?php echo $news_grp['news_4_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
+                        style="background: url('<?= $news_grp['news_4_grp']['news_image']['url']; ?>') no-repeat center center / cover;">
                         <div class="news-desc">
                             <?php if (!empty($news_grp['news_4_grp']['tagline'])) { ?>
                             <p>
-                                <?php echo $news_grp['news_4_grp']['tagline']; ?>
+                                <?= $news_grp['news_4_grp']['tagline']; ?>
                             </p>
                             <?php
                             }
@@ -319,9 +319,9 @@ $team_section_grp = get_field('team_section_grp');
                             if (!empty($news_grp['news_4_grp']['description'])) {
                                 ?>
                             <h5>
-                                <a href="<?php echo $news_grp['news_4_grp']['description']['url']; ?>"
-                                    target="<?php echo $news_grp['news_4_grp']['description']['target']; ?>">
-                                    <?php echo $news_grp['news_4_grp']['description']['title']; ?>
+                                <a href="<?= $news_grp['news_4_grp']['description']['url']; ?>"
+                                    target="<?= $news_grp['news_4_grp']['description']['target']; ?>">
+                                    <?= $news_grp['news_4_grp']['description']['title']; ?>
                                 </a>
                             </h5>
                             <?php } ?>
@@ -332,8 +332,8 @@ $team_section_grp = get_field('team_section_grp');
 
             <?php if (!empty($news_grp['more_news_btn'])) { ?>
             <div class="text-center">
-                <a href="<?php echo $news_grp['more_news_btn']['url']; ?>"
-                    target="<?php echo $news_grp['more_news_btn']['target']; ?>" class="theme-btn"><?php echo $news_grp['more_news_btn']['title']; ?></a>
+                <a href="<?= $news_grp['more_news_btn']['url']; ?>"
+                    target="<?= $news_grp['more_news_btn']['target']; ?>" class="theme-btn"><?= $news_grp['more_news_btn']['title']; ?></a>
             </div>
             <?php } ?>
         </div>
@@ -353,7 +353,7 @@ $team_section_grp = get_field('team_section_grp');
             <?php if (!empty($team_section_grp['heading'])) { ?>
             <div class="text-center">
                 <h2>
-                    <?php echo $team_section_grp['heading']; ?>
+                    <?= $team_section_grp['heading']; ?>
                 </h2>
             </div>
             <?php } ?>
@@ -363,17 +363,17 @@ $team_section_grp = get_field('team_section_grp');
                 <?php foreach ($team_section_grp['repeater'] as $key_team) { ?>
                 <div class="col-sm-4">
                     <div class="team-box"
-                        style="background: #015e7d url('<?php echo $key_team['team_img']['url']; ?>') no-repeat center center / cover;">
+                        style="background: #015e7d url('<?= $key_team['team_img']['url']; ?>') no-repeat center center / cover;">
                         <div class="team-desc">
                             <?php if (!empty($key_team['team_heading'])) { ?>
                             <h3>
-                                <?php echo $key_team['team_heading']; ?>
+                                <?= $key_team['team_heading']; ?>
                             </h3>
                             <?php }
 
                             if (!empty($key_team['team_para'])) { ?>
                             <p>
-                                <?php echo $key_team['team_para']; ?>
+                                <?= $key_team['team_para']; ?>
                             </p>
                             <?php } ?>
                         </div>
@@ -385,8 +385,8 @@ $team_section_grp = get_field('team_section_grp');
 
             <?php if (!empty($team_section_grp['button'])) { ?>
             <div class="text-center">
-                <a href="<?php echo $team_section_grp['button']['url']; ?>"
-                    target="<?php echo $team_section_grp['button']['target']; ?>" class="theme-btn white-btn"><?php echo $team_section_grp['button']['title']; ?></a>
+                <a href="<?= $team_section_grp['button']['url']; ?>"
+                    target="<?= $team_section_grp['button']['target']; ?>" class="theme-btn white-btn"><?= $team_section_grp['button']['title']; ?></a>
             </div>
             <?php } ?>
         </div>
