@@ -47,6 +47,7 @@ global $post;
                                 margin: 24px 0 12px;
                                 background: url("<?php echo get_the_post_thumbnail_url(); ?>") no-repeat center center / cover;
                                 height: 320px;
+
                                 border-radius: 2px;
                             }
                         </style>
@@ -85,7 +86,8 @@ global $post;
                                         <?php
                                         if (!empty($news_pt_grp['tag_field_repeater'])) {
                                             foreach ($news_pt_grp['tag_field_repeater'] as $tag_val) { ?>
-                                                <li><a href="<?php echo $tag_val['tag_link']['url']; ?>"><?php echo $tag_val['tag_link']['title']; ?></a></li>
+                                                <li><a href="<?php echo $tag_val['tag_link']['url']; ?>"><?php echo $tag_val['tag_link']['title']; ?></a>
+                                                </li>
                                             <?php }
                                         } ?>
                                     </ul>
@@ -109,9 +111,7 @@ global $post;
                             <li><a data-toggle="tab" href="#recommended">Recommended</a></li>
                         </ul>
                         <div class="tab-content">
-
                             <!-- ////////// POPULAR POST BY VIEWS //////////////// -->
-
                             <div id="popular" class="tab-pane fade in active">
                                 <?php
                                 $popular_posts_args = array(
@@ -155,22 +155,21 @@ global $post;
                                 ?>
                             </div>
 
-                            <!-- ////////// RECOMMENDED //////////////// -->
-
+                            <!-- ////////// RECOMMENDED POSTS //////////////// -->
                             <div id="recommended" class="tab-pane fade">
                                 <?php
-                                $recommended_post_args = array(
+                                $rec_posts_args = array(
                                     'post_type' => 'news',
-                                    'numberposts' => '4',
-                                    'orderby' => 'modified',
-                                    'order' => 'ASC',
+                                    'orderby' => 'post_date',
+                                    'order' => 'AES',
+                                    'posts_per_page' => '50'
                                 );
 
-                                $recommended_post = new WP_Query($recommended_post_args);
+                                $rec_posts = new WP_Query($rec_posts_args);
 
-                                if ($recommended_post->have_posts()) {
-                                    while ($recommended_post->have_posts()) {
-                                        $popular_posts->the_post();
+                                if ($rec_posts->have_posts()) {
+                                    while ($rec_posts->have_posts()) {
+                                        $rec_posts->the_post();
                                         ?>
                                         <div class="article-tab-item">
                                             <div class="article-img">
@@ -193,10 +192,14 @@ global $post;
                                             <div class="clearfix"></div>
                                         </div>
                                         <?php
+                                        // echo get_the_title();
+                                        // echo "<br>";
                                     }
                                     wp_reset_postdata();
                                 }
+
                                 ?>
+
                             </div>
                         </div>
                     </div>

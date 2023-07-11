@@ -523,7 +523,7 @@ function track_post_views($post_id)
     set_post_views($post_id);
 }
 add_action('wp_head', 'track_post_views');
-remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+// remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
 //---------------------------------------------------------------------------//
 
