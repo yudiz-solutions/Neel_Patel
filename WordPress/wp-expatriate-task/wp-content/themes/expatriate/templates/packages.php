@@ -8,7 +8,6 @@ $packages_repeater = get_field('packages_repeater');
 <!--========= BANNER SECTION STARTS =========-->
 <?php if (!empty($banner_grp)) { ?>
     <div class="home-banner">
-
         <?php if (!empty($banner_grp['img'])) { ?>
             <div class="banner"
                 style="background: #5C5C5C url('<?php echo $banner_grp['img']['url']; ?>') no-repeat center center / cover;">
@@ -27,6 +26,7 @@ $packages_repeater = get_field('packages_repeater');
 <!--========= BANNER SECTION ENDS =========-->
 
 <main>
+
     <!--========= COMMON SECTION STARTS =========-->
     <?php if (!empty($packages_repeater)) { ?>
         <section class="common-section">
@@ -85,11 +85,13 @@ $packages_repeater = get_field('packages_repeater');
     <?php } ?>
     <!--========= COMMON SECTION ENDS =========-->
 
+
     <!--========= ASSESMENT SECTION STARTS =========-->
     <?php
     do_action('insert_assessment_section');
     ?>
     <!--========= ASSESMENT SECTION ENDS =========-->
+
 </main>
 
 <!--========= FOOTER SECTION STARTS =========-->

@@ -1,11 +1,8 @@
 <?php
 /* Template Name: Services */
 get_header();
+
 $service_post_grp = get_field('service_post_grp', 'option');
-$post_content = get_field('post_content');
-echo "<pre>";
-echo $post_content;
-echo "</pre>";
 ?>
 
 <!--========= BANNER SECTION STARTS =========-->
@@ -52,7 +49,7 @@ echo "</pre>";
                                     </a>
                                 </div>
 
-                                <div id="collapse<?= $term->term_id; ?>" class="panel-collapse collapse in">
+                                <div id="collapse<?= $term->term_id; ?>" class="panel-collapse">
                                     <ul class="nav nav-tabs">
                                         <?php
                                         $acc_args = array(
@@ -116,7 +113,7 @@ echo "</pre>";
                                     </h3>
 
                                     <!-- CONTENT STARTS -->
-                                    <?= $post_content; ?>
+                                    <?= get_the_content(); ?>
                                     <!-- CONTENT ENDS -->
                                 </div>
                             <?php }

@@ -81,6 +81,27 @@ add_action('wp_enqueue_scripts', 'add_css_js');
 
 //---------------------------------------------------------------------------//
 
+//== CUSTOMIZE SITE LOGO ==//
+function add_transparent_logo($wp_customize)
+{
+    $wp_customize->add_setting('transparent_logo');
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'transparent_logo',
+            array(
+                'label' => __('Dark Logo', 'expatriate'),
+                'section' => 'title_tagline',
+                'settings' => 'transparent_logo',
+                'priority' => 4,
+            )
+        )
+    );
+}
+
+add_action('customize_register', 'add_transparent_logo');
+//---------------------------------------------------------------------------//
+
 //== COMMON ASSESSMENT SECTION ==//
 function add_assessment_section()
 {

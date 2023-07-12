@@ -52,6 +52,6 @@ $content = get_field("content");
     <!--========= ASSESMENT SECTION ENDS =========-->
 </main>
 
-<!--******************* Footer Section Starts ******************-->
+<!--========= FOOTER SECTION STARTS =========-->
 <?php get_footer(); ?>
-<!--******************* Footer Section Ends ******************-->
+<!--========= FOOTER SECTION ENDS =========-->

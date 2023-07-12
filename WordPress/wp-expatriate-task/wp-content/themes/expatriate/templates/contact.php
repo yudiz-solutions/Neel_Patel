@@ -10,13 +10,13 @@ $common_grp = get_field('common_grp');
   <div class="home-banner">
     <?php if (!empty($banner_grp['img'])) { ?>
       <div class="banner"
-        style="background: #5C5C5C url('<?php echo $banner_grp['img']['url']; ?>') no-repeat center center / cover;">
+        style="background: #5C5C5C url('<?= $banner_grp['img']['url']; ?>') no-repeat center center / cover;">
       <?php } ?>
 
       <?php if (!empty($banner_grp['heading'])) { ?>
         <div class="container">
           <h1>
-            <?php echo $banner_grp['heading']; ?>
+            <?= $banner_grp['heading']; ?>
           </h1>
         </div>
       <?php } ?>
@@ -37,7 +37,7 @@ $common_grp = get_field('common_grp');
           <div class="contact-form">
             <?php if (!empty($common_grp['heading'])) { ?>
               <h3 class="blue-text">
-                <?php echo $common_grp['heading']; ?>
+                <?= $common_grp['heading']; ?>
               </h3>
             <?php }
             echo do_shortcode('[contact-form-7 id="256" title="Contact Us Page"]');
@@ -49,29 +49,29 @@ $common_grp = get_field('common_grp');
           <div class="contact-info">
             <?php if (!empty($common_grp['contact_info_grp']['heading'])) { ?>
               <h3 class="blue-text">
-                <?php echo $common_grp['contact_info_grp']['heading']; ?>
+                <?= $common_grp['contact_info_grp']['heading']; ?>
               </h3>
             <?php } ?>
 
             <?php if (!empty($common_grp['contact_info_grp']['company_name'])) { ?>
               <h4>
-                <?php echo $common_grp['contact_info_grp']['company_name']; ?>
+                <?= $common_grp['contact_info_grp']['company_name']; ?>
               </h4>
             <?php } ?>
 
             <?php if (!empty($common_grp['contact_info_grp']['company_address'])) { ?>
               <p>
-                <?php echo $common_grp['contact_info_grp']['company_address']; ?>
+                <?= $common_grp['contact_info_grp']['company_address']; ?>
               </p>
             <?php } ?>
 
             <p>
               <?php if (!empty($common_grp['contact_info_grp']['phone_number'])) { ?>
-                Phone: <a href="tel:<?php echo $common_grp['contact_info_grp']['phone_number']; ?>"><?php echo $common_grp['contact_info_grp']['phone_number'] ?></a>
+                Phone: <a href="tel:<?= $common_grp['contact_info_grp']['phone_number']; ?>"><?= $common_grp['contact_info_grp']['phone_number'] ?></a>
               <?php } ?>
               <br>
               <?php if (!empty($common_grp['contact_info_grp']['email'])) { ?>
-                Email: <a href="mailto:<?php echo $common_grp['contact_info_grp']['email']; ?>"><?php echo $common_grp['contact_info_grp']['email'] ?></a>
+                Email: <a href="mailto:<?= $common_grp['contact_info_grp']['email']; ?>"><?= $common_grp['contact_info_grp']['email'] ?></a>
               <?php } ?>
             </p>
           </div>

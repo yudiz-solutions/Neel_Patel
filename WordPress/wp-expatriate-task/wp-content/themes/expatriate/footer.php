@@ -1,8 +1,8 @@
-<!--******************* Footer Section Start ******************-->
 <?php
 $contact_us_btn = get_field('contact_us_btn', 'option');
 ?>
 
+<!--========= FOOTER SECTION STARTS =========-->
 <footer>
     <div class="footer-inner">
         <div class="container">
@@ -14,19 +14,17 @@ $contact_us_btn = get_field('contact_us_btn', 'option');
             dynamic_sidebar('footer-menu');
             ?>
 
-            <a href="<?php echo $contact_us_btn['url']; ?>" target="<?php echo $contact_us_btn['target']; ?>"
-                class="theme-btn white-btn"><?php echo $contact_us_btn['title']; ?>
+            <a href="<?= $contact_us_btn['url']; ?>" target="<?= $contact_us_btn['target']; ?>"
+                class="theme-btn white-btn"><?= $contact_us_btn['title']; ?>
             </a>
             <div class="clearfix"></div>
         </div>
     </div>
     <?php dynamic_sidebar('footer-copyright'); ?>
 </footer>
-<!--******************* Footer Section End ******************-->
-
+<!--========= FOOTER SECTION ENDS =========-->
 
 <?php wp_footer(); ?>
-<!--*********************** All End ************************-->
 </body>
 
 </html>

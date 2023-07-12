@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <!--******************* Header Section Start *********************-->
+    <!--========= HEADER SECTION STARTS =========-->
     <header>
         <?php
         $sticky_icon = get_field('sticky_icon', 'option');
@@ -29,12 +29,14 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand default-logo" href="<?php echo site_url(); ?>">
-                        <?php echo the_custom_logo(); ?>
+                    <a class="navbar-brand default-logo" href="<?= site_url(); ?>">
+                        <!-- Light Icon -->
+                        <?= the_custom_logo(); ?>
                     </a>
 
-                    <a class="navbar-brand sticky-logo" href="<?php echo site_url(); ?>">
-                        <img src="<?php echo $sticky_icon['url']; ?>" alt="<?php echo $sticky_icon['alt']; ?>">
+                    <a class="navbar-brand sticky-logo" href="<?= site_url(); ?>">
+                        <!-- Dark Icon -->
+                        <img src="<?= get_theme_mod('transparent_logo'); ?>" alt="Dark Icon">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -51,3 +53,4 @@
             </div>
         </nav>
     </header>
+    <!--========= HEADER SECTION ENDS =========-->
