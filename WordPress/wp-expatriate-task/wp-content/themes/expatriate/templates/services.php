@@ -36,20 +36,37 @@ $service_post_grp = get_field('service_post_grp', 'option');
                             'taxonomy' => 'services-category',
                         )
                     );
+
+                    $first = "1";
                     ?>
 
                     <?php foreach ($terms as $term) {
+                        $cat_class = "";
+                        $post_class = "";
+
                         ?>
                         <div class="panel-group" id="accordion">
                             <div class="panel">
                                 <div>
-                                    <a data-toggle="collapse" data-parent="#accordion"
+                                    <?php
+                                    if ($first == "1") {
+                                        $cat_class = "collapsed";
+                                        $post_class = "current";
+                                        $first = "0";
+                                    }
+                                    // echo "<h1>";
+                                    // echo $class;
+                                    // echo $first;
+                                    // echo "</h1>"
+                                
+                                    ?>
+                                    <a class="<?= $cat_class; ?>" data-toggle="collapse" data-parent="#accordion"
                                         href="#collapse<?= $term->term_id; ?>">
                                         <?= $term->name; ?>
                                     </a>
                                 </div>
 
-                                <div id="collapse<?= $term->term_id; ?>" class="panel-collapse">
+                                <div id="collapse<?= $term->term_id; ?>" class="panel-collapse collapse in">
                                     <ul class="nav nav-tabs">
                                         <?php
                                         $acc_args = array(
@@ -69,7 +86,7 @@ $service_post_grp = get_field('service_post_grp', 'option');
                                                 $acc_posts->the_post();
                                                 ?>
                                                 <li>
-                                                    <a data-toggle="tab" href="#service<?= get_the_ID(); ?>"
+                                                    <a class="" data-toggle="tab" href="#service<?= get_the_ID(); ?>"
                                                         data-target="#service<?= get_the_ID(); ?>">
                                                         <?= get_the_title(); ?>
                                                     </a>

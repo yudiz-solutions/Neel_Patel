@@ -41,19 +41,8 @@ global $post;
                             <?= $post->post_title; ?>
                         </h5>
 
-                        <!-- NEWS FEATURE IMAGE CSS -->
-                        <style>
-                            .featured-articles {
-                                margin: 24px 0 12px;
-                                background: url("<?= get_the_post_thumbnail_url(); ?>") no-repeat center center / cover;
-                                height: 320px;
-
-                                border-radius: 2px;
-                            }
-                        </style>
-                        <!------------------------------>
-
-                        <div class="featured-articles feature1">
+                        <div class="featured-articles feature1"
+                            style="background: url('<?= get_the_post_thumbnail_url(); ?>') no-repeat center center / cover">
                         </div>
                         <div class="articles-meta">
                             <p class="item-meta">
