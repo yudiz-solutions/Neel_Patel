@@ -41,8 +41,10 @@ $service_post_grp = get_field('service_post_grp', 'option');
                     ?>
 
                     <?php foreach ($terms as $term) {
-                        $cat_class = "";
+                        $cat_class = "collapsed";
                         $post_class = "";
+                        $post_div_class = "";
+
 
                         ?>
                         <div class="panel-group" id="accordion">
@@ -50,7 +52,8 @@ $service_post_grp = get_field('service_post_grp', 'option');
                                 <div>
                                     <?php
                                     if ($first == "1") {
-                                        $cat_class = "collapsed";
+                                        $cat_class = "";
+                                        $post_div_class = "in";
                                         $post_class = "current";
                                         $first = "0";
                                     }
@@ -66,7 +69,8 @@ $service_post_grp = get_field('service_post_grp', 'option');
                                     </a>
                                 </div>
 
-                                <div id="collapse<?= $term->term_id; ?>" class="panel-collapse collapse in">
+                                <div id="collapse<?= $term->term_id; ?>"
+                                    class="panel-collapse collapse <?= $post_div_class; ?>">
                                     <ul class="nav nav-tabs">
                                         <?php
                                         $acc_args = array(
