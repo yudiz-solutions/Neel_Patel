@@ -532,8 +532,9 @@ function set_post_views($post_id)
 
 function track_post_views($post_id)
 {
-    if (!is_single())
+    if (!is_single()) {
         return;
+    }
 
     if (empty($post_id)) {
         global $post;
