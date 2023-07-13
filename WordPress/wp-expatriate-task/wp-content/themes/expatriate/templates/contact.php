@@ -104,10 +104,10 @@ $common_grp = get_field('common_grp');
 <script type="text/javascript">
   function initMap() {
     var mapDiv = document.getElementById('map');
-    var latlng = new google.maps.LatLng(43.648636, -79.381744); //     (Latitude and Longitude of your location)
+    var latlng = new google.maps.LatLng(23.00, 72.00); //     (Latitude and Longitude of your location)
     var map = new google.maps.Map(mapDiv, {
       center: latlng,
-      zoom: 15,
+      zoom: 8,
       mapTypeId: google.maps.MapTypeId.MAP
     });
     var marker = new google.maps.Marker({
