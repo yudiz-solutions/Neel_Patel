@@ -515,7 +515,6 @@ add_action('wp_ajax_nopriv_load_more_news', 'load_more_news');
 //---------------------------------------------------------------------------//
 
 //== POPULAR POST BY VIEWS ==//
-
 function set_post_views($post_id)
 {
     $count_key = 'wp_post_views_count';
@@ -544,7 +543,6 @@ function track_post_views($post_id)
     set_post_views($post_id);
 }
 add_action('wp_head', 'track_post_views');
-// remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
 //---------------------------------------------------------------------------//
 

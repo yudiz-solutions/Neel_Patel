@@ -100,6 +100,7 @@ global $post;
                             <li><a data-toggle="tab" href="#recommended">Recommended</a></li>
                         </ul>
                         <div class="tab-content">
+
                             <!-- ////////// POPULAR POST BY VIEWS //////////////// -->
                             <div id="popular" class="tab-pane fade in active">
                                 <?php

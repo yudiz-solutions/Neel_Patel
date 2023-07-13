@@ -37,31 +37,25 @@ $service_post_grp = get_field('service_post_grp', 'option');
                         )
                     );
 
-                    $first = "1";
+                    $firstIteration = true;
                     ?>
 
                     <?php foreach ($terms as $term) {
-                        $cat_class = "collapsed";
-                        $post_class = "";
-                        $post_div_class = "";
 
+                        $cat_class = "collapsed";
+                        $post_div_class = "";
 
                         ?>
                         <div class="panel-group" id="accordion">
                             <div class="panel">
                                 <div>
                                     <?php
-                                    if ($first == "1") {
+                                    if ($firstIteration) {
                                         $cat_class = "";
                                         $post_div_class = "in";
-                                        $post_class = "current";
-                                        $first = "0";
+                                        $firstIteration = false;
                                     }
-                                    // echo "<h1>";
-                                    // echo $class;
-                                    // echo $first;
-                                    // echo "</h1>"
-                                
+
                                     ?>
                                     <a class="<?= $cat_class; ?>" data-toggle="collapse" data-parent="#accordion"
                                         href="#collapse<?= $term->term_id; ?>">
@@ -84,13 +78,24 @@ $service_post_grp = get_field('service_post_grp', 'option');
                                             )
                                         );
 
+                                        $firstIterationInner = "1";
+
                                         $acc_posts = new WP_Query($acc_args);
                                         if ($acc_posts->have_posts()) {
                                             while ($acc_posts->have_posts()) {
                                                 $acc_posts->the_post();
+                                                $post_class = "";
                                                 ?>
                                                 <li>
-                                                    <a class="" data-toggle="tab" href="#service<?= get_the_ID(); ?>"
+                                                    <?php
+                                                    if ($firstIterationInner == "1") {
+                                                        $post_class = "current";
+                                                        $firstIterationInner = "0";
+                                                    }
+                                                    ?>
+
+                                                    <a class="<?= $post_class; ?>" data-toggle="tab"
+                                                        href="#service<?= get_the_ID(); ?>"
                                                         data-target="#service<?= get_the_ID(); ?>">
                                                         <?= get_the_title(); ?>
                                                     </a>
@@ -117,13 +122,21 @@ $service_post_grp = get_field('service_post_grp', 'option');
                             'post_type' => 'services',
                         );
 
+                        $firstIterationDetail = true;
+
                         $detail_posts = new WP_Query($detail_args);
 
                         if ($detail_posts->have_posts()) {
                             while ($detail_posts->have_posts()) {
                                 $detail_posts->the_post();
+                                $detail_class = "";
+
+                                if ($firstIterationDetail) {
+                                    $detail_class = "in active";
+                                    $firstIterationDetail = false;
+                                }
                                 ?>
-                                <div id="service<?= get_the_ID(); ?>" class="tab-pane fade">
+                                <div id="service<?= get_the_ID(); ?>" class="tab-pane fade <?= $detail_class; ?>">
                                     <figure>
                                         <img src="<?= get_the_post_thumbnail_url(); ?>" class="img-responsive"
                                             alt="EASI Service" />
